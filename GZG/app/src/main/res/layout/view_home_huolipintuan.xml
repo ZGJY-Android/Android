@@ -679,6 +679,16 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#eae7e7"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/sy_ad1"/>
 </LinearLayout>
