@@ -1,6 +1,7 @@
 package com.zgjy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +10,12 @@ import android.view.ViewGroup;
 
 import com.zgjy.gzg.R;
 import com.zgjy.gzg.util.Constant;
+import com.zgjy.gzg.util.T;
 import com.zgjy.gzg.viewcontrollers.home.bean.ItemModel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/12 0012.
@@ -118,8 +124,37 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
 
     private class ViewHolder5 extends RecyclerView.ViewHolder {
 
+        private RecyclerView mRecyclerView;
+        private WaresItemAdapter mWaresItemAdapter;
+        private List<Integer> mDatas;
+
         public ViewHolder5(View itemView) {
             super(itemView);
+
+            initData();
+
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.mLRecyclerView_guojiaguan);
+            LinearLayoutManager manager = new LinearLayoutManager(mContext);
+            manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            mRecyclerView.setLayoutManager(manager);
+
+            mWaresItemAdapter = new WaresItemAdapter(mContext,mDatas);
+            mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    T.getInstance().showShort(position+"");
+                }
+            });
+            mRecyclerView.setAdapter(mWaresItemAdapter);
+
         }
+
+        private void initData() {
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1,R.mipmap.sy_hlpic2,R.mipmap.sy_hlpic3));
+        }
+
     }
+
+
 }
+
