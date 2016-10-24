@@ -1,10 +1,7 @@
 package com.jy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
-<<<<<<< HEAD:GZG/app/src/main/java/com/zgjy/gzg/viewcontrollers/home/adapter/DataAdapter.java
-=======
 import android.support.v7.widget.GridLayoutManager;
->>>>>>> 35a2c3f71696f9ef4e2a4365a6bd4d7ee9d80703:GZG/app/src/main/java/com/jy/gzg/viewcontrollers/home/adapter/DataAdapter.java
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,19 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-<<<<<<< HEAD:GZG/app/src/main/java/com/zgjy/gzg/viewcontrollers/home/adapter/DataAdapter.java
-import com.zgjy.gzg.R;
-import com.zgjy.gzg.util.Constant;
-import com.zgjy.gzg.util.T;
-import com.zgjy.gzg.viewcontrollers.home.bean.ItemModel;
-=======
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.ListBaseAdapter;
 import com.jy.gzg.util.Constant;
+import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
-
-import java.util.ArrayList;
->>>>>>> 35a2c3f71696f9ef4e2a4365a6bd4d7ee9d80703:GZG/app/src/main/java/com/jy/gzg/viewcontrollers/home/adapter/DataAdapter.java
+import com.zgjy.gzg.viewcontrollers.home.adapter.WaresItemAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

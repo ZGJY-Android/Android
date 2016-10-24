@@ -1,5 +1,7 @@
 package com.zgjy.gzg.viewcontrollers.home.bean;
 
+import com.jy.gzg.bean.Entity;
+
 /**
  * Created by YX on 2016/10/8 0008.
  */

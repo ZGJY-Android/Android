@@ -25,9 +25,9 @@ import com.jy.gzg.R;
 import com.jy.gzg.activity.MainActivity;
 import com.jy.gzg.activity.SearchActivity;
 import com.jy.gzg.util.Constant;
+import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.home.adapter.DataAdapter;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
-import com.jy.gzg.viewcontrollers.home.util.AppToast;
 import com.jy.gzg.viewcontrollers.home.widget.SampleHeader;
 
 import java.lang.ref.WeakReference;
@@ -275,13 +275,13 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
-                AppToast.showShortText(mContext, item.title);
+                T.getInstance().showShort(item.title);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
-                AppToast.showShortText(mContext, "onItemLongClick - " + item.title);
+                T.getInstance().showShort("onItemLongClick - " + item.title);
             }
         });
 
