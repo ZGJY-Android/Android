@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="117dp"
+                android:layout_height="124dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/sy_xstm_bck"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="13dp"
+        android:background="#e0e0e0"
+        android:gravity="center"
+        android:text="剩余: ??时 ??分"
+        android:textSize="8sp"/>
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_below="@id/tv_time"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/sy_xspic1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_img">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="￥118"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:text="韩国至纯去屑发膜"
+            android:textSize="8sp"/>
+    </RelativeLayout>
+</RelativeLayout>

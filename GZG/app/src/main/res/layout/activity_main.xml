@@ -7,7 +7,7 @@
               android:clipToPadding="false"
               android:fitsSystemWindows="true"
               android:orientation="vertical"
-              tools:context="com.zgjy.gzg.activity.MainActivity">
+              tools:context="com.jy.gzg.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/contentLayout"
@@ -20,7 +20,7 @@
         android:layout_height="1dp"
         android:background="#eae7e7"/>
 
-    <com.zgjy.gzg.widget.FragmentTabHost
+    <com.jy.gzg.widget.FragmentTabHost
         android:id="@+id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -31,5 +31,5 @@
             android:id="@+id/tabcontent"
             android:layout_width="0dp"
             android:layout_height="0dp"></FrameLayout>
-    </com.zgjy.gzg.widget.FragmentTabHost>
+    </com.jy.gzg.widget.FragmentTabHost>
 </LinearLayout>

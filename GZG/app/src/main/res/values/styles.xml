@@ -14,4 +14,10 @@
         <item name="android:layout_marginTop">6dp</item>
     </style>
 
+    <!-- 这是流式布局的样式 -->
+    <declare-styleable name="FlowLayout">
+        <attr name="width_space" format="dimension"/>
+        <attr name="height_space" format="dimension"/>
+    </declare-styleable>
+
 </resources>
