@@ -22,9 +22,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
     compile files('libs/network.jar')
     compile files('libs/gson-2.3.1.jar')
     compile project(':LRecyclerview_library')
+    compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:design:24.1.1'
+
 }

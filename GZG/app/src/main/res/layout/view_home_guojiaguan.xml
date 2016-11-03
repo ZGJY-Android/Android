@@ -12,14 +12,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/nav_hgg"/>
 
     <ImageView
         android:src="@mipmap/sy_hgban"
         android:layout_width="match_parent"
         android:layout_height="142dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="fitXY"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

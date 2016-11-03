@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/nav_hlpt"/>
 
     <LinearLayout
@@ -33,7 +33,7 @@
                 android:layout_width="108dp"
                 android:layout_height="78dp"
                 android:layout_marginTop="14dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic1"/>
 
             <!-- 这是第一个大层 -->
@@ -255,7 +255,7 @@
                 android:layout_width="108dp"
                 android:layout_height="78dp"
                 android:layout_marginTop="14dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic2"/>
 
             <!-- 这是第一个大层 -->
@@ -476,7 +476,7 @@
                 android:layout_width="108dp"
                 android:layout_height="78dp"
                 android:layout_marginTop="14dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic3"/>
 
             <!-- 这是第一个大层 -->
@@ -689,6 +689,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/sy_ad1"/>
 </LinearLayout>

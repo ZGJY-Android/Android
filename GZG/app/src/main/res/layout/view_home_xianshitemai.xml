@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_below="@id/vw_line"
+        android:scaleType="fitXY"
         android:src="@mipmap/nav_xstm"/>
 
     <android.support.v7.widget.RecyclerView

@@ -7,8 +7,8 @@
               android:orientation="vertical">
 
     <include
-        android:id="@+id/title_home"
         layout="@layout/title"/>
+
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/mLRecyclerView"

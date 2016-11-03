@@ -20,15 +20,16 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
     /**
      * ItemClick的回调接口
      */
-    public interface OnItemClickLitener{
-        void onItemClick(View view,int position);
+    public interface OnItemClickLitener {
+        void onItemClick(View view, int position);
     }
 
     private OnItemClickLitener mOnItemClickLitener;
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener){
+    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
+
     private LayoutInflater mLayoutInflater;
     private List<Integer> mDatas;
 
@@ -41,6 +42,7 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
         public ViewHolder(View arg0) {
             super(arg0);
         }
+
         ImageView mImg;
         TextView mTxt;
         TextView mPrice;
@@ -48,7 +50,7 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = mLayoutInflater.inflate(R.layout.guojiaguan_wares_item,viewGroup,false);
+        View view = mLayoutInflater.inflate(R.layout.guojiaguan_wares_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.mImg = (ImageView) view.findViewById(R.id.iv_wares);
         viewHolder.mTxt = (TextView) view.findViewById(R.id.tv_wares);
@@ -60,11 +62,11 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
         viewHolder.mImg.setImageResource(mDatas.get(i));
 
-        if (mOnItemClickLitener != null){
+        if (mOnItemClickLitener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mOnItemClickLitener.onItemClick(viewHolder.itemView,i);
+                    mOnItemClickLitener.onItemClick(viewHolder.itemView, i);
                 }
             });
         }

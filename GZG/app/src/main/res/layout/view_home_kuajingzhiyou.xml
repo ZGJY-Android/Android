@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/nav_kjzy"/>
 
     <LinearLayout

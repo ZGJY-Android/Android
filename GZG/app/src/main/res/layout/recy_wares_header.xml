@@ -5,7 +5,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/blue_back"/>
+        android:background="@mipmap/sy_hgpic2"/>
 
     <TextView
         android:id="@+id/tv_fragment_category"

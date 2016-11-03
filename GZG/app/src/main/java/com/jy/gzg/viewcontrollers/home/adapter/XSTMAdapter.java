@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/10/19 0019.
  */
 public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder> {
-    ArrayList<?> commodityList;
+    ArrayList<?> orderFormList;
     Context context;
 
-    public XSTMAdapter(ArrayList<?> commodityList, Context context) {
-        this.commodityList = commodityList;
+    public XSTMAdapter(ArrayList<?> orderFormList, Context context) {
+        this.orderFormList = orderFormList;
         this.context = context;
     }
 
@@ -37,10 +37,10 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
     @Override
     public int getItemCount() {
         // 返回数据有多少条
-        if (null == commodityList) {
+        if (null == orderFormList) {
             return 0;
         }
-        return commodityList.size();
+        return orderFormList.size();
     }
 
 
