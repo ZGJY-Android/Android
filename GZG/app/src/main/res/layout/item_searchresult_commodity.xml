@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="6dp"
-            android:src="@mipmap/koho"/>
+            android:src="@mipmap/guoqi"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:background="@mipmap/blue_back"
+                android:background="#51b8f1"
                 android:paddingBottom="2dp"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:background="@mipmap/orange_back"
+                android:background="#ff9b00"
                 android:paddingBottom="2dp"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:background="@mipmap/green_back"
+                android:background="#82b900"
                 android:paddingBottom="2dp"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"

@@ -1,6 +1,7 @@
 package com.jy.gzg.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
@@ -35,14 +38,13 @@ public class SearchResultActivity extends AppCompatActivity {
     private boolean isRefresh = false;
     // 申明控件对象
     private LRecyclerView mLRecyclerView = null;
+    private ImageView iv_return;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-
-        mLRecyclerView = (LRecyclerView) findViewById(R.id.mLRecyclerView);
-
+        initView();
         ArrayList<SearchResultBean> dataList = new ArrayList<>();
         mHandler = new PreviewHandler(SearchResultActivity.this);
         mSearchResultAdapter = new SearchResultAdapter(SearchResultActivity.this);
@@ -53,55 +55,7 @@ public class SearchResultActivity extends AppCompatActivity {
         mLRecyclerView.setLayoutManager(new LinearLayoutManager(SearchResultActivity.this));
         mLRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mLRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
-
-        /**
-         * 这是mRecyclerView的滑动监听
-         */
-        mLRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
-            @Override
-            public void onRefresh() {
-                RecyclerViewStateUtils.setFooterViewState(mLRecyclerView, LoadingFooter.State
-                        .Normal);
-                mSearchResultAdapter.clear();
-                mCurrentCounter = 0;
-                isRefresh = true;
-                requestData();
-            }
-
-            @Override
-            public void onScrollUp() {
-            }
-
-            @Override
-            public void onScrollDown() {
-            }
-
-            @Override
-            public void onBottom() {
-                LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState
-                        (mLRecyclerView);
-                if (state == LoadingFooter.State.Loading) {
-                    Log.d(Constant.TAG, "the state is Loading, just wait..");
-                    return;
-                }
-                if (mCurrentCounter < TOTAL_COUNTER) {
-                    // loading more
-                    RecyclerViewStateUtils.setFooterViewState(SearchResultActivity.this,
-                            mLRecyclerView,
-                            REQUEST_COUNT, LoadingFooter.State.Loading, null);
-                    requestData();
-                } else {
-                    //the end
-                    RecyclerViewStateUtils.setFooterViewState(SearchResultActivity.this,
-                            mLRecyclerView,
-                            REQUEST_COUNT, LoadingFooter.State.TheEnd, null);
-                }
-            }
-
-            @Override
-            public void onScrolled(int distanceX, int distanceY) {
-            }
-        });
+        setViewListen();
         mLRecyclerView.setRefreshing(true);
 
     }
@@ -211,5 +165,91 @@ public class SearchResultActivity extends AppCompatActivity {
 //                }
             }
         }.start();
+    }
+
+    /**
+     * 初始化各种控件
+     */
+    private void initView() {
+        mLRecyclerView = (LRecyclerView) findViewById(R.id.mLRecyclerView);
+        iv_return = (ImageView) findViewById(R.id.iv_return);
+    }
+
+    /**
+     * 设置各种监听事件
+     */
+    private void setViewListen() {
+        iv_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        /**
+         * 这是mRecyclerView的滑动监听
+         */
+        mLRecyclerView.setLScrollListener(new LRecyclerView.LScrollListener() {
+            @Override
+            public void onRefresh() {
+                RecyclerViewStateUtils.setFooterViewState(mLRecyclerView, LoadingFooter.State
+                        .Normal);
+                mSearchResultAdapter.clear();
+                mCurrentCounter = 0;
+                isRefresh = true;
+                requestData();
+            }
+
+            @Override
+            public void onScrollUp() {
+            }
+
+            @Override
+            public void onScrollDown() {
+            }
+
+            @Override
+            public void onBottom() {
+                LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState
+                        (mLRecyclerView);
+                if (state == LoadingFooter.State.Loading) {
+                    Log.d(Constant.TAG, "the state is Loading, just wait..");
+                    return;
+                }
+                if (mCurrentCounter < TOTAL_COUNTER) {
+                    // loading more
+                    RecyclerViewStateUtils.setFooterViewState(SearchResultActivity.this,
+                            mLRecyclerView,
+                            REQUEST_COUNT, LoadingFooter.State.Loading, null);
+                    requestData();
+                } else {
+                    //the end
+                    RecyclerViewStateUtils.setFooterViewState(SearchResultActivity.this,
+                            mLRecyclerView,
+                            REQUEST_COUNT, LoadingFooter.State.TheEnd, null);
+                }
+            }
+
+            @Override
+            public void onScrolled(int distanceX, int distanceY) {
+            }
+        });
+
+        /**
+         * 设置mLRecyclerViewAdapter的item的点击事件
+         */
+        mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(SearchResultActivity.this, ProductdetailsActivity
+                        .class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
     }
 }

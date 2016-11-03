@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".activity.SearchResultActivity">
         </activity>
+        <activity android:name=".viewcontrollers.mine.activity.OrderformActivity">
+        </activity>
+        <activity android:name=".activity.ProductdetailsActivity">
+        </activity>
     </application>
 
 </manifest>

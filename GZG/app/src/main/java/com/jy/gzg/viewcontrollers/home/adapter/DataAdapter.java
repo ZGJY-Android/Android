@@ -14,7 +14,6 @@ import com.jy.gzg.adapter.ListBaseAdapter;
 import com.jy.gzg.util.Constant;
 import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
-import com.zgjy.gzg.viewcontrollers.home.adapter.WaresItemAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
