@@ -3,6 +3,6 @@
 
     <stroke
         android:width="0.01dp"
-        android:color="#e61818"/>
+        android:color="@color/biaoqian"/>
 
 </shape>

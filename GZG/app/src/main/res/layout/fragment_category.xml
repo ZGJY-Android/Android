@@ -5,27 +5,13 @@
               android:background="@color/white"
               android:orientation="vertical">
 
-    <include
-        android:id="@+id/title_category"
-        layout="@layout/title"></include>
-
-    <SeekBar
-        android:id="@+id/seekBar"
+    <include layout="@layout/title"/>
+    
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="95dp"
+        android:background="@color/test"/>
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+    <include layout="@layout/category_tablayout"/>
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -163,7 +163,7 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1,R.mipmap.sy_hlpic2,R.mipmap.sy_hlpic3));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1,R.mipmap.sy_hlpic2,R.mipmap.sy_hlpic3,R.mipmap.sy_xspic2,R.mipmap.sy_xspic3,R.mipmap.sy_xspic4));
         }
 
     }

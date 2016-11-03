@@ -28,11 +28,11 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mLRecyclerView_guojiaguan"
             android:layout_width="match_parent"
-            android:layout_height="280dp"/>
+            android:layout_height="142dp"/>
         
         <TextView
             android:layout_width="35dp"
-            android:layout_height="280dp"
+            android:layout_height="142dp"
             android:layout_alignRight="@+id/mLRecyclerView_guojiaguan"
             android:text="查看更多"
             android:visibility="gone"

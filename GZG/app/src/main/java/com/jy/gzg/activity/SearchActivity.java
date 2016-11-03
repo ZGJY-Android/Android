@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jy.gzg.R;
-import com.jy.gzg.viewcontrollers.home.widget.XCFlowLayout;
+import com.jy.gzg.viewcontrollers.home.ui.XCFlowLayout;
 
 public class SearchActivity extends AppCompatActivity {
     /**

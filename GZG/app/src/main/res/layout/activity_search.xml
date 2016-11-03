@@ -71,7 +71,7 @@
         android:text="大家都在搜："
         android:textColor="#111111"/>
 
-    <com.jy.gzg.viewcontrollers.home.widget.XCFlowLayout
+    <com.jy.gzg.viewcontrollers.home.ui.XCFlowLayout
         android:id="@+id/xcflow_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,43 +1,42 @@
 package com.jy.gzg.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.jy.gzg.R;
+import com.jy.gzg.viewcontrollers.category.adapter.CategoryPagerAdapter;
 
 
 /**
  * Created by Allen on 15/12/27.
  */
 public class CategoryFragment extends Fragment {
-    @Nullable
+
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    public Context context;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_category,
+        View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_category,
                 container, false);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.title_left);
+        mViewPager = (ViewPager) rootView.findViewById(R.id.vp_category);
+        CategoryPagerAdapter categoryPagerAdapter = new CategoryPagerAdapter(getFragmentManager(),context);
+        mViewPager.setAdapter(categoryPagerAdapter);
 
-/*        //设置背景
-//        imageView.setBackgroundResource(R.mipmap.b);
+        mTabLayout = (TabLayout) rootView.findViewById(R.id.tablayout);
+        mTabLayout.setupWithViewPager(mViewPager);
 
-        //类似设置src
-        imageView.setImageResource(R.mipmap.b);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
-        TextView textView = (TextView) view.findViewById(R.id.title_text);
-        textView.setText("分类");
-
-        ImageView imageView1 = (ImageView) view.findViewById(R.id.title_right);
-
-        imageView1.setBackgroundResource(R.mipmap.g);*/
-
-        return view;
+        return rootView;
     }
+
+
 }

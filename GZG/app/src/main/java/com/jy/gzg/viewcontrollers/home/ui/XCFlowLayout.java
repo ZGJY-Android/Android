@@ -1,4 +1,4 @@
-package com.jy.gzg.viewcontrollers.home.widget;
+package com.jy.gzg.viewcontrollers.home.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

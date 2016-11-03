@@ -22,6 +22,7 @@ public class RecyclerViewUtils {
     public static void setHeaderView(RecyclerView recyclerView, View view) {
         RecyclerView.Adapter outerAdapter = recyclerView.getAdapter();
 
+
         if (outerAdapter == null || !(outerAdapter instanceof LRecyclerViewAdapter)) {
             return;
         }

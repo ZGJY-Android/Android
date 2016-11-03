@@ -13,7 +13,7 @@
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1"/>
 
     <View
         android:layout_width="match_parent"
@@ -25,11 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:paddingTop="6dp"
-        android:background="#F6F6F6">
+        android:background="@color/bottomBg">
 
         <FrameLayout
             android:id="@+id/tabcontent"
             android:layout_width="0dp"
-            android:layout_height="0dp"></FrameLayout>
+            android:layout_height="0dp"/>
     </com.jy.gzg.widget.FragmentTabHost>
 </LinearLayout>
