@@ -50,10 +50,12 @@ public abstract class AsyncRequest {
         public String userDefErrorMsg = null; // 可以自己定义解析层的错误消息
     }
 
-    private AsyncRequest() {}
+    private AsyncRequest() {
+    }
 
     /**
      * 构造方法
+     *
      * @param callback 请求回调
      */
     public AsyncRequest(AsyncRequestCallBack callback) {
@@ -128,11 +130,11 @@ public abstract class AsyncRequest {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Object obj = inThreadParseResponseData(volleyError.getMessage());
-                if(obj == null){
+                if (obj == null) {
                     mRequestData.userDefErrorMsg = volleyError.getMessage();
-                    L.i("222222222222222222222222",volleyError.getMessage());
-                }else{
-                    L.i("11111111111111111111111111",volleyError.getMessage());
+                    L.i("222222222222222222222222", volleyError.getMessage());
+                } else {
+                    L.i("11111111111111111111111111", volleyError.getMessage());
                     mRequestData.userDefErrorMsg = obj.toString();
                 }
                 mRequestCallback.onReqeustFailed(mRequestData);
@@ -184,9 +186,9 @@ public abstract class AsyncRequest {
                 int code = jsonObject.optInt("status");
                 Object obj = inThreadParseResponseData(jsonObject.toString());
                 mRequestData.reqResultObj = obj;
-                if(code == 1000){
+                if (code == 1000) {
                     mRequestCallback.onRequestComplete(mRequestData);
-                }else{
+                } else {
                     mRequestCallback.onReqeustFailed(mRequestData);
                 }
             }

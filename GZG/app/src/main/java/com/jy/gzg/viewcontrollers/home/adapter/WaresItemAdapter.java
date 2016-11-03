@@ -1,4 +1,4 @@
-package com.zgjy.gzg.viewcontrollers.home.adapter;
+package com.jy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

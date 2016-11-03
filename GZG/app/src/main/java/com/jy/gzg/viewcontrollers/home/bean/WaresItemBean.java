@@ -1,11 +1,11 @@
-package com.zgjy.gzg.viewcontrollers.home.bean;
+package com.jy.gzg.viewcontrollers.home.bean;
 
 import com.jy.gzg.bean.Entity;
 
 /**
  * Created by YX on 2016/10/8 0008.
  */
-public class WaresItemModel extends Entity {
+public class WaresItemBean extends Entity {
     public long id;
     public String name;
     public int imgRes ;

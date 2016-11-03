@@ -41,6 +41,9 @@ public class CateCallCenter implements AsyncRequest.AsyncRequestCallBack {
         return sInstance;
     }
 
+
+
+
     //轮播图回调接口
     public interface ICarouselDelegate{
         public void reqCarouselComplete(ArrayList<Carousel> carouselList);
