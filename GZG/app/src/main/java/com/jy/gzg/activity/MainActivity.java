@@ -2,7 +2,6 @@ package com.jy.gzg.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,12 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.fragment.CartFragment;
 import com.jy.gzg.fragment.CategoryFragment;
@@ -43,31 +36,6 @@ public class MainActivity extends AppCompatActivity {
         //WindowUtil.setStatusBarTint(this, Color.parseColor("#f00"));
 
         initTab();
-
-
-//        test();
-
-    }
-
-    private void test() {
-        String url = "http://192.168.0.110:8080/user/tes";
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String s) {
-                Log.i("LYDDDDDDDDDD", s);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.i("LYYYYYYYYYYYD", volleyError.toString());
-            }
-
-        });
-
-        requestQueue.add(stringRequest);
     }
 
     private void initTab() {

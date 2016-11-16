@@ -110,7 +110,6 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
             }
             XSTMAdapter xstmAdapter = new XSTMAdapter(commodityList, mContext);
             mRecycleView.setAdapter(xstmAdapter);
-
         }
     }
 

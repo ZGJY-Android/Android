@@ -21,7 +21,6 @@
         android:background="#faf0cf"
         android:orientation="vertical">
 
-        <!-- 这个是第一件商品信息 -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="106dp"
@@ -36,14 +35,13 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic1"/>
 
-            <!-- 这是第一个大层 -->
             <LinearLayout
                 android:layout_width="192dp"
                 android:layout_height="78dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="14dp"
                 android:orientation="vertical">
-                <!-- 第一个小层次 -->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -72,7 +70,6 @@
                             android:text="剩余520件"
                             android:textColor="@color/white"
                             android:textSize="7sp"/>
-
                     </RelativeLayout>
 
                     <TextView
@@ -82,17 +79,14 @@
                         android:gravity="center"
                         android:text="韩国至纯去屑发膜"
                         android:textSize="9sp"/>
-
                 </RelativeLayout>
 
-                <!-- 第二个小层次 -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:background="@drawable/line_xuxian"
                     android:layerType="software"/>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -142,67 +136,31 @@
                         android:textSize="8sp"/>
                 </RelativeLayout>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="bottom"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/line_yiqiangou1"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:orientation="horizontal">
+                            android:text="拼团价：￥118元"
+                            android:textColor="#ff0234"
+                            android:textSize="12sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="已抢购"
-                                android:textSize="7sp"/>
-
-                            <ProgressBar
-                                android:layout_width="69dp"
-                                android:layout_height="5dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="#fd7981"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text="100%"
-                                android:textColor="#fe92a1"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_above="@id/line_yiqiangou1"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="￥118元"
-                                android:textColor="#ff0234"
-                                android:textSize="12sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:text="市场价:￥240元"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-                    </RelativeLayout>
+                            android:layout_marginTop="8dp"
+                            android:text="市场价:￥240元"
+                            android:textSize="7sp"/>
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -233,6 +191,7 @@
                             android:text="20件起享受团购价"
                             android:textSize="7sp"/>
                     </RelativeLayout>
+
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -244,7 +203,6 @@
             android:layout_marginRight="10dp"
             android:background="@color/white"/>
 
-        <!-- 这个是第二件商品信息 -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="106dp"
@@ -258,14 +216,13 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic2"/>
 
-            <!-- 这是第一个大层 -->
             <LinearLayout
                 android:layout_width="192dp"
                 android:layout_height="78dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="14dp"
                 android:orientation="vertical">
-                <!-- 第一个小层次 -->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -294,7 +251,6 @@
                             android:text="剩余520件"
                             android:textColor="@color/white"
                             android:textSize="7sp"/>
-
                     </RelativeLayout>
 
                     <TextView
@@ -304,17 +260,14 @@
                         android:gravity="center"
                         android:text="韩国至纯去屑发膜"
                         android:textSize="9sp"/>
-
                 </RelativeLayout>
 
-                <!-- 第二个小层次 -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:background="@drawable/line_xuxian"
                     android:layerType="software"/>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -364,67 +317,31 @@
                         android:textSize="8sp"/>
                 </RelativeLayout>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="bottom"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/line_yiqiango2"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:orientation="horizontal">
+                            android:text="拼团价：￥118元"
+                            android:textColor="#ff0234"
+                            android:textSize="12sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="已抢购"
-                                android:textSize="7sp"/>
-
-                            <ProgressBar
-                                android:layout_width="69dp"
-                                android:layout_height="5dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="#fd7981"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text="100%"
-                                android:textColor="#fe92a1"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_above="@id/line_yiqiango2"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="￥118元"
-                                android:textColor="#ff0234"
-                                android:textSize="12sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:text="市场价:￥240元"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-                    </RelativeLayout>
+                            android:layout_marginTop="8dp"
+                            android:text="市场价:￥240元"
+                            android:textSize="7sp"/>
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -465,7 +382,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"/>
-        <!-- 这个是第三件商品信息 -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="106dp"
@@ -479,7 +396,6 @@
                 android:scaleType="fitXY"
                 android:src="@mipmap/sy_hlpic3"/>
 
-            <!-- 这是第一个大层 -->
             <LinearLayout
                 android:layout_width="192dp"
                 android:layout_height="78dp"
@@ -528,14 +444,12 @@
 
                 </RelativeLayout>
 
-                <!-- 第二个小层次 -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:background="@drawable/line_xuxian"
                     android:layerType="software"/>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -585,67 +499,31 @@
                         android:textSize="8sp"/>
                 </RelativeLayout>
 
-                <!-- 第三个小层次 -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="bottom"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/line_yiqiangou3"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:orientation="horizontal">
+                            android:text="拼团价：￥118元"
+                            android:textColor="#ff0234"
+                            android:textSize="12sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="已抢购"
-                                android:textSize="7sp"/>
-
-                            <ProgressBar
-                                android:layout_width="69dp"
-                                android:layout_height="5dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
-                                android:background="#fd7981"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text="100%"
-                                android:textColor="#fe92a1"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_above="@id/line_yiqiangou3"
-                            android:layout_marginBottom="4dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="￥118元"
-                                android:textColor="#ff0234"
-                                android:textSize="12sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="10dp"
-                                android:text="市场价:￥240元"
-                                android:textSize="7sp"/>
-                        </LinearLayout>
-                    </RelativeLayout>
+                            android:layout_marginTop="8dp"
+                            android:text="市场价:￥240元"
+                            android:textSize="7sp"/>
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"

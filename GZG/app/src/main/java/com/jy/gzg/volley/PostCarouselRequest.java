@@ -2,7 +2,7 @@ package com.jy.gzg.volley;
 
 import android.util.Log;
 
-import com.jy.gzg.viewcontrollers.home.bean.Carousel;
+import com.jy.gzg.widget.imageCycleView.Carousel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

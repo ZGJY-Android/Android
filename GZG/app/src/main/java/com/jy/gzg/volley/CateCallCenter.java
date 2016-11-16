@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.jy.gzg.util.AppConfiguration;
-import com.jy.gzg.viewcontrollers.home.bean.Carousel;
+import com.jy.gzg.widget.imageCycleView.Carousel;
 
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.jy.gzg.viewcontrollers.home.bean;
+package com.jy.gzg.widget.imageCycleView;
 
 /**
  * Created by YX on 2016/9/7 0007.
