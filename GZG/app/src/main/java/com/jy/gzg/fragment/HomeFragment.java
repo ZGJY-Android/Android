@@ -213,7 +213,7 @@ public class HomeFragment extends BaseFragment {
      * @param view
      */
     private void initView(View view) {
-        title_search = (ImageView) view.findViewById(R.id.title_left);
+        title_search = (ImageView) view.findViewById(R.id.title_home_left);
         mRecyclerView = (LRecyclerView) view.findViewById(R.id.mLRecyclerView);
     }
 

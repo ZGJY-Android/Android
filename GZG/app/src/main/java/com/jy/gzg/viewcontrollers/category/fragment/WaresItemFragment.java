@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.category.adapter.MyAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class WaresItemFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_category,null);
+        View view = inflater.inflate(R.layout.fragment_item_category, null);
 
         TextView textView = (TextView) view.findViewById(R.id.tv_fragment_category);
         //得到数据
@@ -36,32 +35,27 @@ public class WaresItemFragment extends Fragment {
         textView.setText(str);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_category);
-        layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        myAdapter = new MyAdapter();
+        myAdapter = new MyAdapter(getActivity());
         mRecyclerView.setAdapter(myAdapter);
         myAdapter.addDatas(generateData());
         setHeader(mRecyclerView);
-        myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, String data) {
-                T.getInstance().showShort(data);
-            }
-        });
+
 
         return view;
     }
 
-    private void setHeader(RecyclerView view){
-        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recy_wares_header,view,false);
+    private void setHeader(RecyclerView view) {
+        View header = LayoutInflater.from(getActivity()).inflate(R.layout.recy_wares_header, view, false);
         myAdapter.setHeaderView(header);
     }
 
-    private ArrayList<String> generateData(){
-        ArrayList<String> data = new ArrayList<String>(){
+    private ArrayList<String> generateData() {
+        ArrayList<String> data = new ArrayList<String>() {
             {
-                for (int i = 0;i<20;i++)add("数据"+i);
+                for (int i = 0; i < 20; i++) add("数据" + i);
             }
         };
         return data;

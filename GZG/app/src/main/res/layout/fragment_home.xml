@@ -7,7 +7,7 @@
               android:orientation="vertical">
 
     <include
-        layout="@layout/title"/>
+        layout="@layout/title_home"/>
 
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView

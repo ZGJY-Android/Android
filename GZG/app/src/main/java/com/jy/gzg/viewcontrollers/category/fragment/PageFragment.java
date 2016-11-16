@@ -18,8 +18,8 @@ public class PageFragment extends Fragment {
     public static final String ARGS_PAGE = "args_page";
     private int mPage;
 
-    private String[] strs = { "常用分类", "服饰内衣", "鞋靴", "手机", "家用电器", "数码", "电脑办公",
-            "个护化妆", "图书","洗护用品","锅碗瓢盆","法师的法师的法师","油盐酱醋","健身器材" };
+    private String[] strs = {"常用分类", "服饰内衣", "鞋靴", "手机", "家用电器", "数码", "电脑办公",
+            "个护化妆", "图书", "洗护用品", "锅碗瓢盆", "法师的法师的法师", "油盐酱醋", "健身器材"};
     private ListView listView;
     private CategoryListAdapter listAdapter;
     private WaresItemFragment waresItemFragment;
@@ -39,14 +39,14 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARGS_PAGE);
-        Log.i("page---------------",mPage+"");
+        Log.i("page---------------", mPage + "");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.viewpager_category,container,false);
+        View view = inflater.inflate(R.layout.viewpager_category, container, false);
         ListView listView = (ListView) view.findViewById(R.id.lv_category);
-        listAdapter = new CategoryListAdapter(getActivity(),strs);
+        listAdapter = new CategoryListAdapter(getActivity(), strs);
         listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,12 +56,12 @@ public class PageFragment extends Fragment {
                 mPosition = i;
                 //即时刷新adapter
                 listAdapter.notifyDataSetChanged();
-                for (int x = 0;x<strs.length;x++){
+                for (int x = 0; x < strs.length; x++) {
                     waresItemFragment = new WaresItemFragment();
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_category,waresItemFragment);
+                    fragmentTransaction.replace(R.id.fragment_category, waresItemFragment);
                     Bundle waresBundle = new Bundle();
-                    waresBundle.putString(WaresItemFragment.TAG,strs[i]);
+                    waresBundle.putString(WaresItemFragment.TAG, strs[i]);
                     waresItemFragment.setArguments(waresBundle);
                     fragmentTransaction.commit();
                 }
@@ -71,9 +71,9 @@ public class PageFragment extends Fragment {
         //创建WaresItemFragment对象
         waresItemFragment = new WaresItemFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_category,waresItemFragment);
+        fragmentTransaction.replace(R.id.fragment_category, waresItemFragment);
         Bundle waresBundle = new Bundle();
-        waresBundle.putString(WaresItemFragment.TAG,strs[mPosition]);
+        waresBundle.putString(WaresItemFragment.TAG, strs[mPosition]);
         waresItemFragment.setArguments(waresBundle);
         fragmentTransaction.commit();
 

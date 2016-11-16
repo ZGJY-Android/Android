@@ -7,5 +7,5 @@ public class Constant {
     /**
      * 用于Log打印日志时的判断标记
      */
-    public static final String TAG = "zgjy";
+    public static final String TAG = "------ZGJY------";
 }

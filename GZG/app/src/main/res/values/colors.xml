@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    
+
     <!-- 测试  看效果的颜色-->
     <color name="test">#5500FFFF</color>
-    
+
     <!-- 项目公用 -->
     <color name="white">#FFFFFF</color>
-    <color name="gray">#D6D5D3</color>
+    <color name="gray">#D8D8D8</color>
 
     <!-- 底部导航栏 -->
     <color name="bottomBg">#F3F3F3</color>
@@ -19,8 +19,15 @@
 
     <!-- 标题 -->
     <color name="zhusediao">#f94c4c</color>
+
     <!-- 火力拼团 -->
     <color name="biaoqian">#e61818</color>
+
+    <!-- 国家馆 -->
+    <color name="hanguoBg">#f56473</color>
+    <color name="ribenBg">#f7a13e</color>
+    <color name="ouzhouBg">#bb63b9</color>
+    <color name="aodaliyaBg">#daf3fc</color>
 
     <!-- 这是分类页面的一些公用颜色 -->
     <color name="categoryBg">#F2F2F2</color>

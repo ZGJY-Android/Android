@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <include layout="@layout/title"/>
-    
+    <include layout="@layout/title" />
+
+
+    <LinearLayout
+        android:id="@+id/line_search"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/shape_search_bck"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/sousuo" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:background="@null"
+            android:hint="中港会员日，特价来袭！"
+            android:singleLine="true"
+            android:textColor="#a1a0a0"
+            android:textSize="12sp" />
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="95dp"
-        android:background="@color/test"/>
+        android:layout_height="0.5dp"
+        android:background="@color/gray" />
 
-    <include layout="@layout/category_tablayout"/>
+    <include layout="@layout/category_tablayout" />
 
 </LinearLayout>
