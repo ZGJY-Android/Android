@@ -25,6 +25,7 @@
                 android:textSize="15sp"/>
 
             <ImageView
+                android:id="@+id/iv_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -36,7 +37,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="#4ca142">
+            android:background="@mipmap/bck">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -54,6 +55,7 @@
                     app:border_thickness="2dp"/>
 
                 <TextView
+                    android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/riv_img"
@@ -219,6 +221,7 @@
             android:background="#d8d8d8"/>
 
         <LinearLayout
+            android:id="@+id/line_customerservice"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
@@ -254,6 +257,7 @@
             android:background="#d8d8d8"/>
 
         <LinearLayout
+            android:id="@+id/line_mycollection"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
@@ -289,6 +293,7 @@
             android:background="#d8d8d8"/>
 
         <LinearLayout
+            android:id="@+id/line_mycoupon"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
@@ -403,6 +408,7 @@
             android:background="#d8d8d8"/>
 
         <LinearLayout
+            android:id="@+id/line_evaluatemanager"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">
@@ -438,6 +444,7 @@
             android:background="#f2f2f2"/>
 
         <LinearLayout
+            android:id="@+id/line_helpfeedback"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:orientation="horizontal">

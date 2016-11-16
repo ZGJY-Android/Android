@@ -10,7 +10,13 @@
 
     <!-- 项目公用 -->
     <color name="white">#FFFFFF</color>
-    <color name="gray">#D8D8D8</color>
+    <color name="gray">#D6D5D3</color>
+    <color name="red">#b53232</color>
+    <color name="huise">#e5e5e5</color>
+    <color name="huise2">#eeeeee</color>
+    <color name="huise3">#a1a1a1</color>
+    <color name="green">#4eb67f</color>
+    <color name="black">#323232</color>
 
     <!-- 底部导航栏 -->
     <color name="bottomBg">#F3F3F3</color>

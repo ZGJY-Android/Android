@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
-            android:text="订单号：201610271234"/>
+            android:text="订单号：201610271234"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:text="2016-10-27"
-            android:textColor="#dedede"/>
+            android:textColor="@color/huise3"/>
     </RelativeLayout>
 
     <View
@@ -35,15 +36,16 @@
         android:layout_height="1dp"
         android:background="#d8d8d8"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="100dp">
 
         <RelativeLayout
+            android:id="@+id/relat_left"
             android:layout_width="61dp"
             android:layout_height="61dp"
-            android:layout_gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:background="@drawable/shape_orderform_bck">
 
@@ -56,16 +58,19 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/line_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/relat_left"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="澳洲进口 体内平衡益生菌胶囊呵呵哒"
+                android:textColor="@color/black"
                 android:textSize="13sp"/>
 
             <LinearLayout
@@ -78,39 +83,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="￥120.00"
-                    android:textColor="#b53232"
+                    android:textColor="@color/red"
                     android:textSize="13sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" x 1"
+                    android:textColor="@color/black"
                     android:textSize="12sp"/>
 
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="未付款"
-                    android:textColor="#b53232"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="（订单将在60分钟内取消，请及时付款！）"
-                    android:textSize="10sp"/>
-            </LinearLayout>
+                android:text="交易已完成"
+                android:textColor="@color/red"
+                android:textSize="13sp"/>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -123,10 +116,11 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:background="@drawable/shape_redbtn_bck"
             android:paddingBottom="8dp"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
@@ -136,28 +130,32 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="@drawable/shape_huisebtn_bck"
             android:paddingBottom="8dp"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
             android:paddingTop="8dp"
-            android:text="追加评价"/>
+            android:text="追加评价"
+            android:textColor="@color/black"/>
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="@drawable/shape_huisebtn_bck"
             android:paddingBottom="8dp"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
             android:paddingTop="8dp"
-            android:text="再次购买"/>
+            android:text="再次购买"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 </LinearLayout>

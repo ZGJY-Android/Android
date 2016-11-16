@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.jy.gzg.R;
 import com.jy.gzg.util.CustomImageLoader;
-import com.jy.gzg.viewcontrollers.home.bean.Carousel;
+import com.jy.gzg.widget.imageCycleView.Carousel;
 import com.jy.gzg.volley.CateCallCenter;
 import com.jy.gzg.widget.imageCycleView.ImageCycleView;
 

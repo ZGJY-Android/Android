@@ -3,46 +3,10 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="353dp"/>
+    <com.jy.gzg.ui.SnapPageLayout
+        android:id="@+id/mSnapPageLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </com.jy.gzg.ui.SnapPageLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="23dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#39a3cf"
-            android:padding="2dp"
-            android:text="全球购"
-            android:textColor="@color/white"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="5dp"
-            android:text="            乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟乱七八糟"
-            android:textSize="15sp"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="价格"
-            android:textColor="#8f8e8e"/>
-    </RelativeLayout>
 </LinearLayout>

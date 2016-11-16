@@ -51,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private XCFlowLayout mFlowLayout;
     private ImageView iv_search;
+    private TextView tv_return;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
     private void initChildViews() {
         mFlowLayout = (XCFlowLayout) findViewById(R.id.xcflow_layout);
         iv_search = (ImageView) findViewById(R.id.iv_search);
+        tv_return = (TextView) findViewById(R.id.tv_return);
 
         MarginLayoutParams lp = new MarginLayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -93,6 +95,13 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        tv_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

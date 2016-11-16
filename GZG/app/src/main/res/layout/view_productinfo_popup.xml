@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relat_count"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_str"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_alignParentTop="true"/>
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_str"
+            android:background="@color/huise"/>
+
+        <RelativeLayout
+            android:id="@+id/relat_leibie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_line"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tv_str1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="类别:"/>
+
+            <TextView
+                android:id="@+id/tv_str2"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_below="@id/tv_str1"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_red_bck"
+                android:gravity="center"
+                android:paddingLeft="34dp"
+                android:paddingRight="34dp"
+                android:text="15-20 件"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_str3"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_below="@+id/tv_str1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/tv_str2"
+                android:background="@drawable/shape_huise2_bck"
+                android:gravity="center"
+                android:paddingLeft="34dp"
+                android:paddingRight="34dp"
+                android:text="31-60 件"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_str4"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_below="@+id/tv_str3"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_huise2_bck"
+                android:gravity="center"
+                android:paddingLeft="34dp"
+                android:paddingRight="34dp"
+                android:text="> 61 件"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relat_leibie"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tv_str2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="数量:"/>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_huise_bck">
+
+                <TextView
+                    android:id="@+id/tv_reduce"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:background="#eeeeee"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="#313131"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tv_reduce"
+                    android:text="1"
+                    android:textColor="#313131"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/tv_add"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/tv_count"
+                    android:background="#eeeeee"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="#313131"
+                    android:textSize="13sp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/green"
+                    android:gravity="center"
+                    android:text="加入收藏"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="加入进货单"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/view_line"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="135dp"
+            android:text="￥660.00"
+            android:textColor="@color/red"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_productimg"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:layout_above="@id/relat_count"
+        android:layout_marginBottom="-40dp"
+        android:layout_marginLeft="31dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/sy_xspic5"/>
+
+</RelativeLayout>

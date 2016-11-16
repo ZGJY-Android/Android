@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".rootapplication.RootApplication"
@@ -28,6 +29,22 @@
         <activity android:name=".viewcontrollers.mine.activity.OrderformActivity">
         </activity>
         <activity android:name=".activity.ProductdetailsActivity">
+        </activity>
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.CustomerServiceActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCollectionActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCouponActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.EvaluateManagerActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.HelpFeedbackActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.SubmitSuccessActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.SettingActivity">
         </activity>
     </application>
 

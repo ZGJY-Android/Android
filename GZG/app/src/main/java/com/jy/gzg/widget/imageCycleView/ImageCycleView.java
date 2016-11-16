@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jy.gzg.R;
-import com.jy.gzg.viewcontrollers.home.bean.Carousel;
 
 import java.util.ArrayList;
 

@@ -23,4 +23,24 @@
         <attr name="height_space" format="dimension"/>
     </declare-styleable>
 
+    <!-- 这是商品页面的弹出效果动画 -->
+    <style name="PopupAnimation" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_exit</item>
+    </style>
+
+    <!-- 这是SwipeMenu侧滑菜单样式 -->
+    <declare-styleable name="SwipeMenu">
+        <attr name="sml_scroller_duration" format="integer"/>
+        <attr name="sml_auto_open_percent" format="float"/>
+        <attr name="sml_scroller_interpolator" format="reference"/>
+    </declare-styleable>
+
+    <!-- 自定义Dialog样式 -->
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>
