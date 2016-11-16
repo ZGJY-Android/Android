@@ -150,11 +150,11 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
             manager.setOrientation(LinearLayoutManager.HORIZONTAL);
             mRecyclerView.setLayoutManager(manager);
 
-            mWaresItemAdapter = new WaresItemAdapter(mContext,mDatas);
+            mWaresItemAdapter = new WaresItemAdapter(mContext, mDatas);
             mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    T.getInstance().showShort(position+"");
+                    T.getInstance().showShort(position + "");
                 }
             });
             mRecyclerView.setAdapter(mWaresItemAdapter);
@@ -162,7 +162,8 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1,R.mipmap.sy_hlpic2,R.mipmap.sy_hlpic3,R.mipmap.sy_xspic2,R.mipmap.sy_xspic3,R.mipmap.sy_xspic4));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1, R.mipmap.sy_hlpic2, R
+                    .mipmap.sy_hlpic3, R.mipmap.sy_xspic2, R.mipmap.sy_xspic3, R.mipmap.sy_xspic4));
         }
 
     }
