@@ -2,6 +2,7 @@ package com.jy.gzg.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,6 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.fragment.CartFragment;
 import com.jy.gzg.fragment.CategoryFragment;
@@ -17,6 +24,8 @@ import com.jy.gzg.fragment.HomeFragment;
 import com.jy.gzg.fragment.MineFragment;
 import com.jy.gzg.fragment.Tab;
 import com.jy.gzg.widget.FragmentTabHost;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +45,66 @@ public class MainActivity extends AppCompatActivity {
         //WindowUtil.setStatusBarTint(this, Color.parseColor("#f00"));
 
         initTab();
+
+
+
+//        test();
+
+    }
+
+    private void test() {
+        String url = "http://192.168.0.110:8080/product/list/2";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                Log.e("111111111111111", jsonArray.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("2222222222222222", volleyError.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("type","2");
+                return map;
+            }
+        };*/
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Log.e("111111111111111", jsonObject.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("2222222222222222", volleyError.toString());
+            }
+        });
+
+        /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.e("----------------------", s);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("_____________________", volleyError.toString());
+            }
+
+        });*/
+
+        requestQueue.add(jsonObjectRequest);
+
+
     }
 
     private void initTab() {

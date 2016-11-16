@@ -17,7 +17,7 @@
         android:layout_height="18dp"
         android:text="韩国智纯去屑发膜"
         android:textSize="6sp"
-        android:layout_below="@+id/iv_wares"
+        android:layout_below="@id/iv_wares"
         android:layout_centerHorizontal="true"
         android:gravity="center"/>
 

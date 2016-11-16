@@ -182,7 +182,7 @@ public abstract class AsyncRequest {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                Log.e("lx", "jsonObject:" + jsonObject.toString());
+                Log.e("yx", "jsonObject:" + jsonObject.toString());
                 int code = jsonObject.optInt("status");
                 Object obj = inThreadParseResponseData(jsonObject.toString());
                 mRequestData.reqResultObj = obj;

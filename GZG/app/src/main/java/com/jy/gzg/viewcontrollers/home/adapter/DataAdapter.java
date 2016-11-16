@@ -4,14 +4,12 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.ListBaseAdapter;
-import com.jy.gzg.util.Constant;
 import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
 
@@ -43,7 +41,7 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
     @Override
     public int getItemViewType(int position) {
         // 每次都会调用此方法，获得当前所需要的view样式
-        Log.i(Constant.TAG, "getItemViewType执行了" + position);
+//        Log.i(Constant.TAG, "getItemViewType执行了" + position);
         if (position < 1) {
             return ITEM_TYPE.TYPE_1.ordinal();
         } else if (position < 2) {

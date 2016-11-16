@@ -25,8 +25,15 @@
 
     <!-- 标题 -->
     <color name="zhusediao">#f94c4c</color>
+
     <!-- 火力拼团 -->
     <color name="biaoqian">#e61818</color>
+
+    <!-- 国家馆 -->
+    <color name="hanguoBg">#f56473</color>
+    <color name="ribenBg">#f7a13e</color>
+    <color name="ouzhouBg">#bb63b9</color>
+    <color name="aodaliyaBg">#daf3fc</color>
 
     <!-- 这是分类页面的一些公用颜色 -->
     <color name="categoryBg">#F2F2F2</color>

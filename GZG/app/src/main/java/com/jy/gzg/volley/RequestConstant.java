@@ -4,7 +4,9 @@ package com.jy.gzg.volley;
  * 请求路径和常量
  */
 public class RequestConstant {
-    //    http://123.57.167.177:8080/gnw/rest/userApp/v1/register?requestJson=
+
+    //http://112.124.22.238:8081/course_api/banner/query?type=1
+
     public static final String TEST_IP = "112.124.22.238:8081";//测试IP
     public static final String IP = "";//正式IP
     public static final String PATH = "http://" + TEST_IP + "/course_api";
@@ -12,7 +14,6 @@ public class RequestConstant {
     public static final int REQ_OK = 0;
     public static final int REQ_ERROR_PARAM = -1;// 参数错误
 
-   // http://123.57.167.177:8080/gnw/rest/cateApp/v1/sendOrder
 
     //post方法到轮播图
     public static final String GET_VIEWPAPER = PATH + "/banner/query?type=1";
