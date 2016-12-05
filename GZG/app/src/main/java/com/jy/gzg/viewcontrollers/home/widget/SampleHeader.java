@@ -2,27 +2,24 @@ package com.jy.gzg.viewcontrollers.home.widget;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
 import com.jy.gzg.R;
 import com.jy.gzg.activity.CountryActivity;
-import com.jy.gzg.util.AppToast;
 import com.jy.gzg.activity.HuolipintuanActivity;
 import com.jy.gzg.activity.MuyinzhuanchangActivity;
 import com.jy.gzg.activity.XianshitemaiActivity;
 import com.jy.gzg.ui.FixedSpeedScroller;
 import com.nostra13.universalimageloader.core.ImageLoader;
->>>>>>> 98a796f90addf9b1302fac429d17e1ebb669abc9
 
 import java.util.ArrayList;
 
@@ -39,9 +36,14 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
     private ImageView[] mImageViews;// 装ImageView数组
     private ArrayList<String> imgUrlList;// 图片资源
 
-    private LinearLayout line_xianshitemai,// 限时特卖
-            line_huolipintuan,// 火力拼团
-            line_muyinzhuanchang;// 母婴专场
+    private LinearLayout layoutview1,// 限时特卖
+            layoutview2,// 火力拼团
+            layoutview3,// 母婴专场
+            layoutview4,// 洗护用品
+            layoutview5,
+            layoutview6,
+            layoutview7,
+            layoutview8;
 
 
     public SampleHeader(final Context context) {
@@ -127,36 +129,80 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
     private void initView(View view) {
         main_viewpager = (ViewPager) view.findViewById(R.id.main_viewpager);
         line_viewGroup = (ViewGroup) view.findViewById(R.id.line_viewGroup);
-        line_xianshitemai = (LinearLayout) view.findViewById(R.id.line_xianshitemai);
-        line_huolipintuan = (LinearLayout) view.findViewById(R.id.line_huolipintuan);
-        line_muyinzhuanchang = (LinearLayout) view.findViewById(R.id.line_muyinzhuanchang);
+        layoutview1 = (LinearLayout) view.findViewById(R.id.line_home1);
+        layoutview2 = (LinearLayout) view.findViewById(R.id.line_home2);
+        layoutview3 = (LinearLayout) view.findViewById(R.id.line_home3);
+        layoutview4 = (LinearLayout) view.findViewById(R.id.line_home4);
+        layoutview5 = (LinearLayout) view.findViewById(R.id.line_home5);
+        layoutview6 = (LinearLayout) view.findViewById(R.id.line_home6);
+        layoutview7 = (LinearLayout) view.findViewById(R.id.line_home7);
+        layoutview8 = (LinearLayout) view.findViewById(R.id.line_home8);
     }
 
     /**
      * 设置各种监听事件
      */
     private void setViewListen() {
-        line_xianshitemai.setOnClickListener(new OnClickListener() {
+        layoutview1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, XianshitemaiActivity.class);
                 context.startActivity(intent);
             }
         });
-        line_huolipintuan.setOnClickListener(new OnClickListener() {
+        layoutview2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, HuolipintuanActivity.class);
                 context.startActivity(intent);
             }
         });
-        line_muyinzhuanchang.setOnClickListener(new OnClickListener() {
+        layoutview3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MuyinzhuanchangActivity.class);
                 context.startActivity(intent);
             }
         });
+        layoutview4.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        layoutview5.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CountryActivity.class);
+                intent.putExtra("country", 1);
+                context.startActivity(intent);
+            }
+        });
+        layoutview6.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CountryActivity.class);
+                intent.putExtra("country", 2);
+                context.startActivity(intent);
+            }
+        });
+        layoutview7.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CountryActivity.class);
+                intent.putExtra("country", 3);
+                context.startActivity(intent);
+            }
+        });
+        layoutview8.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CountryActivity.class);
+                intent.putExtra("country", 4);
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -244,7 +290,11 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         // 载入图片进去，用当前的position 除以图片数组长度取余数是关键
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ((ViewPager) container).addView(mImageViews[position % mImageViews.length], 0);
+            try {
+                ((ViewPager) container).addView(mImageViews[position % mImageViews.length], 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return mImageViews[position % mImageViews.length];
         }
     }
