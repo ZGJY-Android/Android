@@ -26,7 +26,6 @@ import java.util.ArrayList;
 /**
  * RecyclerView的HeaderView，简单的展示一个TextView
  */
-
 public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChangeListener {
     private Context context;
     private ImageHandler handler;
