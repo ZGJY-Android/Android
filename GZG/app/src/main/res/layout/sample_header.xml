@@ -4,10 +4,29 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
-    <com.jy.gzg.widget.imageCycleView.ImageCycleView
-        android:id="@+id/ad_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="160dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:id="@+id/line_viewGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +40,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/bt_home1"
+                android:id="@+id/line_xianshitemai"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -43,7 +62,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/bt_home2"
+                android:id="@+id/line_huolipintuan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -65,7 +84,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/bt_home3"
+                android:id="@+id/line_muyinzhuanchang"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -83,7 +102,7 @@
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="母婴用品"/>
+                    android:text="母婴专场"/>
             </LinearLayout>
 
 

@@ -7,9 +7,15 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.jy.gzg.R;
 import com.jy.gzg.activity.ActivityManager;
 import com.jy.gzg.cachemanager.CacheManager;
 import com.jy.gzg.util.FileUtils;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -17,20 +23,27 @@ import java.util.HashMap;
 /**
  * Description: {@linkplain Application}基类，不要忘记在manifest文件中设置application的
  * android:name，应用的application应该继承自该基类
- *
  */
-public class RootApplication extends Application{
+public class RootApplication extends Application {
 
-    /** 是否是调试模式，统一使用该全局的debug变量 */
+    /**
+     * 是否是调试模式，统一使用该全局的debug变量
+     */
     public static final boolean DEBUG = true;
 
-    /** 用来保存当前该Application的context */
+    /**
+     * 用来保存当前该Application的context
+     */
     private static Context instance;
-    /** 用来保存最新打开页面的context */
+    /**
+     * 用来保存最新打开页面的context
+     */
     private volatile static WeakReference<Context> instanceRef = null;
-    /** 用来存放一些在软件启动生命周期之内需要存放的变量和数据，但存放的数据量不宜过大，
+    /**
+     * 用来存放一些在软件启动生命周期之内需要存放的变量和数据，但存放的数据量不宜过大，
      * 如果需要存放过大的数据，请在使用完之后，立马清除，还有一点需要注意的是该maps可
-     * 能会因为应用在后台，手机内存不足而被回收，回收之后该maps会被清空!!*/
+     * 能会因为应用在后台，手机内存不足而被回收，回收之后该maps会被清空!!
+     */
     public static HashMap<String, Object> appMaps;
 
     @Override
@@ -39,7 +52,25 @@ public class RootApplication extends Application{
         instance = this;
         appMaps = new HashMap<>();
         //设置默认崩溃处理，如需使用，不注释即可
-//        Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
+        // Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
+
+        // 初始化ImageLoader
+        @SuppressWarnings("deprecation") DisplayImageOptions options = new DisplayImageOptions
+                .Builder()
+                .showStubImage(R.mipmap.icon_stub) // 设置图片下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.icon_stub) // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.mipmap.icon_error) // 设置图片加载或解码过程中发生错误显示的图片
+                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+                //.displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
+                .build(); // 创建配置过得DisplayImageOption对象
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder
+                (getApplicationContext()).defaultDisplayImageOptions(options).threadPriority
+                (Thread.NORM_PRIORITY - 2).denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator()).tasksProcessingOrder
+                        (QueueProcessingType.LIFO).build();
+        ImageLoader.getInstance().init(config);
     }
 
 
@@ -53,8 +84,8 @@ public class RootApplication extends Application{
      *
      * @return context上下文，如果返回Null检测manifest文件是否设置了application的name
      */
-    public static Context getInstance(){
-        if (instanceRef == null || instanceRef.get() == null){
+    public static Context getInstance() {
+        if (instanceRef == null || instanceRef.get() == null) {
             synchronized (RootApplication.class) {
                 if (instanceRef == null || instanceRef.get() == null) {
                     Context context = ActivityManager.getInstance().getActivity();
@@ -71,18 +102,19 @@ public class RootApplication extends Application{
 
     /**
      * 将{@link #instanceRef}设置为最新页面的context
+     *
      * @param context 最新页面的context
      */
-    public static void setInstanceRef(Context context){
+    public static void setInstanceRef(Context context) {
         instanceRef = new WeakReference<>(context);
     }
 
     /**
      * 检测应用是否退出，并且在应用退出的时候做相关的处理
      */
-    public static void checkApplicationDestroy(){
+    public static void checkApplicationDestroy() {
         //应用被关闭，删除需要删除的相关目录和文件
-        if (ActivityManager.getInstance().getActivity() == null){
+        if (ActivityManager.getInstance().getActivity() == null) {
             CacheManager.removeTemporary();
             FileUtils.clearExternalStorageTemp();
         }
@@ -103,7 +135,8 @@ public class RootApplication extends Application{
             intent.setAction("android.intent.action.MAIN");
             intent.addCategory("android.intent.category.LAUNCHER");
             intent.addCategory("com.android.framework.MAINPAGE");
-            PendingIntent restartIntent = PendingIntent.getActivity(getInstance(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent restartIntent = PendingIntent.getActivity(getInstance(), 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
             //退出程序
             AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, restartIntent);

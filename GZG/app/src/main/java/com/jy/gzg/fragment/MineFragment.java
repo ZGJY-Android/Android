@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.jy.gzg.R;
 import com.jy.gzg.activity.LoginActivity;
+import com.jy.gzg.viewcontrollers.mine.activity.AddressmanageActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.CustomerServiceActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.EvaluateManagerActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.HelpFeedbackActivity;
@@ -34,6 +35,7 @@ public class MineFragment extends Fragment {
             line_customerservice,// 我的售后
             line_mycollection,// 我的收藏
             line_mycoupon,// 我的优惠券
+            line_addressmanage,// 收获地址管理
             line_evaluatemanager,// 评价中心
             line_helpfeedback;// 帮助与反馈
     private TextView tv_nickname;// 昵称
@@ -66,6 +68,7 @@ public class MineFragment extends Fragment {
         line_customerservice = (LinearLayout) view.findViewById(R.id.line_customerservice);
         line_mycollection = (LinearLayout) view.findViewById(R.id.line_mycollection);
         line_mycoupon = (LinearLayout) view.findViewById(R.id.line_mycoupon);
+        line_addressmanage = (LinearLayout) view.findViewById(R.id.line_addressmanage);
         line_evaluatemanager = (LinearLayout) view.findViewById(R.id.line_evaluatemanager);
         line_helpfeedback = (LinearLayout) view.findViewById(R.id.line_helpfeedback);
 
@@ -103,6 +106,13 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, MyCouponActivity.class);
+                startActivity(intent);
+            }
+        });
+        line_addressmanage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AddressmanageActivity.class);
                 startActivity(intent);
             }
         });

@@ -22,19 +22,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SearchActivity"></activity>
-        <activity android:name=".activity.SearchResultActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.OrderformActivity"></activity>
-        <activity android:name=".activity.ProductdetailsActivity"></activity>
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.CustomerServiceActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.MyCollectionActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.MyCouponActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.EvaluateManagerActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.HelpFeedbackActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.SubmitSuccessActivity"></activity>
-        <activity android:name=".viewcontrollers.mine.activity.SettingActivity"></activity>
-        <activity android:name=".activity.CountryActivity"></activity>
+
+        <activity android:name=".activity.SearchActivity">
+        </activity>
+        <activity android:name=".activity.SearchResultActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.OrderformActivity">
+        </activity>
+        <activity android:name=".activity.ProductdetailsActivity">
+        </activity>
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.CustomerServiceActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCollectionActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCouponActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.EvaluateManagerActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.HelpFeedbackActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.SubmitSuccessActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.SettingActivity">
+        </activity>
+        <activity android:name=".activity.XianshitemaiActivity">
+        </activity>
+        <activity android:name=".activity.HuolipintuanActivity">
+        </activity>
+        <activity android:name=".viewcontrollers.mine.activity.AddressmanageActivity">
+        </activity>
+        <activity android:name=".activity.MuyinzhuanchangActivity">
+        </activity>
+         <activity android:name=".activity.CountryActivity"></activity>
     </application>
 
 </manifest>

@@ -57,7 +57,6 @@ public class SearchResultActivity extends AppCompatActivity {
         mLRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);
         setViewListen();
         mLRecyclerView.setRefreshing(true);
-
     }
 
     private void notifyDataSetChanged() {

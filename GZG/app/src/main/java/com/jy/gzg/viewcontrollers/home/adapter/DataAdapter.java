@@ -1,6 +1,7 @@
 package com.jy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jy.gzg.R;
+import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.ListBaseAdapter;
+import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.util.AppToast;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
 
@@ -21,6 +24,12 @@ import java.util.List;
  * Created by Administrator on 2016/10/12 0012.
  */
 public class DataAdapter extends ListBaseAdapter<ItemModel> {
+    private LayoutInflater mLayoutInflater;
+    private XSTMAdapter xstmAdapter;
+    private HLPTAdapter hlptAdapter;
+
+    private List<ProductBean> xstmBeanList;
+    private List<ProductBean> hlptBeanList;
 
     // 建立枚举5个item类型
     public enum ITEM_TYPE {
@@ -31,17 +40,23 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
         TYPE_5,// 国家馆
     }
 
-    private LayoutInflater mLayoutInflater;
-
     public DataAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
         mContext = context;
     }
 
+    public void setXstmBeanList(List<ProductBean> xstmBeanList) {
+        this.xstmBeanList = xstmBeanList;
+    }
+
+    public void setHlptBeanList(List<ProductBean> hlptBeanList) {
+        this.hlptBeanList = hlptBeanList;
+    }
+
     @Override
     public int getItemViewType(int position) {
         // 每次都会调用此方法，获得当前所需要的view样式
-//        Log.i(Constant.TAG, "getItemViewType执行了" + position);
+        // Log.i(Constant.TAG, "getItemViewType执行了" + position);
         if (position < 1) {
             return ITEM_TYPE.TYPE_1.ordinal();
         } else if (position < 2) {
@@ -75,20 +90,49 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
             return new ViewHolder5(mLayoutInflater.inflate(R.layout.view_home_guojiaguan,
                     parent, false));
         }
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        // ItemModel item = mDataList.get(position);
         if (holder instanceof ViewHolder1) {
-            //((ViewHolder1) holder).textView.setText("同志们1好" + position);
+            // 网格布局管理器，且该recycleview纵向有2个item
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
+            gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            ((ViewHolder1) holder).mRecycleView.setLayoutManager(gridLayoutManager);
+            xstmAdapter = new XSTMAdapter(xstmBeanList, mContext);
+            ((ViewHolder1) holder).mRecycleView.setAdapter(xstmAdapter);
+            xstmAdapter.setOnItemClickListener(new XSTMAdapter
+                    .OnRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, ProductBean data) {
+                    Intent intent = new Intent(mContext,
+                            ProductdetailsActivity
+                                    .class);
+                    intent.putExtra("product_id", data.getId() + "");
+                    mContext.startActivity(intent);
+                }
+            });
         } else if (holder instanceof ViewHolder2) {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            ((ViewHolder2) holder).mRecycleView.setLayoutManager(linearLayoutManager);
+            hlptAdapter = new HLPTAdapter(hlptBeanList, mContext);
+            ((ViewHolder2) holder).mRecycleView.setAdapter(hlptAdapter);
+            hlptAdapter.setOnItemClickListener(new HLPTAdapter.OnRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, ProductBean data) {
+                    Intent intent = new Intent(mContext,
+                            ProductdetailsActivity
+                                    .class);
+                    intent.putExtra("product_id", data.getId() + "");
+                    mContext.startActivity(intent);
+                }
+            });
+
         } else if (holder instanceof ViewHolder3) {
         } else if (holder instanceof ViewHolder4) {
         } else {
         }
-
     }
 
     // 限时特卖
@@ -98,23 +142,16 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
         public ViewHolder1(View itemView) {
             super(itemView);
             mRecycleView = (RecyclerView) itemView.findViewById(R.id.mRecycleView);
-            // 网格布局管理器，且该recycleview纵向有2个item
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
-            gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            mRecycleView.setLayoutManager(gridLayoutManager);
-            ArrayList<String> commodityList = new ArrayList<String>();
-            for (int i = 0; i < 11; i++) {
-                commodityList.add("haha_" + i);
-            }
-            XSTMAdapter xstmAdapter = new XSTMAdapter(commodityList, mContext);
-            mRecycleView.setAdapter(xstmAdapter);
         }
     }
 
+    // 火力拼团
     private class ViewHolder2 extends RecyclerView.ViewHolder {
+        private RecyclerView mRecycleView;
 
         public ViewHolder2(View itemView) {
             super(itemView);
+            mRecycleView = (RecyclerView) itemView.findViewById(R.id.mRecycleView);
         }
     }
 
@@ -140,31 +177,28 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
 
         public ViewHolder5(View itemView) {
             super(itemView);
-
             initData();
-
-            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.mLRecyclerView_guojiaguan);
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id
+                    .mLRecyclerView_guojiaguan);
             LinearLayoutManager manager = new LinearLayoutManager(mContext);
             manager.setOrientation(LinearLayoutManager.HORIZONTAL);
             mRecyclerView.setLayoutManager(manager);
 
-            mWaresItemAdapter = new WaresItemAdapter(mContext,mDatas);
+            mWaresItemAdapter = new WaresItemAdapter(mContext, mDatas);
             mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    AppToast.getInstance().showShort(position+"");
+                    AppToast.getInstance().showShort(position + "");
                 }
             });
             mRecyclerView.setAdapter(mWaresItemAdapter);
-
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1,R.mipmap.sy_hlpic2,R.mipmap.sy_hlpic3,R.mipmap.sy_xspic2,R.mipmap.sy_xspic3,R.mipmap.sy_xspic4));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1, R.mipmap.sy_hlpic2, R
+                    .mipmap.sy_hlpic3, R.mipmap.sy_xspic2, R.mipmap.sy_xspic3, R.mipmap
+                    .sy_xspic4));
         }
-
     }
-
-
 }
 

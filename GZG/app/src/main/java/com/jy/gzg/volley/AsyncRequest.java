@@ -131,9 +131,11 @@ public abstract class AsyncRequest {
                 Object obj = inThreadParseResponseData(volleyError.getMessage());
                 if (obj == null) {
                     mRequestData.userDefErrorMsg = volleyError.getMessage();
+
                     AppLog.i("222222222222222222222222", volleyError.getMessage());
                 } else {
                     AppLog.i("11111111111111111111111111", volleyError.getMessage());
+
                     mRequestData.userDefErrorMsg = obj.toString();
                 }
                 mRequestCallback.onReqeustFailed(mRequestData);

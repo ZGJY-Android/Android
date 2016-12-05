@@ -4,7 +4,7 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
-    <com.jy.gzg.viewcontrollers.home.ui.XCFlowLayout
+    <com.jy.gzg.ui.XCFlowLayout
         android:id="@+id/xcflow_layout"
         android:layout_width="match_parent"
         android:layout_height="80dp"

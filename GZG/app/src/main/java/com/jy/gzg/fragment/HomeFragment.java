@@ -15,6 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -26,19 +32,27 @@ import com.jy.gzg.R;
 import com.jy.gzg.activity.MainActivity;
 import com.jy.gzg.activity.SearchActivity;
 import com.jy.gzg.util.AppToast;
+import com.jy.gzg.bean.HuolipintuanBean;
+import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.bean.XianshitemaiBean;
 import com.jy.gzg.util.Constant;
+import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.viewcontrollers.home.adapter.DataAdapter;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
+import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
 import com.jy.gzg.viewcontrollers.home.widget.SampleHeader;
+
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 使用带HeaderView的分页加载LinearLayout RecyclerView
  */
-public class HomeFragment extends Fragment {
 
+public class HomeFragment extends Fragment {
     private Context mContext;
     // 服务器端一共多少条数据
     private static final int TOTAL_COUNTER = 8;
@@ -50,6 +64,8 @@ public class HomeFragment extends Fragment {
     private PreviewHandler mHandler = null;
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private boolean isRefresh = false;
+    private List<ProductBean> xstmBeanList,// 限时特卖的相关数据
+            hlptBeanList;// 火力拼团的相关数据
 
     // 申明控件对象
     private ImageView title_search;// 搜索
@@ -177,30 +193,81 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    int num = 0;
 
     /**
      * 模拟请求网络
      */
     private void requestData() {
-        Log.d(Constant.TAG, "requestData");
+        Log.d(Constant.TAG, "requestData()执行了");
         new Thread() {
-
             @Override
             public void run() {
                 super.run();
-
-                try {
-                    Thread.sleep(800);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                // 模拟一下网络请求失败的情况
-                //if (NetworkUtils.isNetAvailable(context)) {
-                mHandler.sendEmptyMessage(-1);
-//                } else {
-//                    mHandler.sendEmptyMessage(-3);
-//                }
+                num = 0;// 此处必须清零
+                RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+                // 限时特卖
+                JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST,
+                        HomeConstant.HOME_XSTM, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        XianshitemaiBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                XianshitemaiBean.class);
+                        xstmBeanList = xianshitemaiBean.getPage().getList();
+                        mDataAdapter.setXstmBeanList(xstmBeanList);
+                        num++;
+                        if (num == 2) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        xstmBeanList = new ArrayList<>();
+                        mDataAdapter.setXstmBeanList(xstmBeanList);
+                        num++;
+                        if (num == 2) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                // 火力拼团
+                JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.POST,
+                        HomeConstant.HOME_HLPT, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        HuolipintuanBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                HuolipintuanBean.class);
+                        hlptBeanList = huolipintuanBean.getPage().getList();
+                        mDataAdapter.setHlptBeanList(hlptBeanList);
+                        num++;
+                        if (num == 2) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        hlptBeanList = new ArrayList<>();
+                        mDataAdapter.setHlptBeanList(hlptBeanList);
+                        num++;
+                        if (num == 2) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                requestQueue.add(jsonObjectRequest1);
+                requestQueue.add(jsonObjectRequest2);
             }
         }.start();
     }
@@ -274,12 +341,15 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
                 AppToast.getInstance().showShort(item.title);
+
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
+
                 AppToast.getInstance().showShort("onItemLongClick - " + item.title);
+
             }
         });
 

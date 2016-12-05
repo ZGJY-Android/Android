@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/relat_xstm"
                 android:layout_width="117dp"
-                android:layout_height="110dp"
+                android:layout_height="117dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/shape_xstm_bck"
-                android:orientation="vertical">
+                android:background="@drawable/shape_xstm_bck">
 
     <ImageView
         android:id="@+id/iv_img"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/sy_xspic1"/>
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/iv_img">
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bantouming">
 
         <TextView
+            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:text="￥118"
+            android:textColor="@color/white"
             android:textSize="12sp"/>
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="韩国至纯去屑发膜"
+            android:layout_toRightOf="@id/tv_price"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/white"
             android:textSize="8sp"/>
     </RelativeLayout>
 </RelativeLayout>

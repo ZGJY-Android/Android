@@ -46,11 +46,6 @@ public class MainActivity extends AppCompatActivity {
         //WindowUtil.setStatusBarTint(this, Color.parseColor("#f00"));
 
         initTab();
-
-
-
-//        test();
-
     }
 
     private void test() {
@@ -58,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
+        /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url,
+        null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
                 Log.e("111111111111111", jsonArray.toString());
@@ -77,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };*/
 
+
     /*    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
 
             public List<test.PageBean.ListBean> list;
+
 
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -107,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };*/
 
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String s) {
                 Log.e("----------------------", s.toString());
@@ -168,6 +168,4 @@ public class MainActivity extends AppCompatActivity {
         title.setText(tab.getTitle());
         return view;
     }
-
-
 }
