@@ -128,7 +128,7 @@ public class ImageUtils {
 //        }
 
         if (view.getMeasuredWidth()<=0 || view.getMeasuredHeight()<=0) {
-            L.e("ImageUtils.viewShot size error");
+            AppLog.e("ImageUtils.viewShot size error");
             return null;
         }
         Bitmap bm;
@@ -139,7 +139,7 @@ public class ImageUtils {
             try {
                 bm = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
             }catch (OutOfMemoryError ee){
-                L.e("ImageUtils.viewShot error", ee);
+                AppLog.e("ImageUtils.viewShot error", ee);
                 return null;
             }
         }
@@ -157,7 +157,7 @@ public class ImageUtils {
      */
     public static void saveBitmap(final Bitmap bitmap, final String filePath, final Runnable finish) {
         if (bitmap == null){
-            L.w("bitmap is null");
+            AppLog.w("bitmap is null");
             return;
         }
         new Thread(new Runnable() {
@@ -215,7 +215,7 @@ public class ImageUtils {
             try {
                 bitmap = BitmapFactory.decodeFile(filePath, options);
             }catch (OutOfMemoryError ee){
-                L.e("ImageUtils compressBitmap error", ee);
+                AppLog.e("ImageUtils compressBitmap error", ee);
                 return null;
             }
         }
@@ -283,7 +283,7 @@ public class ImageUtils {
         try {
             bmp = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         }catch (OutOfMemoryError error){
-            L.e("ImageUtils rotateBitmap error", error);
+            AppLog.e("ImageUtils rotateBitmap error", error);
         }
         return bmp;
     }

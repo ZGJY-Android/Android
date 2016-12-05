@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.jy.gzg">
+    package="com.jy.gzg">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".rootapplication.RootApplication"
@@ -14,38 +14,27 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SearchActivity">
-        </activity>
-        <activity android:name=".activity.SearchResultActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.OrderformActivity">
-        </activity>
-        <activity android:name=".activity.ProductdetailsActivity">
-        </activity>
-        <activity android:name=".activity.LoginActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.CustomerServiceActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.MyCollectionActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.MyCouponActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.EvaluateManagerActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.HelpFeedbackActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.SubmitSuccessActivity">
-        </activity>
-        <activity android:name=".viewcontrollers.mine.activity.SettingActivity">
-        </activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchResultActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.OrderformActivity"></activity>
+        <activity android:name=".activity.ProductdetailsActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.CustomerServiceActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCollectionActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.MyCouponActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.EvaluateManagerActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.HelpFeedbackActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.SubmitSuccessActivity"></activity>
+        <activity android:name=".viewcontrollers.mine.activity.SettingActivity"></activity>
+        <activity android:name=".activity.CountryActivity"></activity>
     </application>
 
 </manifest>

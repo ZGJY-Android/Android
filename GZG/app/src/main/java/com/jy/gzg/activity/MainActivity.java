@@ -11,11 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.fragment.CartFragment;
@@ -25,10 +26,10 @@ import com.jy.gzg.fragment.MineFragment;
 import com.jy.gzg.fragment.Tab;
 import com.jy.gzg.widget.FragmentTabHost;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void test() {
-        String url = "http://192.168.0.110:8080/product/list/2";
+        String url = "http://192.168.0.110:8080/appTopic/Korea?tagIds=8";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -76,22 +77,40 @@ public class MainActivity extends AppCompatActivity {
             }
         };*/
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+    /*    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+
+            public List<test.PageBean.ListBean> list;
+
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Log.e("111111111111111", jsonObject.toString());
+//                Gson gson = new Gson();
+//                test test1 = gson.fromJson(jsonObject.toString(), test.class);
+//
+//                list = test1.getPage().getList();
+//
+//
+//                AppLog.e("3333333333333333333",list.toString()+"");
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e("2222222222222222", volleyError.toString());
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("productCategoryId","0");
+                return map;
+            }
+        };*/
 
-        /*StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                Log.e("----------------------", s);
+                Log.e("----------------------", s.toString());
 
             }
         }, new Response.ErrorListener() {
@@ -100,9 +119,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("_____________________", volleyError.toString());
             }
 
-        });*/
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("productCategoryId","0");
+                return map;
+            }
+        };
 
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(stringRequest);
 
 
     }

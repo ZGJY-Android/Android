@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.ListBaseAdapter;
-import com.jy.gzg.util.T;
+import com.jy.gzg.util.AppToast;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
 
 import java.util.ArrayList;
@@ -152,7 +152,7 @@ public class DataAdapter extends ListBaseAdapter<ItemModel> {
             mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    T.getInstance().showShort(position+"");
+                    AppToast.getInstance().showShort(position+"");
                 }
             });
             mRecyclerView.setAdapter(mWaresItemAdapter);

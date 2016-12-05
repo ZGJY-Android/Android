@@ -13,59 +13,64 @@ import java.util.Locale;
  * @author zzp(zhao_zepeng@hotmail.com)
  * @since 2015-07-07
  */
-public final class L {
+public final class AppLog {
     private static boolean LOG_ENABLE = true;
     public static String LOG_TAG = "LOG_TAG";
 
-    private L(){}
+    private AppLog() {
+    }
 
     static {
         //一个进程只会调用一次static block，所以使用静态块的方式获取进程名
         LOG_ENABLE = RootApplication.DEBUG;
-        LOG_TAG = "[PID:"+ android.os.Process.myPid() +"]";
+        LOG_TAG = "[PID:" + android.os.Process.myPid() + "]";
     }
 
     /**
      * 打印基本信息
+     *
      * @param args 需要打印出来的额外信息，每次换行
      */
-    public static void i(String message, Object... args){
+    public static void i(String message, Object... args) {
         log(Log.INFO, message, null, args);
     }
 
     /**
      * 打印警告
+     *
      * @param args 需要打印出来的额外信息，每次换行
      */
-    public static void w(String message, Object... args){
+    public static void w(String message, Object... args) {
         log(Log.WARN, message, null, args);
     }
 
     /***
      * 打印异常
+     *
      * @param throwable 需要打印的异常信息
      */
-    public static void e(Throwable throwable){
+    public static void e(Throwable throwable) {
         log(Log.ERROR, null, throwable);
     }
 
     /***
      * 打印异常
      */
-    public static void e(String message, Object... args){
+    public static void e(String message, Object... args) {
         log(Log.ERROR, message, null, args);
     }
 
     /***
      * 打印异常
+     *
      * @param throwable 需要打印的异常信息
-     * @param args 需要打印出来的额外信息，每次换行
+     * @param args      需要打印出来的额外信息，每次换行
      */
-    public static void e(String message, Throwable throwable, Object... args){
+    public static void e(String message, Throwable throwable, Object... args) {
         log(Log.ERROR, message, throwable, args);
     }
 
-    private static void log(int priority, String message, Throwable throwable, Object... args){
+    private static void log(int priority, String message, Throwable throwable, Object... args) {
         if (!LOG_ENABLE)
             return;
         StringBuilder log = new StringBuilder();
@@ -75,12 +80,12 @@ public final class L {
         String caller = "<unknown>";
         for (int i = 2; i < trace.length; i++) {
             Class<?> clazz = trace[i].getClass();
-            if (!clazz.equals(L.class)) {
+            if (!clazz.equals(AppLog.class)) {
                 String callingClass = trace[i].getClassName();
                 callingClass = callingClass.substring(callingClass.lastIndexOf('.') + 1);
                 callingClass = callingClass.substring(callingClass.lastIndexOf('$') + 1);
                 caller = callingClass + "." + trace[i].getMethodName()
-                        + "(line:" + trace[i].getLineNumber() +")";
+                        + "(line:" + trace[i].getLineNumber() + ")";
                 break;
             }
         }
@@ -95,8 +100,9 @@ public final class L {
             log.append(Log.getStackTraceString(throwable)).append("\n");
 
         //附加额外信息
-        for (Object object: args)
-            log.append(object.toString()).append("\n");
+        for (Object object : args)
+            if (object != null)
+                log.append(object.toString()).append("\n");
 
         //打印日志
         Log.println(priority, LOG_TAG, log.toString());

@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="@dimen/dp_12"
     android:paddingBottom="@dimen/dp_10"
+    android:layout_marginRight="7dp"
     android:layout_width="125dp"
     android:layout_height="142dp">
 
     <ImageView
-
         android:id="@+id/iv_wares"
         android:layout_width="125dp"
         android:layout_height="91dp"
@@ -37,8 +37,5 @@
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/dp_6"
             android:src="@mipmap/sy_car"/>
-
-
-
 
 </RelativeLayout>

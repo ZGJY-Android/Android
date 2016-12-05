@@ -15,32 +15,32 @@ import com.jy.gzg.rootapplication.RootApplication;
  * @author zzp(zhao_zepeng@hotmail.com)
  * @since 2015-07-09
  */
-public class T {
+public class AppToast {
 
-    private volatile static T instance;
+    private volatile static AppToast instance;
     private int mGravity = -1;
     private int xOffset = 0;
     private int yOffset = 0;
     private Toast mTemp;
 
-    public static T getInstance() {
+    public static AppToast getInstance() {
         if (instance == null){
-            synchronized (T.class){
+            synchronized (AppToast.class){
                 if (instance == null){
-                    instance = new T();
+                    instance = new AppToast();
                 }
             }
         }
         return instance;
     }
 
-    private T(){
+    private AppToast(){
     }
 
     /**
      * 设置该toast的显示位置，只对该toast有效
      */
-    public T setGravity(int mGravity) {
+    public AppToast setGravity(int mGravity) {
         this.mGravity = mGravity;
         return getInstance();
     }
@@ -48,7 +48,7 @@ public class T {
     /**
      * 请在{@link #setGravity(int)}调用之后调用，只对该toast有效
      */
-    public T setxOffset(int xOffset) {
+    public AppToast setxOffset(int xOffset) {
         this.xOffset = xOffset;
         return getInstance();
     }
@@ -56,7 +56,7 @@ public class T {
     /**
      * 请在{@link #setGravity(int)}调用之后调用，只对该toast有效
      */
-    public T setyOffset(int yOffset) {
+    public AppToast setyOffset(int yOffset) {
         this.yOffset = yOffset;
         return getInstance();
     }

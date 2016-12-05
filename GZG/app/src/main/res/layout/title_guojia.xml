@@ -2,31 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    android:background="@color/zhusediao"
-    android:gravity="center_vertical">
+    >
 
-    <ImageView
-        android:id="@+id/back_guojia"
+    <FrameLayout
+        android:id="@+id/fl_guojia_left"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:background="@mipmap/left" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_guojia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/left" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/title_guojia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:text="国家馆"
-        android:textSize="19sp" />
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        />
 
-    <ImageView
-        android:id="@+id/title_guojia_right"
+    <FrameLayout
+        android:id="@+id/fl_guojia_right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:background="@mipmap/dian" />
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
 
+        <ImageView
+            android:id="@+id/title_guojia_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/dian" />
+    </FrameLayout>
 </RelativeLayout>

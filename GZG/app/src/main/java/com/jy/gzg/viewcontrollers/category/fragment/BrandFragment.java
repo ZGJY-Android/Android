@@ -30,7 +30,7 @@ public class BrandFragment extends Fragment {
         }
     };
 
-    private Integer[] integers = new Integer[]{R.color.hanguoBg,R.color.ribenBg,R.color.ouzhouBg,R.color.aodaliyaBg};
+    private Integer[] integers = new Integer[]{R.color.hanguoBg,R.color.ribenBg,R.color.ouzhouBg,R.color.aozhouBg};
     private ArrayList<Integer> colors = new ArrayList<Integer>(){
         {
             for (int i = 0;i<integers.length;i++)add(integers[i]);

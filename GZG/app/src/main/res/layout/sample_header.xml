@@ -21,6 +21,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/bt_home1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -42,6 +43,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bt_home2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -63,6 +65,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bt_home3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -85,6 +88,7 @@
 
 
             <LinearLayout
+                android:id="@+id/bt_home4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -112,6 +116,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/bt_home5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -132,6 +137,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bt_home6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -152,6 +158,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bt_home7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -172,11 +179,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bt_home8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <ImageView
                     android:layout_width="wrap_content"

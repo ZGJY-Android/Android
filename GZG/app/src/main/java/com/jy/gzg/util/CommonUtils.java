@@ -76,7 +76,7 @@ public class CommonUtils {
      */
     public static boolean isNetworkWifi(){
         if (!isNetworkAvailable()){
-            L.e("当前网络可用，请先调用isNetworkAvailable()函数");
+            AppLog.e("当前网络可用，请先调用isNetworkAvailable()函数");
         }
         ConnectivityManager cm = (ConnectivityManager) RootApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();

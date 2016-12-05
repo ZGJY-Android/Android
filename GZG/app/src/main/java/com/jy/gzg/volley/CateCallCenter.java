@@ -1,7 +1,6 @@
 package com.jy.gzg.volley;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.jy.gzg.util.AppConfiguration;
 import com.jy.gzg.widget.imageCycleView.Carousel;
@@ -46,16 +45,16 @@ public class CateCallCenter implements AsyncRequest.AsyncRequestCallBack {
 
     //轮播图回调接口
     public interface ICarouselDelegate{
-        public void reqCarouselComplete(ArrayList<Carousel> carouselList);
+        void reqCarouselComplete(ArrayList<Carousel> carouselList);
 
-        public void reqCarouselFailed(int connectionError, String errorMsg);
+        void reqCarouselFailed(int connectionError, String errorMsg);
     }
 
     //轮播图请求
-   public  int reqCarousel(Context context, String idUser, ICarouselDelegate delegate){
+   public  int reqCarousel(Context context, ICarouselDelegate delegate){
        int retHandle = allocHandleID();
 
-       if (delegate == null || TextUtils.isEmpty(idUser)){
+       if (delegate == null ){
             return RequestConstant.REQ_ERROR_PARAM;
        }
 
@@ -73,7 +72,6 @@ public class CateCallCenter implements AsyncRequest.AsyncRequestCallBack {
        req.reqHashCode =K_ASYNC_GET_LBT_HASHCODE;
 
        Map<String,String> reqMap = new HashMap<String,String>();
-       reqMap.put("idUser",idUser);
        req.reqJsonObject = new JSONObject(reqMap);
        req.reqMethod =req.METHOD_POST;
        req.reqTag =retHandle;

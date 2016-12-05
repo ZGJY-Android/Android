@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.jy.gzg.util.L;
+import com.jy.gzg.util.AppLog;
 
 import org.json.JSONObject;
 
@@ -36,7 +36,6 @@ public abstract class AsyncRequest {
         public int reqMethod; //请求方式
         public int METHOD_GET = 1;//get请求
         public int METHOD_POST = 2;//post请求
-
         // 可以自行定义一个tag值， 用来结果处理时附带请求参数。
         public Object reqTag = null;
 
@@ -45,7 +44,7 @@ public abstract class AsyncRequest {
         public JSONObject reqJsonObject; // 上传data数据的json格式
 
         // <=== 下行结果返回部分
-        public Object reqResultObj = null; // Request解析返回的结 果解析数据对象
+        public Object reqResultObj = null; // Request解析返回的结果解析数据对象
         public int userDefErrorCode = 0; // 可以自己定义解析层的错误code
         public String userDefErrorMsg = null; // 可以自己定义解析层的错误消息
     }
@@ -109,11 +108,11 @@ public abstract class AsyncRequest {
 
                 JSONObject jsonObject = null;
 //                try {
-                L.i("333333333333333333333333", s);
+                AppLog.i("333333333333333333333333", s);
 //                    jsonObject = new JSONObject(s);
 //                    int code = jsonObject.optInt("status");
                 Object obj = inThreadParseResponseData(s);
-                L.i("55555555555555555555555555555", obj);
+                AppLog.i("55555555555555555555555555555", obj);
                 mRequestData.reqResultObj = obj;
 
                 mRequestCallback.onRequestComplete(mRequestData);
@@ -132,9 +131,9 @@ public abstract class AsyncRequest {
                 Object obj = inThreadParseResponseData(volleyError.getMessage());
                 if (obj == null) {
                     mRequestData.userDefErrorMsg = volleyError.getMessage();
-                    L.i("222222222222222222222222", volleyError.getMessage());
+                    AppLog.i("222222222222222222222222", volleyError.getMessage());
                 } else {
-                    L.i("11111111111111111111111111", volleyError.getMessage());
+                    AppLog.i("11111111111111111111111111", volleyError.getMessage());
                     mRequestData.userDefErrorMsg = obj.toString();
                 }
                 mRequestCallback.onReqeustFailed(mRequestData);

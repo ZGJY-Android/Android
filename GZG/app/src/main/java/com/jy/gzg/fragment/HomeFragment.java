@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +25,8 @@ import com.github.jdsjlzx.view.LoadingFooter;
 import com.jy.gzg.R;
 import com.jy.gzg.activity.MainActivity;
 import com.jy.gzg.activity.SearchActivity;
+import com.jy.gzg.util.AppToast;
 import com.jy.gzg.util.Constant;
-import com.jy.gzg.util.T;
 import com.jy.gzg.viewcontrollers.home.adapter.DataAdapter;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
 import com.jy.gzg.viewcontrollers.home.widget.SampleHeader;
@@ -36,13 +37,13 @@ import java.util.ArrayList;
 /**
  * 使用带HeaderView的分页加载LinearLayout RecyclerView
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends Fragment {
 
     private Context mContext;
     // 服务器端一共多少条数据
     private static final int TOTAL_COUNTER = 8;
     // 每一页展示多少条数据
-    private static final int REQUEST_COUNT = 4;
+    private static final int REQUEST_COUNT = 8;
     // 已经获取到多少条数据了
     private static int mCurrentCounter = 0;
     private DataAdapter mDataAdapter = null;
@@ -60,8 +61,10 @@ public class HomeFragment extends BaseFragment {
         this.mContext = context;
     }
 
+
+
     @Override
-    public View createView(LayoutInflater inflater, ViewGroup container, Bundle
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
         View rootView = LayoutInflater.from(mContext).inflate(R.layout.fragment_home, container,
                 false);
@@ -87,11 +90,6 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void init() {
-        //轮播图请求地址
-        String url = "http://112.124.22.238:8081/course_api/banner/query?type=1";
-    }
 
     private void notifyDataSetChanged() {
         mLRecyclerViewAdapter.notifyDataSetChanged();
@@ -275,13 +273,13 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
-                T.getInstance().showShort(item.title);
+                AppToast.getInstance().showShort(item.title);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
                 ItemModel item = mDataAdapter.getDataList().get(position);
-                T.getInstance().showShort("onItemLongClick - " + item.title);
+                AppToast.getInstance().showShort("onItemLongClick - " + item.title);
             }
         });
 
