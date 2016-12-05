@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.util.T;
+import com.jy.gzg.util.AppToast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +50,7 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
             mAdapter.setOnItemClickListener(new BrandReclassifyAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    T.getInstance().showShort("品牌商品" + position);
+                    AppToast.getInstance().showShort("品牌商品" + position);
                 }
             });
 

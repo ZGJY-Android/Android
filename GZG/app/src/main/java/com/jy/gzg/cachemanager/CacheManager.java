@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 
 import com.jy.gzg.rootapplication.RootApplication;
-import com.jy.gzg.util.L;
+import com.jy.gzg.util.AppLog;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -53,7 +53,7 @@ public class CacheManager {
         }else if (value instanceof Set<?>){
             if ((((Set<?>)value).toArray())[0] instanceof String){
                 if (Build.VERSION.SDK_INT < 11){
-                    L.e(CacheManager.class.getSimpleName() + " 版本不支持String set");
+                    AppLog.e(CacheManager.class.getSimpleName() + " 版本不支持String set");
                     return;
                 }
                 editor.putStringSet(key, (Set<String>) value);
@@ -108,7 +108,7 @@ public class CacheManager {
     private static <T>Set<T> getValueSet(SharedPreferences sp, String key, Class<T> clazz){
         if (clazz == String.class){
             if (Build.VERSION.SDK_INT < 11){
-                L.e(CacheManager.class.getSimpleName() + " 版本不支持String set");
+                AppLog.e(CacheManager.class.getSimpleName() + " 版本不支持String set");
                 return null;
             }
             return (Set<T>) sp.getStringSet(key, null);
@@ -180,7 +180,7 @@ public class CacheManager {
 
     /** 清空临时SharedPreference */
     public static void removeTemporary(){
-        L.i("application close remove temporary");
+        AppLog.i("application close remove temporary");
         SharedPreferences sp = RootApplication.getInstance().getSharedPreferences(TEMPORARY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();

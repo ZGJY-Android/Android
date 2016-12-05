@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.jy.gzg.rootapplication.RootApplication;
-import com.jy.gzg.util.L;
+import com.jy.gzg.util.AppLog;
 
 import java.util.Iterator;
 import java.util.Stack;
@@ -74,7 +74,7 @@ public final class ActivityManager {
     public Activity getActivity(){
         if (!mStack.isEmpty())
             return mStack.peek();
-        L.i("Activity 栈为空！！！");
+        AppLog.i("Activity 栈为空！！！");
         return null;
     }
 
@@ -88,7 +88,7 @@ public final class ActivityManager {
                 temp.finish();
             return;
         }
-        L.e("Activity 栈为空！！！");
+        AppLog.e("Activity 栈为空！！！");
     }
 
     /***
@@ -96,13 +96,13 @@ public final class ActivityManager {
      */
     public void finishActivity(Activity activity){
         if (mStack.isEmpty()) {
-            L.e("Activity 栈为空！！！");
+            AppLog.e("Activity 栈为空！！！");
             return ;
         }
         try {
             mStack.remove(activity);
         }catch (Exception e){
-            L.e("删除错误", e, ActivityManager.class);
+            AppLog.e("删除错误", e, ActivityManager.class);
         }finally {
             if (activity != null)
                 activity.finish();
@@ -144,7 +144,7 @@ public final class ActivityManager {
      */
     public void finishAfterActivity(Activity activity){
         if (activity!=null && mStack.search(activity) == -1){
-            L.e("在栈中找不到该activity", ActivityManager.class);
+            AppLog.e("在栈中找不到该activity", ActivityManager.class);
             return;
         }
         while (mStack.peek() != null){
@@ -173,7 +173,7 @@ public final class ActivityManager {
             }
         }
         if (flag) {
-            L.e("在栈中找不到该class", ActivityManager.class);
+            AppLog.e("在栈中找不到该class", ActivityManager.class);
             return;
         }
         finishAfterActivity(activity);
@@ -195,7 +195,7 @@ public final class ActivityManager {
                     RootApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
             activityManager.killBackgroundProcesses(RootApplication.getInstance().getPackageName());
         }catch (SecurityException e){
-            L.e("请添加permission", e);
+            AppLog.e("请添加permission", e);
         }
         System.exit(0);
     }

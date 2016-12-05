@@ -43,4 +43,10 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <!-- menu弹出时的动画效果 -->
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popup_menu_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_menu_out</item>
+    </style>
 </resources>

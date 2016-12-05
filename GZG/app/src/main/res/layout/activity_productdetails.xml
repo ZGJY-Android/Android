@@ -157,6 +157,5 @@
         android:layout_above="@id/view_line"
         android:layout_below="@id/relat_top"
         android:layout_weight="1"
-        android:background="#ffffff"
-        />
+        android:background="#ffffff"/>
 </RelativeLayout>

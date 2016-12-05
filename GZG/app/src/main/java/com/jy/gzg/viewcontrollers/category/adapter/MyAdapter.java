@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.util.T;
+import com.jy.gzg.util.AppToast;
 import com.jy.gzg.viewcontrollers.category.widget.DividerGridItemDecoration;
 
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mAdapter.setOnItemClickListener(new ReclassifyAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    T.getInstance().showShort("分类商品" + position);
+                    AppToast.getInstance().showShort("分类商品" + position);
                 }
             });
             mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));

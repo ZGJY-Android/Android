@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="23dp"
-    >
+    android:paddingTop="23dp">
 
     <ImageView
         android:id="@+id/iv_reclassify_wares"

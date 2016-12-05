@@ -23,6 +23,7 @@ import com.jy.gzg.R;
 import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.ProductCommentAdapter;
 import com.jy.gzg.bean.ProductCommentBean;
+import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.util.Constant;
 import com.jy.gzg.widget.ProductCommentHeader;
 
@@ -34,6 +35,7 @@ import java.util.ArrayList;
  */
 public class ProductCommentFragment extends Fragment {
     private Context mContext;
+    private ProductBean xstmBean;
 
     // 服务器端一共多少条数据
     private static final int TOTAL_COUNTER = 20;
@@ -46,6 +48,10 @@ public class ProductCommentFragment extends Fragment {
     private LRecyclerView mLRecyclerView;
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private boolean isRefresh = false;
+
+    public void setXstmBean(ProductBean xstmBean) {
+        this.xstmBean = xstmBean;
+    }
 
     @Override
     public void onAttach(Context context) {

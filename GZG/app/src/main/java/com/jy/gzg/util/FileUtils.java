@@ -132,7 +132,7 @@ public class FileUtils {
      * 删除外部临时文件目录
      */
     public static void clearExternalStorageTemp(){
-        L.i("application close clear temp directory");
+        AppLog.i("application close clear temp directory");
         if (getFileOrDirectorySize(getExternalStorageTempPath()) >= K_BYTES_TO_DELETE) {
             File file = new File(getExternalStorageTempPath());
             File[] files = file.listFiles();

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.jy.gzg.R;
-import com.jy.gzg.util.T;
+import com.jy.gzg.util.AppToast;
 import com.jy.gzg.viewcontrollers.mine.ui.CustomDialog;
 
 public class SettingActivity extends AppCompatActivity {
@@ -41,7 +41,7 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         // 设置你的操作事项
-                        T.getInstance().showShort("清除完毕");
+                        AppToast.getInstance().showShort("清除完毕");
                     }
                 });
                 mDialog.setNegativeButton("取 消", new android.content.DialogInterface

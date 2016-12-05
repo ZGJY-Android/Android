@@ -1,86 +1,84 @@
 package com.jy.gzg.viewcontrollers.mine.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.github.jdsjlzx.swipe.SwipeMenuAdapter;
 import com.jy.gzg.R;
 import com.jy.gzg.viewcontrollers.mine.bean.MyCollectionBean;
-import com.jy.gzg.viewcontrollers.mine.minterface.OnMSwipItemClickListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/11/14 0014.
  */
-public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapter.ViewHolder> {
-    private Context mContext;
-    private List<MyCollectionBean> mItems = new ArrayList<>();
-    private OnMSwipItemClickListener listener;
+public class MyCollectionAdapter extends SwipeMenuAdapter<MyCollectionAdapter.DefaultViewHolder> {
+    protected List<MyCollectionBean> mDataList = new ArrayList<>();
 
-    public MyCollectionAdapter(Context mContext, List<MyCollectionBean> users,
-                               OnMSwipItemClickListener mlistner) {
-        this.mContext = mContext;
-        this.mItems = users;
-        this.listener = mlistner;
+    public MyCollectionAdapter() {
     }
 
     @Override
-    public MyCollectionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_mycollection, parent, false);
-        ViewHolder vh = new ViewHolder(v, this.listener);
-        return vh;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ViewHolder mholder = holder;
-        MyCollectionBean bean = mItems.get(position);
-        mholder.relat_line.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "点击了第" + position + "个ItemView", Toast
-                        .LENGTH_SHORT).show();
-            }
-        });
-        mholder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mItems.remove(position);
-                notifyItemRemoved(position);
-            }
-        });
+    public void onBindViewHolder(DefaultViewHolder holder, int position) {
+        DefaultViewHolder viewHolder = holder;
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mDataList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private OnMSwipItemClickListener mListener;
-        private RelativeLayout relat_line;
-        private Button btn_delete;
+    public List<MyCollectionBean> getDataList() {
+        return mDataList;
+    }
 
-        public ViewHolder(View itemView, OnMSwipItemClickListener Listener) {
+    public void setDataList(Collection<MyCollectionBean> list) {
+        this.mDataList.clear();
+        this.mDataList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addAll(Collection<MyCollectionBean> list) {
+        int lastIndex = this.mDataList.size();
+        if (this.mDataList.addAll(list)) {
+            notifyItemRangeInserted(lastIndex, list.size());
+        }
+    }
+
+    public void remove(int position) {
+        mDataList.remove(position);
+        notifyItemRemoved(position);
+        if (position != mDataList.size()) { // 如果移除的是最后一个，忽略
+            notifyItemRangeChanged(position, mDataList.size() - position);
+        }
+
+    }
+
+    public void clear() {
+        mDataList.clear();
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public View onCreateContentView(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mycollection,
+                parent, false);
+        return view;
+    }
+
+    @Override
+    public DefaultViewHolder onCompatCreateViewHolder(View realContentView, int viewType) {
+        return new DefaultViewHolder(realContentView);
+    }
+
+    static class DefaultViewHolder extends RecyclerView.ViewHolder {
+        public DefaultViewHolder(View itemView) {
             super(itemView);
-            relat_line = (RelativeLayout) itemView.findViewById(R.id.relat_line);
-            btn_delete = (Button) itemView.findViewById(R.id.btn_delete);
-            this.mListener = Listener;
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (mListener != null) {
-                mListener.onItemClick(v, getAdapterPosition());
-            }
         }
     }
+
 }

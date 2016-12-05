@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jy.gzg.R;
-import com.jy.gzg.viewcontrollers.home.ui.XCFlowLayout;
+import com.jy.gzg.ui.XCFlowLayout;
 
 /**
  * Created by Administrator on 2016/11/11 0011.

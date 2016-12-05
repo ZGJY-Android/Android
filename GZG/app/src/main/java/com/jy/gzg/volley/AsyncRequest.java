@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.jy.gzg.util.L;
+import com.jy.gzg.util.AppLog;
 
 import org.json.JSONObject;
 
@@ -109,11 +109,11 @@ public abstract class AsyncRequest {
 
                 JSONObject jsonObject = null;
 //                try {
-                L.i("333333333333333333333333", s);
+                AppLog.i("333333333333333333333333", s);
 //                    jsonObject = new JSONObject(s);
 //                    int code = jsonObject.optInt("status");
                 Object obj = inThreadParseResponseData(s);
-                L.i("55555555555555555555555555555", obj);
+                AppLog.i("55555555555555555555555555555", obj);
                 mRequestData.reqResultObj = obj;
 
                 mRequestCallback.onRequestComplete(mRequestData);
@@ -132,9 +132,7 @@ public abstract class AsyncRequest {
                 Object obj = inThreadParseResponseData(volleyError.getMessage());
                 if (obj == null) {
                     mRequestData.userDefErrorMsg = volleyError.getMessage();
-                    L.i("222222222222222222222222", volleyError.getMessage());
                 } else {
-                    L.i("11111111111111111111111111", volleyError.getMessage());
                     mRequestData.userDefErrorMsg = obj.toString();
                 }
                 mRequestCallback.onReqeustFailed(mRequestData);
