@@ -77,8 +77,6 @@ public class HomeFragment extends Fragment {
         this.mContext = context;
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
