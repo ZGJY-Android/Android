@@ -14,6 +14,7 @@ public class AppConstant {
     public static final String HOME_AUSSIE = IP + "/app/AussieIndex";// 主页澳洲馆的相关数据
     public static final String HOME_EUROPE = IP + "/app/EuropeIndex";// 主页欧洲馆的相关数据
 
+    public static final String COUNTRY_DETAILS = IP + "/appTopic/App?";//国家馆通用接口
     public static final String HEADERMODEL_DETAILS =
             IP + "/appTopic/App?productCategoryId=0&&tagIds=";// 通用八个按钮的详情接口(跟参数-->&&tagIds=3)
     public static final String PRODUCT_DETAILS = IP +

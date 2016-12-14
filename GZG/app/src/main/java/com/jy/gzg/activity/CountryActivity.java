@@ -39,6 +39,7 @@ public class CountryActivity extends AppCompatActivity {
     private RecyclerView hRecyclerView;
     private List<Integer> hData;
     private TabLayout tabLayout;
+    public static int tagId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class CountryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         country = intent.getIntExtra("country", -1);
+        tagId = intent.getIntExtra("headermodel_id", -1);
         AppLog.e("--------country--------", country);
 
         switch (country) {
@@ -88,7 +90,8 @@ public class CountryActivity extends AppCompatActivity {
 
     private void initData() {
         //横向商品数据
-        hData = new ArrayList<>(Arrays.asList(R.mipmap.lg, R.mipmap.xhx, R.mipmap.ysfy, R.mipmap.lg, R.mipmap.xhx, R.mipmap.ysfy));
+        hData = new ArrayList<>(Arrays.asList(R.mipmap.lg, R.mipmap.xhx, R.mipmap.ysfy, R.mipmap
+                .lg, R.mipmap.xhx, R.mipmap.ysfy));
     }
 
     private void initView() {
@@ -110,8 +113,10 @@ public class CountryActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         hRecyclerView.setLayoutManager(linearLayoutManager);
         //设置适配器
-        CountryHorizontalAdapter countryHorizontalAdapter = new CountryHorizontalAdapter(this, hData);
-        countryHorizontalAdapter.setmOnItemClickListener(new CountryHorizontalAdapter.OnItemClickListener() {
+        CountryHorizontalAdapter countryHorizontalAdapter = new CountryHorizontalAdapter(this,
+                hData);
+        countryHorizontalAdapter.setmOnItemClickListener(new CountryHorizontalAdapter
+                .OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 AppToast.getInstance().showShort("横向商品" + position);
@@ -122,7 +127,8 @@ public class CountryActivity extends AppCompatActivity {
 //-----------------------------------------国家馆TabLayout和纵向商品---------------------------------
         //Fragment+ViewPager+FragmentViewPager组合的使用
         ViewPager viewPager = (ViewPager) findViewById(R.id.vp_wares_guojia);
-        CountryPagerAdapter countryPagerAdapter = new CountryPagerAdapter(getSupportFragmentManager(), this);
+        CountryPagerAdapter countryPagerAdapter = new CountryPagerAdapter
+                (getSupportFragmentManager(), this);
         viewPager.setAdapter(countryPagerAdapter);
         tabLayout = (TabLayout) findViewById(R.id.tablayout_country);
         tabLayout.setupWithViewPager(viewPager);

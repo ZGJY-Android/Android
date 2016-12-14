@@ -12,6 +12,7 @@ import com.jy.gzg.R;
 import com.jy.gzg.util.AppToast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

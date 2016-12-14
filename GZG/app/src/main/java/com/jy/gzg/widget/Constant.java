@@ -16,7 +16,6 @@ public class Constant {
 
     // 分享首选项的文件名
     public static final String SP_FILE = "userlogin";
-
     // 分享首选项的用户名
     public static final String SP_UNAME = "SP_UNAME";
     // 分享首选项的密码

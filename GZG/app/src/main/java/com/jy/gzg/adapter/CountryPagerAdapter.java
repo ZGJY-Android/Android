@@ -12,7 +12,8 @@ import com.jy.gzg.fragment.CountryFragment;
  */
 public class CountryPagerAdapter extends FragmentPagerAdapter {
     public final int COUNT = 8;
-    private String[] titles = new String[]{"母婴用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品"};
+    private String[] titles = new String[]{"母婴用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品",
+            "洗护用品", "洗护用品"};
     private Context context;
 
     public CountryPagerAdapter(FragmentManager fm, Context context) {

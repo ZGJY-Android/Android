@@ -271,6 +271,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
                 intent.putExtra("country", 1);
+                intent.putExtra("headermodel_id", layoutview5.getTag() + "");
                 context.startActivity(intent);
             }
         });
@@ -279,6 +280,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
                 intent.putExtra("country", 2);
+                intent.putExtra("headermodel_id", layoutview6.getTag() + "");
                 context.startActivity(intent);
             }
         });
@@ -287,6 +289,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
                 intent.putExtra("country", 3);
+                intent.putExtra("headermodel_id", layoutview7.getTag() + "");
                 context.startActivity(intent);
             }
         });
@@ -295,6 +298,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
                 intent.putExtra("country", 4);
+                intent.putExtra("headermodel_id", layoutview8.getTag() + "");
                 context.startActivity(intent);
             }
         });

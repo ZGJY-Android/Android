@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.jy.gzg.R;
+import com.jy.gzg.activity.CountryActivity;
 import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.CountryVerticalAdapter;
 import com.jy.gzg.bean.CountryMYBean;
@@ -19,9 +20,9 @@ import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.util.AppLog;
 import com.jy.gzg.util.AppToast;
 import com.jy.gzg.util.GsonUtil;
-import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
 import com.jy.gzg.volley.VolleyListenerInterface;
 import com.jy.gzg.volley.VolleyRequestUtil;
+import com.jy.gzg.widget.AppConstant;
 
 import java.util.ArrayList;
 
@@ -54,40 +55,48 @@ public class CountryFragment extends Fragment {
     }
 
     private void initData() {
-        MYURL = HomeConstant.COUNTRY + "&&productCategoryId=" + mPage;
-        VolleyRequestUtil.RequestPost(getActivity(), MYURL, mPage+"", new VolleyListenerInterface(context, VolleyListenerInterface.mListener, VolleyListenerInterface.mErrorListener) {
-            @Override
-            public void onMySuccess(String result) {
-                CountryMYBean countryMYBean = GsonUtil.parseJsonWithGson(result, CountryMYBean.class);
-                mDatas = countryMYBean.getPage().getList();
-                //设置适配器
-                countryVerticalAdapter = new CountryVerticalAdapter(getActivity(),mDatas);
-                countryVerticalAdapter.setmData(mDatas);
-                countryVerticalAdapter.setOnItemClickListener(new CountryVerticalAdapter.OnItemClickListener() {
+        MYURL = AppConstant.COUNTRY_DETAILS + "tagIds=" + CountryActivity.tagId +
+                "&&productCategoryId="
+                + mPage;
+        VolleyRequestUtil.RequestPost(getActivity(), MYURL, mPage + "", new
+                VolleyListenerInterface(context, VolleyListenerInterface.mListener,
+                        VolleyListenerInterface.mErrorListener) {
                     @Override
-                    public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getActivity(),
-                                ProductdetailsActivity
+                    public void onMySuccess(String result) {
+                        CountryMYBean countryMYBean = GsonUtil.parseJsonWithGson(result,
+                                CountryMYBean
                                         .class);
-                        intent.putExtra("product_id", mDatas.get(position).getId() + "");
-                        startActivity(intent);
+                        mDatas = countryMYBean.getPage().getList();
+                        //设置适配器
+                        countryVerticalAdapter = new CountryVerticalAdapter(getActivity(), mDatas);
+                        countryVerticalAdapter.setmData(mDatas);
+                        countryVerticalAdapter.setOnItemClickListener(new CountryVerticalAdapter
+                                .OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Intent intent = new Intent(getActivity(),
+                                        ProductdetailsActivity
+                                                .class);
+                                intent.putExtra("product_id", mDatas.get(position).getId() + "");
+                                startActivity(intent);
 
+                            }
+                        });
+                        vRecyclerView.setAdapter(countryVerticalAdapter);
+                    }
+
+                    @Override
+                    public void onMyError(VolleyError error) {
+                        AppLog.i("CountryFragment", error);
+                        AppToast.getInstance().showShort("网络加载错误~");
                     }
                 });
-                vRecyclerView.setAdapter(countryVerticalAdapter);
-            }
-
-            @Override
-            public void onMyError(VolleyError error) {
-                AppLog.i("CountryFragment", error);
-                AppToast.getInstance().showShort("网络加载错误~");
-            }
-        });
     }
 
     @Nullable
     @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         //设置商品数据
         initData();
         //初始化view

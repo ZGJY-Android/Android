@@ -24,7 +24,7 @@ import com.jy.gzg.fragment.CategoryFragment;
 import com.jy.gzg.fragment.HomeFragment;
 import com.jy.gzg.fragment.MineFragment;
 import com.jy.gzg.fragment.Tab;
-import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
+import com.jy.gzg.widget.AppConstant;
 import com.jy.gzg.widget.FragmentTabHost;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void test() {
-        String url =  HomeConstant.IP + "/appLogin/submit?";;
+        String url =  AppConstant.USER_LOGIN;;
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
