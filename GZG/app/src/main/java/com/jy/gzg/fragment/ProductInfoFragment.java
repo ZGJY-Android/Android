@@ -1,6 +1,7 @@
 package com.jy.gzg.fragment;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
 import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.ui.CustomViewPager;
-import com.jy.gzg.util.LoadLocalImageUtil;
 import com.jy.gzg.widget.ProductInfoPopupWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -30,10 +29,11 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
     private ProductBean xstmBean;
     private CustomViewPager vp_viewPager;
     private ViewGroup line_viewGroup;
-    private RelativeLayout relat_price;// 用其点击事件触发弹框效果
+    private LinearLayout line_qilicount;// 用其点击事件触发弹框效果
 
     private TextView tv_fullname,// 名称
             tv_price,// 价格
+            tv_marketprice,// 市场价
             tv_qsum,// 起批量
             tv_point,// 积分
             tv_count,// 数量
@@ -69,21 +69,33 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
         View view = inflater.inflate(R.layout.fragment_productinfo, container, false);
         initViews(view);
         setViewsListen();
-
-        imgUrls = new String[]{xstmBean.getImage()};
-        tv_fullname.setText(xstmBean.getFull_name());
-        tv_price.setText(xstmBean.getPrice() + "");
-        if (xstmBean.getQsum() == null || xstmBean.getQsum().equals("")) {
-            tv_qsum.setText(1 + "");
+        if (xstmBean == null) {
+            mImageViews = new ImageView[1];
+            ImageView imageView = new ImageView(mContext);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            ImageLoader.getInstance().displayImage("", imageView);
+            mImageViews[0] = imageView;
+            vp_viewPager.setAdapter(pagerAdapter);
+            return view;
         } else {
-            String[] qipiCount = xstmBean.getQsum().trim().split("|");
-            if (qipiCount[1].equals("")) {
+            imgUrls = new String[]{xstmBean.getImage()};
+            tv_fullname.setText(xstmBean.getFull_name());
+            tv_price.setText("￥" + xstmBean.getPrice());
+            tv_marketprice.setText("￥" + xstmBean.getMarket_price());
+            tv_marketprice.getPaint().setFlags(Paint
+                    .STRIKE_THRU_TEXT_FLAG);// 添加中划线
+            if (xstmBean.getQsum() == null || xstmBean.getQsum().equals("")) {
                 tv_qsum.setText(1 + "");
-            } else
-                tv_qsum.setText(qipiCount[1]);
+            } else {
+                String[] qipiCount = xstmBean.getQsum().trim().split("|");
+                if (qipiCount[1].equals("")) {
+                    tv_qsum.setText(1 + "");
+                } else
+                    tv_qsum.setText(qipiCount[1]);
+            }
+            tv_point.setText(xstmBean.getPoint() + "");
+            tv_id.setText(xstmBean.getSn());
         }
-        tv_point.setText(xstmBean.getPoint() + "");
-        tv_id.setText(xstmBean.getSn());
 
         //将小圆点加入到ViewGroup中
         tips = new ImageView[imgUrls.length];
@@ -111,8 +123,7 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             if (xstmBean.getImage() == null || xstmBean.getImage().equals("")) {
-                LoadLocalImageUtil.getInstance().displayFromMipmap(R.mipmap.icon_stub,
-                        imageView);
+                ImageLoader.getInstance().displayImage("", imageView);
             } else {
                 ImageLoader.getInstance().displayImage(imgUrls[i], imageView);
             }
@@ -120,33 +131,35 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
         }
 
         //设置Adapter
-        vp_viewPager.setAdapter(new PagerAdapter() {
-            @Override
-            public boolean isViewFromObject(View arg0, Object arg1) {
-                return arg0 == arg1;
-            }
-
-            @Override
-            public int getCount() {
-                return mImageViews.length;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position,
-                                    Object object) {
-                container.removeView(mImageViews[position]);
-            }
-
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                container.addView(mImageViews[position]);
-                return mImageViews[position];
-            }
-        });
+        vp_viewPager.setAdapter(pagerAdapter);
         //设置监听，主要是设置点点的背景
         vp_viewPager.setOnPageChangeListener(this);
         return view;
     }
+
+    private PagerAdapter pagerAdapter = new PagerAdapter() {
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public int getCount() {
+            return mImageViews.length;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position,
+                                Object object) {
+            container.removeView(mImageViews[position]);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            container.addView(mImageViews[position]);
+            return mImageViews[position];
+        }
+    };
 
     /**
      * 设置选中的tip的背景
@@ -169,10 +182,11 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
     public void initViews(View view) {
         vp_viewPager = (CustomViewPager) view.findViewById(R.id.vp_viewPager);
         line_viewGroup = (ViewGroup) view.findViewById(R.id.line_viewGroup);
-        relat_price = (RelativeLayout) view.findViewById(R.id.relat_price);
+        line_qilicount = (LinearLayout) view.findViewById(R.id.line_qilicount);
 
         tv_fullname = (TextView) view.findViewById(R.id.tv_fullname);
         tv_price = (TextView) view.findViewById(R.id.tv_price);
+        tv_marketprice = (TextView) view.findViewById(R.id.tv_marketprice);
         tv_qsum = (TextView) view.findViewById(R.id.tv_qsum);
         tv_point = (TextView) view.findViewById(R.id.tv_point);
         tv_count = (TextView) view.findViewById(R.id.tv_count);
@@ -185,7 +199,7 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
      * 对某些控件实行监听事件
      */
     public void setViewsListen() {
-        relat_price.setOnClickListener(new View.OnClickListener() {
+        line_qilicount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //实例化ProductInfoPopupWindow

@@ -48,17 +48,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_img1"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:src="@mipmap/sy_xs"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/tv_text1"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="限时特卖"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -70,17 +70,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_img2"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:src="@mipmap/sy_hl"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/tv_text2"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="火力拼团"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -92,17 +92,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_img3"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:src="@mipmap/sy_qq"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/tv_text3"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="母婴专场"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
 
@@ -115,17 +115,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_img4"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:src="@mipmap/sy_kj"/>
+                    android:layout_marginTop="8dp"/>
 
                 <TextView
+                    android:id="@+id/tv_text4"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="洗护用品"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
         <!-- 这是第一层 -->
@@ -143,16 +143,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/sy_hg"/>
+                    android:id="@+id/iv_img5"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/tv_text5"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="韩国馆"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -164,16 +164,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/sy_rb"/>
+                    android:id="@+id/iv_img6"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/tv_text6"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日本馆"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -185,16 +185,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/sy_ad"/>
+                    android:id="@+id/iv_img7"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/tv_text7"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="澳洲馆"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -203,20 +203,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/sy_oz"/>
+                    android:id="@+id/iv_img8"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/tv_text8"
                     style="@style/lunbo_header_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="欧洲馆"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

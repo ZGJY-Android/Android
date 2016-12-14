@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="addressmanage_item_height">101dp</dimen>
+    <dimen name="xstm_margin">20dp</dimen>
 </resources>

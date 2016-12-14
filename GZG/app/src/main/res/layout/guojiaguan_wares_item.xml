@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="@dimen/dp_12"
-    android:paddingBottom="@dimen/dp_10"
-    android:layout_marginRight="7dp"
-    android:layout_width="125dp"
-    android:layout_height="142dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="125dp"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="7dp"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/dp_10"
+              android:paddingTop="@dimen/dp_12">
 
     <ImageView
         android:id="@+id/iv_wares"
         android:layout_width="125dp"
-        android:layout_height="91dp"
-        android:src="@mipmap/sy_hgpic2"/>
-    <TextView
-        android:id="@+id/tv_wares"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:text="韩国智纯去屑发膜"
-        android:textSize="6sp"
-        android:layout_below="@id/iv_wares"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"/>
+        android:layout_height="125dp"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_6"
+            android:src="@mipmap/sy_car"/>
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:text="￥118"
-            android:textSize="8sp"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/dp_6"
-            android:src="@mipmap/sy_car"/>
+            android:textColor="@color/red"
+            android:textSize="10sp"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_wares"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/iv_img"
+            android:layout_toRightOf="@id/price"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="韩国智纯去屑发膜"
+            android:textSize="10sp"/>
+    </RelativeLayout>
+</LinearLayout>

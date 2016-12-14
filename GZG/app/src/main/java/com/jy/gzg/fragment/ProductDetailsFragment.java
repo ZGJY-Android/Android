@@ -48,9 +48,13 @@ public class ProductDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_productdetails, container, false);
+        tv_text = (TextView) view.findViewById(R.id.tv_text);
+        if (xstmBean == null) {
+            tv_text.setVisibility(View.VISIBLE);
+            return view;
+        }
         String introduction = xstmBean.getIntroduction();// 获取详情图片的地址字符串
         if (introduction == null || introduction.equals("")) {
-            tv_text = (TextView) view.findViewById(R.id.tv_text);
             tv_text.setVisibility(View.VISIBLE);
         } else {
             imgList = new ArrayList();
@@ -63,7 +67,6 @@ public class ProductDetailsFragment extends Fragment {
                 int endIndex = images[i].lastIndexOf("g");
                 imgList.add(images[i].substring(beginIndex, endIndex + 1));
             }
-
             mRecyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerView);
             productDetailsAdapter = new ProductDetailsAdapter(imgList, mContext);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);

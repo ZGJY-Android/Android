@@ -13,13 +13,6 @@
         android:layout_margin="10dp"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/iv_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/sy_hlpic1"/>
-
         <LinearLayout
             android:layout_width="192dp"
             android:layout_height="78dp"
@@ -27,48 +20,15 @@
             android:layout_marginTop="14dp"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_width="78dp"
-                    android:layout_height="10dp"
-                    android:background="@mipmap/sy_soldbsck">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginTop="1dp"
-                        android:text="已售220件"
-                        android:textColor="@color/white"
-                        android:textSize="7sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="1dp"
-                        android:gravity="right"
-                        android:text="剩余520件"
-                        android:textColor="@color/white"
-                        android:textSize="7sp"/>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:text="韩国至纯去屑发膜"
-                    android:textSize="9sp"/>
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="韩国至纯去屑发膜"
+                android:textSize="15sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -76,58 +36,6 @@
                 android:background="@drawable/line_xuxian"
                 android:layerType="software"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-                        android:text="赠送积分："
-                        android:textSize="8sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_point"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-                        android:text="45"
-                        android:textSize="8sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-                        android:text="月销量："
-                        android:textSize="8sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_monthsales"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
-                        android:text="123"
-                        android:textSize="8sp"/>
-                </LinearLayout>
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -137,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="bottom"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -146,11 +54,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/textView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="拼团价："
                             android:textColor="#ff0234"
-                            android:textSize="12sp"/>
+                            android:textSize="13sp"/>
 
                         <TextView
                             android:id="@+id/tv_price"
@@ -158,7 +67,7 @@
                             android:layout_height="wrap_content"
                             android:text="￥0.00"
                             android:textColor="#ff0234"
-                            android:textSize="12sp"/>
+                            android:textSize="13sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -167,19 +76,20 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="市场价:"
-                            android:textSize="8sp"/>
+                            android:layout_marginTop="6dp"
+                            android:text="市场价："
+                            android:textSize="11sp"/>
 
                         <TextView
                             android:id="@+id/tv_marketprice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="6dp"
                             android:text="￥0.00"
-                            android:textSize="8sp"/>
+                            android:textSize="11sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -187,6 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -214,6 +125,16 @@
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/sy_hlpic1"/>
     </RelativeLayout>
 
     <View

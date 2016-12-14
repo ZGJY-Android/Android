@@ -20,7 +20,7 @@ import com.github.jdsjlzx.swipe.SwipeMenu;
 import com.github.jdsjlzx.swipe.SwipeMenuItem;
 import com.jy.gzg.R;
 import com.jy.gzg.util.AppToast;
-import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
+import com.jy.gzg.viewcontrollers.home.bean.ItemModelBean;
 import com.jy.gzg.viewcontrollers.mine.adapter.AddressmanageAdapter;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class AddressmanageActivity extends AppCompatActivity {
     private LRecyclerView mLRecyclerView;
     private AddressmanageAdapter addressmanageAdapter;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
-    ArrayList<ItemModel> dataList;
+    ArrayList<ItemModelBean> dataList;
 
     private ImageView iv_return;
     private TextView tv_info;// 没有收藏时的提示信息
@@ -43,9 +43,9 @@ public class AddressmanageActivity extends AppCompatActivity {
         initViews();
         //init data
         dataList = new ArrayList<>();
-        ItemModel itemModel;
+        ItemModelBean itemModel;
         for (int i = 0; i < 5; i++) {
-            itemModel = new ItemModel();
+            itemModel = new ItemModelBean();
             itemModel.title = "item" + i;
             dataList.add(itemModel);
         }

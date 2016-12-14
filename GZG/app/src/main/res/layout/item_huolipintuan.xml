@@ -61,9 +61,11 @@
                 android:layout_above="@id/tv_caozuo">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -85,27 +87,10 @@
                         android:layout_marginTop="6dp">
 
                         <TextView
-                            android:id="@+id/tv_str"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="赠送积分："
-                            android:textColor="@color/black"
-                            android:textSize="12sp"/>
-
-                        <TextView
-                            android:id="@+id/tv_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/tv_str"
-                            android:text="1111"
-                            android:textColor="@color/black"
-                            android:textSize="12sp"/>
-
-                        <TextView
                             android:id="@+id/str2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_toRightOf="@id/tv_point"
                             android:text="月销量："
                             android:textColor="@color/black"
@@ -116,7 +101,34 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/str2"
-                            android:text="22"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@+id/tv_str"
+                            android:layout_toRightOf="@+id/tv_str"
+                            android:ellipsize="end"
+                            android:maxWidth="25dp"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_str"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:text="赠送积分："
                             android:textColor="@color/black"
                             android:textSize="12sp"/>
                     </RelativeLayout>
@@ -131,7 +143,7 @@
                             android:id="@+id/tv_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="￥118"
+                            android:text="￥0.00"
                             android:textColor="@color/red"
                             android:textSize="20sp"
                             android:textStyle="bold"/>
@@ -153,7 +165,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:layout_toRightOf="@id/tv_str3"
-                            android:text="￥240"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="￥0.00"
                             android:textColor="@color/black"
                             android:textSize="12sp"/>
                     </RelativeLayout>

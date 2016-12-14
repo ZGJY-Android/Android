@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.jy.gzg.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public class ReclassifyAdapter extends RecyclerView.Adapter<ReclassifyAdapter.Vi
         public ViewHolder(View arg0) {
             super(arg0);
         }
+
         ImageView mImg;
         TextView mTxt;
     }
@@ -60,7 +62,7 @@ public class ReclassifyAdapter extends RecyclerView.Adapter<ReclassifyAdapter.Vi
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.onItemClick(view,i);
+                    onItemClickListener.onItemClick(view, i);
                 }
             });
         }
@@ -68,12 +70,14 @@ public class ReclassifyAdapter extends RecyclerView.Adapter<ReclassifyAdapter.Vi
 
     @Override
     public int getItemCount() {
+        if (mDatas == null) {
+            mDatas = new ArrayList<>();
+        }
         return mDatas.size();
     }
 
 
-
-    public void addData(int pos,Integer datas) {
+    public void addData(int pos, Integer datas) {
         mDatas.add(pos, datas);
         notifyItemInserted(pos);
     }
@@ -87,7 +91,6 @@ public class ReclassifyAdapter extends RecyclerView.Adapter<ReclassifyAdapter.Vi
         mDatas.clear();
         notifyDataSetChanged();
     }
-
 
 
 }

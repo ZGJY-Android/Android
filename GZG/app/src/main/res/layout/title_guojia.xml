@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_gravity="center"
-            android:background="@mipmap/left" />
+            android:background="@mipmap/left2" />
     </FrameLayout>
 
     <TextView
@@ -41,6 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_gravity="center"
-            android:background="@mipmap/dian" />
+            android:background="@mipmap/dian2" />
     </FrameLayout>
 </RelativeLayout>

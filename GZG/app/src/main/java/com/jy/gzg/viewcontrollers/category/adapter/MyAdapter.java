@@ -13,7 +13,6 @@ import com.jy.gzg.util.AppToast;
 import com.jy.gzg.viewcontrollers.category.widget.DividerGridItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -66,7 +65,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mHeaderView != null && viewType == TYPE_HEADER) return new Holder(mHeaderView);
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.reclassify, parent, false);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.reclassify,
+                parent, false);
         return new Holder(layout);
     }
 
@@ -139,7 +139,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1, R.mipmap.sy_hlpic2, R.mipmap.sy_hlpic3, R.mipmap.sy_xspic3, R.mipmap.sy_xspic4,R.mipmap.sy_kj));
         }
 
     }

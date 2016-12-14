@@ -19,10 +19,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.HuolipintuanAdapter;
+import com.jy.gzg.bean.HuolipintuanBean;
 import com.jy.gzg.bean.ProductBean;
-import com.jy.gzg.bean.XianshitemaiBean;
 import com.jy.gzg.util.GsonUtil;
-import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
+import com.jy.gzg.widget.AppConstant;
 
 import org.json.JSONObject;
 
@@ -42,16 +42,21 @@ public class HuolipintuanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_huolipintuan);
         initViews();
         xstmList = new ArrayList();
+        // 获取该项的编号
+        Intent intent = getIntent();
+        final String headermodel_id = intent.getStringExtra("headermodel_id");
+        String url = AppConstant.HEADERMODEL_DETAILS +
+                headermodel_id;
         // ------------------------------进行网络数据请求-----------------------------------
         RequestQueue requestQueue = Volley.newRequestQueue(HuolipintuanActivity.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                HomeConstant.HOME_HLPT, null, new Response.Listener<JSONObject>() {
+                url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                XianshitemaiBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
+                HuolipintuanBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
                                 .toString(),
-                        XianshitemaiBean.class);
-                ArrayList<ProductBean> xstmBeanList = xianshitemaiBean.getPage().getList();
+                        HuolipintuanBean.class);
+                ArrayList<ProductBean> xstmBeanList = huolipintuanBean.getPage().getList();
                 huolipintuanAdapter = new HuolipintuanAdapter(xstmBeanList, HuolipintuanActivity
                         .this);
                 mRecyclerView.setAdapter(huolipintuanAdapter);

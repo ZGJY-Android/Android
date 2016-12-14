@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
+import com.jy.gzg.bean.HomeProductBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -16,7 +18,6 @@ import java.util.List;
  * Created by YX on 2016/10/17 0017.
  */
 public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.ViewHolder> {
-
     /**
      * ItemClick的回调接口
      */
@@ -31,11 +32,13 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
     }
 
     private LayoutInflater mLayoutInflater;
-    private List<Integer> mDatas;
+    private List<HomeProductBean> mDatas;
+    private ImageLoader imageLoader;
 
-    public WaresItemAdapter(Context context, List<Integer> datats) {
+    public WaresItemAdapter(Context context, List<HomeProductBean> datats) {
         mLayoutInflater = LayoutInflater.from(context);
         mDatas = datats;
+        imageLoader = ImageLoader.getInstance();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -60,7 +63,9 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
-        viewHolder.mImg.setImageResource(mDatas.get(i));
+        imageLoader.displayImage(mDatas.get(i).getImage() + "", viewHolder.mImg);
+        viewHolder.mTxt.setText(mDatas.get(i).getName());
+        viewHolder.mPrice.setText("￥" + mDatas.get(i).getPrice() + "");
 
         if (mOnItemClickLitener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

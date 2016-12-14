@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.github.jdsjlzx.swipe.SwipeMenuAdapter;
 import com.jy.gzg.R;
-import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
+import com.jy.gzg.viewcontrollers.home.bean.ItemModelBean;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Administrator on 2016/11/28 0028.
  */
 public class AddressmanageAdapter extends SwipeMenuAdapter<AddressmanageAdapter.DefaultViewHolder> {
-    protected List<ItemModel> mDataList = new ArrayList<>();
+    protected List<ItemModelBean> mDataList = new ArrayList<>();
 
     public AddressmanageAdapter() {
     }
@@ -27,17 +27,17 @@ public class AddressmanageAdapter extends SwipeMenuAdapter<AddressmanageAdapter.
         return mDataList.size();
     }
 
-    public List<ItemModel> getDataList() {
+    public List<ItemModelBean> getDataList() {
         return mDataList;
     }
 
-    public void setDataList(Collection<ItemModel> list) {
+    public void setDataList(Collection<ItemModelBean> list) {
         this.mDataList.clear();
         this.mDataList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void addAll(Collection<ItemModel> list) {
+    public void addAll(Collection<ItemModelBean> list) {
         int lastIndex = this.mDataList.size();
         if (this.mDataList.addAll(list)) {
             notifyItemRangeInserted(lastIndex, list.size());

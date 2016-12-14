@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.bean.HomeProductBean;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder> implements View
         .OnClickListener {
-    private List<ProductBean> xstmBeanList;
+    private List<HomeProductBean> xstmBeanList;
     private Context context;
     private ImageLoader imageLoader;
     private OnRecyclerViewItemClickListener mOnItemClickListener;
 
-    public XSTMAdapter(List<ProductBean> xstmBeanList, Context context) {
+    public XSTMAdapter(List<HomeProductBean> xstmBeanList, Context context) {
         this.xstmBeanList = xstmBeanList;
         this.context = context;
     }
@@ -41,10 +41,14 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
 
     @Override
     public void onBindViewHolder(final DemoViewHolder demoViewHolder, final int position) {
-        ProductBean listBean = xstmBeanList.get(position);
+        HomeProductBean listBean = xstmBeanList.get(position);
         //将数据保存在itemView的Tag中，以便点击时进行获取
         demoViewHolder.itemView.setTag(listBean);
-        imageLoader.displayImage(listBean.getImage(), demoViewHolder.iv_img);
+        if (listBean.getImage() != null && !listBean.getImage().equals("")) {
+            imageLoader.displayImage(listBean.getImage().toString(), demoViewHolder.iv_img);
+        } else {
+            imageLoader.displayImage("", demoViewHolder.iv_img);
+        }
         demoViewHolder.tv_price.setText("￥" + listBean.getPrice());
         demoViewHolder.tv_name.setText(listBean.getName());
     }
@@ -62,7 +66,7 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
     public void onClick(View v) {
         if (mOnItemClickListener != null) {
             //注意这里使用getTag方法获取数据
-            mOnItemClickListener.onItemClick(v, (ProductBean) v.getTag());
+            mOnItemClickListener.onItemClick(v, (HomeProductBean) v.getTag());
         }
     }
 
@@ -85,6 +89,6 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
     }
 
     public static interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view, ProductBean data);
+        void onItemClick(View view, HomeProductBean data);
     }
 }

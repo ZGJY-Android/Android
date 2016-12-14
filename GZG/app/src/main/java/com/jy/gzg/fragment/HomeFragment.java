@@ -31,15 +31,13 @@ import com.github.jdsjlzx.view.LoadingFooter;
 import com.jy.gzg.R;
 import com.jy.gzg.activity.MainActivity;
 import com.jy.gzg.activity.SearchActivity;
-import com.jy.gzg.util.AppToast;
-import com.jy.gzg.bean.HuolipintuanBean;
-import com.jy.gzg.bean.ProductBean;
-import com.jy.gzg.bean.XianshitemaiBean;
-import com.jy.gzg.util.Constant;
+import com.jy.gzg.bean.HomeBean;
+import com.jy.gzg.bean.HomeProductBean;
+import com.jy.gzg.widget.Constant;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.viewcontrollers.home.adapter.DataAdapter;
-import com.jy.gzg.viewcontrollers.home.bean.ItemModel;
-import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
+import com.jy.gzg.viewcontrollers.home.bean.ItemModelBean;
+import com.jy.gzg.widget.AppConstant;
 import com.jy.gzg.viewcontrollers.home.widget.SampleHeader;
 
 import org.json.JSONObject;
@@ -55,17 +53,21 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private Context mContext;
     // 服务器端一共多少条数据
-    private static final int TOTAL_COUNTER = 8;
+    private static final int TOTAL_COUNTER = 7;
     // 每一页展示多少条数据
-    private static final int REQUEST_COUNT = 8;
+    private static final int REQUEST_COUNT = 7;
     // 已经获取到多少条数据了
     private static int mCurrentCounter = 0;
     private DataAdapter mDataAdapter = null;
     private PreviewHandler mHandler = null;
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
     private boolean isRefresh = false;
-    private List<ProductBean> xstmBeanList,// 限时特卖的相关数据
-            hlptBeanList;// 火力拼团的相关数据
+    private List<HomeProductBean> xstmBeanList,// 限时特卖的相关数据
+            hlptBeanList,// 火力拼团的相关数据
+            koreaBeanList,// 韩国馆的相关数据
+            japanBeanList,// 日本馆的相关数据
+            aussieBeanList,// 澳洲馆的相关数据
+            europeBeanList;// 欧洲馆的相关数据
 
     // 申明控件对象
     private ImageView title_search;// 搜索
@@ -84,7 +86,7 @@ public class HomeFragment extends Fragment {
                 false);
         initView(rootView);// 初始化控件
         //init data
-        ArrayList<ItemModel> dataList = new ArrayList<>();
+        ArrayList<ItemModelBean> dataList = new ArrayList<>();
         mHandler = new PreviewHandler(mContext);
         mDataAdapter = new DataAdapter(mContext);
         mDataAdapter.addAll(dataList);
@@ -109,7 +111,7 @@ public class HomeFragment extends Fragment {
         mLRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItems(ArrayList<ItemModel> list) {
+    private void addItems(ArrayList<ItemModelBean> list) {
         mDataAdapter.addAll(list);
         mCurrentCounter += list.size();
 
@@ -137,12 +139,12 @@ public class HomeFragment extends Fragment {
                     }
                     int currentSize = mDataAdapter.getItemCount();
                     //模拟组装几个数据
-                    ArrayList<ItemModel> newList = new ArrayList<>();
+                    ArrayList<ItemModelBean> newList = new ArrayList<>();
                     for (int i = 0; i < REQUEST_COUNT; i++) {
                         if (newList.size() + currentSize >= TOTAL_COUNTER) {
                             break;
                         }
-                        ItemModel item = new ItemModel();
+                        ItemModelBean item = new ItemModelBean();
                         item.id = currentSize + i;
                         item.title = "item" + (item.id);
                         newList.add(item);
@@ -191,7 +193,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    int num = 0;
+    private int num = 0, count = 6;
 
     /**
      * 模拟请求网络
@@ -206,16 +208,16 @@ public class HomeFragment extends Fragment {
                 RequestQueue requestQueue = Volley.newRequestQueue(mContext);
                 // 限时特卖
                 JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST,
-                        HomeConstant.HOME_XSTM, null, new Response.Listener<JSONObject>() {
+                        AppConstant.HOME_XSTM, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
-                        XianshitemaiBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
+                        HomeBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
                                         .toString(),
-                                XianshitemaiBean.class);
-                        xstmBeanList = xianshitemaiBean.getPage().getList();
+                                HomeBean.class);
+                        xstmBeanList = xianshitemaiBean.getList();
                         mDataAdapter.setXstmBeanList(xstmBeanList);
                         num++;
-                        if (num == 2) {
+                        if (num == count) {
                             mHandler.sendEmptyMessage(-1);
                         } else {
                             mHandler.sendEmptyMessage(-3);
@@ -227,7 +229,7 @@ public class HomeFragment extends Fragment {
                         xstmBeanList = new ArrayList<>();
                         mDataAdapter.setXstmBeanList(xstmBeanList);
                         num++;
-                        if (num == 2) {
+                        if (num == count) {
                             mHandler.sendEmptyMessage(-1);
                         } else {
                             mHandler.sendEmptyMessage(-3);
@@ -236,16 +238,16 @@ public class HomeFragment extends Fragment {
                 });
                 // 火力拼团
                 JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.POST,
-                        HomeConstant.HOME_HLPT, null, new Response.Listener<JSONObject>() {
+                        AppConstant.HOME_HLPT, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
-                        HuolipintuanBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
+                        HomeBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
                                         .toString(),
-                                HuolipintuanBean.class);
-                        hlptBeanList = huolipintuanBean.getPage().getList();
+                                HomeBean.class);
+                        hlptBeanList = huolipintuanBean.getList();
                         mDataAdapter.setHlptBeanList(hlptBeanList);
                         num++;
-                        if (num == 2) {
+                        if (num == count) {
                             mHandler.sendEmptyMessage(-1);
                         } else {
                             mHandler.sendEmptyMessage(-3);
@@ -257,7 +259,127 @@ public class HomeFragment extends Fragment {
                         hlptBeanList = new ArrayList<>();
                         mDataAdapter.setHlptBeanList(hlptBeanList);
                         num++;
-                        if (num == 2) {
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                // 韩国馆
+                JsonObjectRequest jsonObjectRequest4 = new JsonObjectRequest(Request.Method.POST,
+                        AppConstant.HOME_KOREA, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        HomeBean koreaBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                HomeBean.class);
+                        koreaBeanList = koreaBean.getList();
+                        mDataAdapter.setKoreaBeanList(koreaBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        koreaBeanList = new ArrayList<>();
+                        mDataAdapter.setKoreaBeanList(koreaBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                // 日本馆
+                JsonObjectRequest jsonObjectRequest5 = new JsonObjectRequest(Request.Method.POST,
+                        AppConstant.HOME_JAPAN, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        HomeBean japanBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                HomeBean.class);
+                        japanBeanList = japanBean.getList();
+                        mDataAdapter.setJapanBeanList(japanBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        japanBeanList = new ArrayList<>();
+                        mDataAdapter.setJapanBeanList(japanBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                // 澳洲馆
+                JsonObjectRequest jsonObjectRequest6 = new JsonObjectRequest(Request.Method.POST,
+                        AppConstant.HOME_AUSSIE, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        HomeBean aussieBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                HomeBean.class);
+                        aussieBeanList = aussieBean.getList();
+                        mDataAdapter.setAussieBeanList(aussieBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        aussieBeanList = new ArrayList<>();
+                        mDataAdapter.setAussieBeanList(aussieBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                });
+                // 欧洲馆
+                JsonObjectRequest jsonObjectRequest7 = new JsonObjectRequest(Request.Method.POST,
+                        AppConstant.HOME_EUROPE, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        HomeBean europeBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                HomeBean.class);
+                        europeBeanList = europeBean.getList();
+                        mDataAdapter.setEuropeBeanList(europeBeanList);
+                        num++;
+                        if (num == count) {
+                            mHandler.sendEmptyMessage(-1);
+                        } else {
+                            mHandler.sendEmptyMessage(-3);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        europeBeanList = new ArrayList<>();
+                        mDataAdapter.setEuropeBeanList(europeBeanList);
+                        num++;
+                        if (num == count) {
                             mHandler.sendEmptyMessage(-1);
                         } else {
                             mHandler.sendEmptyMessage(-3);
@@ -266,6 +388,11 @@ public class HomeFragment extends Fragment {
                 });
                 requestQueue.add(jsonObjectRequest1);
                 requestQueue.add(jsonObjectRequest2);
+                // ....................
+                requestQueue.add(jsonObjectRequest4);
+                requestQueue.add(jsonObjectRequest5);
+                requestQueue.add(jsonObjectRequest6);
+                requestQueue.add(jsonObjectRequest7);
             }
         }.start();
     }
@@ -337,17 +464,12 @@ public class HomeFragment extends Fragment {
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ItemModel item = mDataAdapter.getDataList().get(position);
-                AppToast.getInstance().showShort(item.title);
-
+                ItemModelBean item = mDataAdapter.getDataList().get(position);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                ItemModel item = mDataAdapter.getDataList().get(position);
-
-                AppToast.getInstance().showShort("onItemLongClick - " + item.title);
-
+                ItemModelBean item = mDataAdapter.getDataList().get(position);
             }
         });
 

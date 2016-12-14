@@ -24,7 +24,7 @@ import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.ProductCommentAdapter;
 import com.jy.gzg.bean.ProductCommentBean;
 import com.jy.gzg.bean.ProductBean;
-import com.jy.gzg.util.Constant;
+import com.jy.gzg.widget.Constant;
 import com.jy.gzg.widget.ProductCommentHeader;
 
 import java.lang.ref.WeakReference;

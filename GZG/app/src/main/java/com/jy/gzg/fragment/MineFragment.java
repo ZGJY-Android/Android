@@ -23,6 +23,8 @@ import com.jy.gzg.viewcontrollers.mine.activity.MyCouponActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.OrderformActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.SettingActivity;
 
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * Created by Allen on 15/12/27.
@@ -135,7 +137,7 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
         iv_setting.setOnClickListener(new View.OnClickListener() {
@@ -145,5 +147,20 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 用来接收目标activity回传的数据
+        switch (resultCode) { //resultCode为回传的标记，我回传的是RESULT_OK
+            case RESULT_OK:
+                Bundle b = data.getExtras(); //data为B中回传的Intent
+                String uname = b.getString("uname");//uname即为回传的值
+                tv_nickname.setText(uname);
+                break;
+            default:
+                break;
+        }
     }
 }

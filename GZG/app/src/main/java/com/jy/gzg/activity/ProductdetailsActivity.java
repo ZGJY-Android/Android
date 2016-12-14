@@ -23,7 +23,7 @@ import com.jy.gzg.fragment.ProductCommentFragment;
 import com.jy.gzg.fragment.ProductDetailsFragment;
 import com.jy.gzg.fragment.ProductInfoFragment;
 import com.jy.gzg.util.GsonUtil;
-import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
+import com.jy.gzg.widget.AppConstant;
 
 import org.json.JSONObject;
 
@@ -55,10 +55,12 @@ public class ProductdetailsActivity extends AppCompatActivity {
         productInfoFragment = new ProductInfoFragment();
         productDetailsFragment = new ProductDetailsFragment();
         productCommentFragment = new ProductCommentFragment();
+        String url = AppConstant.PRODUCT_DETAILS +
+                productId;
         // 进行网络请求
         RequestQueue requestQueue = Volley.newRequestQueue(ProductdetailsActivity.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                HomeConstant.HOME_XSTM + "&&id=" + productId,
+                url,
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -66,10 +68,12 @@ public class ProductdetailsActivity extends AppCompatActivity {
                                 .toString(),
                         XianshitemaiBean.class);
                 List<ProductBean> xstmBeanList = xianshitemaiBean.getPage().getList();
-                ProductBean xstmBean = xstmBeanList.get(0);
-                productInfoFragment.setXstmBean(xstmBean);
-                productDetailsFragment.setXstmBean(xstmBean);
-                productCommentFragment.setXstmBean(xstmBean);
+                if (xstmBeanList.size() != 0) {
+                    ProductBean xstmBean = xstmBeanList.get(0);
+                    productInfoFragment.setXstmBean(xstmBean);
+                    productDetailsFragment.setXstmBean(xstmBean);
+                    productCommentFragment.setXstmBean(xstmBean);
+                }
                 fragments.add(productInfoFragment);
                 fragments.add(productDetailsFragment);
                 fragments.add(productCommentFragment);

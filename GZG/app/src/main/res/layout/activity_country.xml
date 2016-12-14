@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:id="@+id/linear_guojia"
-    android:clipToPadding="false"
-    android:fitsSystemWindows="true"
-    tools:context="com.jy.gzg.activity.CountryActivity">
-    <include layout="@layout/title_guojia" />
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/linear_guojia"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clipToPadding="false"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              tools:context="com.jy.gzg.activity.CountryActivity">
+
+    <include layout="@layout/title_guojia"/>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            app:layout_scrollFlags="scroll"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                >
-
-            <ImageView
-                android:id="@+id/iv_guojia"
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp" />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_country_horizontal"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_guojia"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_country_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_below="@+id/iv_guojia"/>
+                </RelativeLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout_country"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_below="@+id/iv_guojia"/>
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:background="@color/bottomBg"
+                app:tabGravity="center"
+                app:tabIndicatorColor="#b53232"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#b53232"
+                app:tabTextColor="#747474"/>
+        </android.support.design.widget.AppBarLayout>
 
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tablayout_country"
-            app:tabGravity="center"
-            app:tabMode="scrollable"
-            app:tabIndicatorColor="#b53232"
-            app:tabSelectedTextColor="#b53232"
-            app:tabTextColor="#747474"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bottomBg"/>
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_wares_guojia"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </android.support.v4.widget.NestedScrollView>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_wares_guojia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>
 

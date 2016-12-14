@@ -69,8 +69,9 @@ public class XianshitemaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             //将数据保存在itemView的Tag中，以便点击时进行获取
             holder.itemView.setTag(listBean);
             //获取屏幕信息
+            int margin = context.getResources().getDimensionPixelSize(R.dimen.xstm_margin);//
             DisplayMetrics dm = context.getResources().getDisplayMetrics();
-            int screenWidth = dm.widthPixels;
+            int screenWidth = dm.widthPixels - margin;// 要减去margin的值
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(screenWidth / 2,
                     screenWidth / 2);// 设置图片宽高相等
             ((DemoViewHolder) holder).relat_left.setLayoutParams(params);

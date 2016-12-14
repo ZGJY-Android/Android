@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:text="我的中港"
             android:textColor="@color/white"
-            android:textSize="24sp"/>
+            android:textSize="19sp"/>
 
         <ImageView
             android:id="@+id/iv_setting"
@@ -65,8 +65,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/riv_img"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="中港会员123"
+                        android:text="请登录"
                         android:textColor="@color/white"
                         android:textSize="15sp"/>
                 </RelativeLayout>

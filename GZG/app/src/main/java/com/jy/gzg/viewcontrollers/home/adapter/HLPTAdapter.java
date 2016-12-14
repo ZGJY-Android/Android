@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.bean.HomeProductBean;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -20,12 +20,12 @@ import java.util.List;
  */
 public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder> implements View
         .OnClickListener {
-    private List<ProductBean> hlptBeanList;
+    private List<HomeProductBean> hlptBeanList;
     private Context context;
     private ImageLoader imageLoader;
     private OnRecyclerViewItemClickListener mOnItemClickListener;
 
-    public HLPTAdapter(List<ProductBean> xstmBeanList, Context context) {
+    public HLPTAdapter(List<HomeProductBean> xstmBeanList, Context context) {
         this.hlptBeanList = xstmBeanList;
         this.context = context;
     }
@@ -42,13 +42,15 @@ public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder
 
     @Override
     public void onBindViewHolder(final DemoViewHolder demoViewHolder, final int position) {
-        ProductBean listBean = hlptBeanList.get(position);
+        HomeProductBean listBean = hlptBeanList.get(position);
         //将数据保存在itemView的Tag中，以便点击时进行获取
         demoViewHolder.itemView.setTag(listBean);
-        imageLoader.displayImage(listBean.getImage(), demoViewHolder.iv_img);
+        if (listBean.getImage() != null && !listBean.getImage().equals("")) {
+            imageLoader.displayImage(listBean.getImage().toString(), demoViewHolder.iv_img);
+        } else {
+            imageLoader.displayImage("", demoViewHolder.iv_img);
+        }
         demoViewHolder.tv_name.setText(listBean.getName());
-        demoViewHolder.tv_point.setText(listBean.getPoint() + "");
-        demoViewHolder.tv_monthsales.setText(listBean.getMonth_sales() + "");
         demoViewHolder.tv_price.setText("￥" + listBean.getPrice());
         demoViewHolder.tv_marketprice.setText("￥" + listBean.getMarket_price());
         demoViewHolder.tv_marketprice.getPaint().setFlags(Paint
@@ -75,7 +77,7 @@ public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder
     public void onClick(View v) {
         if (mOnItemClickListener != null) {
             //注意这里使用getTag方法获取数据
-            mOnItemClickListener.onItemClick(v, (ProductBean) v.getTag());
+            mOnItemClickListener.onItemClick(v, (HomeProductBean) v.getTag());
         }
     }
 
@@ -83,8 +85,6 @@ public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder
     public static class DemoViewHolder extends RecyclerView.ViewHolder {
         private ImageView iv_img;// 商品图片
         private TextView tv_name,// 名称
-                tv_point,// 赠送积分
-                tv_monthsales,// 月销量
                 tv_price,// 销售价
                 tv_marketprice;// 市场价
         private View view_line;// 分割线
@@ -93,8 +93,6 @@ public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            tv_point = (TextView) itemView.findViewById(R.id.tv_point);
-            tv_monthsales = (TextView) itemView.findViewById(R.id.tv_monthsales);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_marketprice = (TextView) itemView.findViewById(R.id.tv_marketprice);
             view_line = (View) itemView.findViewById(R.id.view_line);
@@ -106,6 +104,6 @@ public class HLPTAdapter extends RecyclerView.Adapter<HLPTAdapter.DemoViewHolder
     }
 
     public static interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view, ProductBean data);
+        void onItemClick(View view, HomeProductBean data);
     }
 }

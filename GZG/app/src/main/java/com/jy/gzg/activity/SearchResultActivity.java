@@ -20,7 +20,7 @@ import com.github.jdsjlzx.view.LoadingFooter;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.SearchResultAdapter;
 import com.jy.gzg.bean.SearchResultBean;
-import com.jy.gzg.util.Constant;
+import com.jy.gzg.widget.Constant;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

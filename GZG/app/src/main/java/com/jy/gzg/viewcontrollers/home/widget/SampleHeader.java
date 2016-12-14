@@ -12,16 +12,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.activity.CountryActivity;
 import com.jy.gzg.activity.HuolipintuanActivity;
 import com.jy.gzg.activity.MuyinzhuanchangActivity;
 import com.jy.gzg.activity.XianshitemaiActivity;
+import com.jy.gzg.bean.LunbotuBean;
 import com.jy.gzg.ui.FixedSpeedScroller;
+import com.jy.gzg.util.GsonUtil;
+import com.jy.gzg.viewcontrollers.home.bean.HeaderModelBean;
+import com.jy.gzg.viewcontrollers.home.bean.ListBean;
+import com.jy.gzg.widget.AppConstant;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * RecyclerView的HeaderView，简单的展示一个TextView
@@ -34,6 +49,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
     private ImageView[] tips;// 装点点的ImageView数组
     private ImageView[] mImageViews;// 装ImageView数组
     private ArrayList<String> imgUrlList;// 图片资源
+    private ImageLoader imageLoader;
 
     private LinearLayout layoutview1,// 限时特卖
             layoutview2,// 火力拼团
@@ -43,28 +59,92 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             layoutview6,
             layoutview7,
             layoutview8;
-
+    private ImageView iv_img1, iv_img2, iv_img3, iv_img4, iv_img5, iv_img6, iv_img7, iv_img8;
+    private TextView tv_text1, tv_text2, tv_text3, tv_text4, tv_text5, tv_text6, tv_text7, tv_text8;
 
     public SampleHeader(final Context context) {
         super(context);
         this.context = context;
         View view = inflate(context, R.layout.sample_header, this);
-
         initView(view);// 初始化控件
-        handler = new ImageHandler(context);
+        imageLoader = ImageLoader.getInstance();
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST,
+                AppConstant.HEAD_MODEL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                setViewListen();// 数据请求成功后才设置监听
+                HeaderModelBean headerModelBean = GsonUtil.parseJsonWithGson(jsonObject
+                                .toString(),
+                        HeaderModelBean.class);
+                List<ListBean> list = headerModelBean.getList();
+                imageLoader.displayImage(list.get(0).getIcon()
+                        , iv_img1);
+                imageLoader.displayImage(list.get(1).getIcon()
+                        , iv_img2);
+                imageLoader.displayImage(list.get(2).getIcon()
+                        , iv_img3);
+                imageLoader.displayImage(list.get(3).getIcon()
+                        , iv_img4);
+                imageLoader.displayImage(list.get(4).getIcon()
+                        , iv_img5);
+                imageLoader.displayImage(list.get(5).getIcon()
+                        , iv_img6);
+                imageLoader.displayImage(list.get(6).getIcon()
+                        , iv_img7);
+                imageLoader.displayImage(list.get(7).getIcon()
+                        , iv_img8);
+                tv_text1.setText(list.get(0).getName());
+                tv_text2.setText(list.get(1).getName());
+                tv_text3.setText(list.get(2).getName());
+                tv_text4.setText(list.get(3).getName());
+                tv_text5.setText(list.get(4).getName());
+                tv_text6.setText(list.get(5).getName());
+                tv_text7.setText(list.get(6).getName());
+                tv_text8.setText(list.get(7).getName());
+                layoutview1.setTag(list.get(0).getId() + "");
+                layoutview2.setTag(list.get(1).getId() + "");
+                layoutview3.setTag(list.get(2).getId() + "");
+                layoutview4.setTag(list.get(3).getId() + "");
+                layoutview5.setTag(list.get(4).getId() + "");
+                layoutview6.setTag(list.get(5).getId() + "");
+                layoutview7.setTag(list.get(6).getId() + "");
+                layoutview8.setTag(list.get(7).getId() + "");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                // 此处应当做缓存
+            }
+        });
+        requestQueue.add(jsonObjectRequest1);
+        JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.POST,
+                AppConstant.LUNBOTU_IMGS, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                LunbotuBean lunbotuBean = GsonUtil.parseJsonWithGson(jsonObject
+                        .toString(), LunbotuBean.class);
+                if (lunbotuBean != null) {
+                    setLunBoTu(lunbotuBean);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+            }
+        });
+        requestQueue.add(jsonObjectRequest2);
+    }
+
+    public void setLunBoTu(LunbotuBean lunbotuBean) {
+        ArrayList<LunbotuBean.ListBean> lunBoTuList = lunbotuBean.getList();
         //载入图片资源ID
         imgUrlList = new ArrayList<>();
-        imgUrlList.add("http://e.hiphotos.baidu" +
-                ".com/image/pic/item/77094b36acaf2eddef675a92881001e939019332.jpg");
-        imgUrlList.add("http://f.hiphotos.baidu" +
-                ".com/image/pic/item/b151f8198618367a9f738e022a738bd4b21ce573.jpg");
-        imgUrlList.add("http://e.hiphotos.baidu" +
-                ".com/image/pic/item/1c950a7b02087bf4ce043fe5f0d3572c10dfcfd6.jpg");
-        imgUrlList.add("http://f.hiphotos.baidu" +
-                ".com/image/pic/item/b2de9c82d158ccbf79a00f8c1cd8bc3eb1354163.jpg");
-        imgUrlList.add("http://g.hiphotos.baidu" +
-                ".com/image/pic/item/a1ec08fa513d26976764cfd857fbb2fb4216d884.jpg");
-
+        LunbotuBean.ListBean listBean;
+        for (int i = 0; i < lunBoTuList.size(); i++) {
+            listBean = lunBoTuList.get(i);
+            imgUrlList.add(listBean.getPath());
+        }
         // 当只有3张图片或者2张图片的时候，滑动存在BUG
         if (imgUrlList.size() == 2) {
             // 如果只有2张图片的话就人为的添加为4张
@@ -107,7 +187,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageLoader.getInstance().displayImage(imgUrlList.get(i), imageView);
         }
-
+        handler = new ImageHandler(context);
         //设置Adapter
         main_viewpager.setAdapter(new MyAdapter());
         // 一张图片没必要写滑动监听，还浪费资源
@@ -117,7 +197,6 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             //设置ViewPager的默认项, 设置为长度的100倍，这样子开始就能往左滑动
             main_viewpager.setCurrentItem((mImageViews.length) * 100);
         }
-        setViewListen();
     }
 
     /**
@@ -136,6 +215,22 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview6 = (LinearLayout) view.findViewById(R.id.line_home6);
         layoutview7 = (LinearLayout) view.findViewById(R.id.line_home7);
         layoutview8 = (LinearLayout) view.findViewById(R.id.line_home8);
+        iv_img1 = (ImageView) view.findViewById(R.id.iv_img1);
+        iv_img2 = (ImageView) view.findViewById(R.id.iv_img2);
+        iv_img3 = (ImageView) view.findViewById(R.id.iv_img3);
+        iv_img4 = (ImageView) view.findViewById(R.id.iv_img4);
+        iv_img5 = (ImageView) view.findViewById(R.id.iv_img5);
+        iv_img6 = (ImageView) view.findViewById(R.id.iv_img6);
+        iv_img7 = (ImageView) view.findViewById(R.id.iv_img7);
+        iv_img8 = (ImageView) view.findViewById(R.id.iv_img8);
+        tv_text1 = (TextView) view.findViewById(R.id.tv_text1);
+        tv_text2 = (TextView) view.findViewById(R.id.tv_text2);
+        tv_text3 = (TextView) view.findViewById(R.id.tv_text3);
+        tv_text4 = (TextView) view.findViewById(R.id.tv_text4);
+        tv_text5 = (TextView) view.findViewById(R.id.tv_text5);
+        tv_text6 = (TextView) view.findViewById(R.id.tv_text6);
+        tv_text7 = (TextView) view.findViewById(R.id.tv_text7);
+        tv_text8 = (TextView) view.findViewById(R.id.tv_text8);
     }
 
     /**
@@ -145,28 +240,30 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, XianshitemaiActivity.class);
+                Intent intent = new Intent(context, MuyinzhuanchangActivity.class);
+                intent.putExtra("headermodel_id", layoutview1.getTag() + "");
                 context.startActivity(intent);
             }
         });
         layoutview2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HuolipintuanActivity.class);
-                context.startActivity(intent);
             }
         });
         layoutview3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MuyinzhuanchangActivity.class);
+                Intent intent = new Intent(context, XianshitemaiActivity.class);
+                intent.putExtra("headermodel_id", layoutview3.getTag() + "");
                 context.startActivity(intent);
             }
         });
         layoutview4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, HuolipintuanActivity.class);
+                intent.putExtra("headermodel_id", layoutview4.getTag() + "");
+                context.startActivity(intent);
             }
         });
         layoutview5.setOnClickListener(new OnClickListener() {
