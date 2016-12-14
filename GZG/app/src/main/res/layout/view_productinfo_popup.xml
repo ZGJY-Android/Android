@@ -192,6 +192,6 @@
         android:layout_marginBottom="-40dp"
         android:layout_marginLeft="31dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/sy_xspic5"/>
+        android:src="@mipmap/sy_naifen"/>
 
 </RelativeLayout>

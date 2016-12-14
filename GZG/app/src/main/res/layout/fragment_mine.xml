@@ -55,7 +55,7 @@
                         android:layout_width="82dp"
                         android:layout_height="82dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/sy_kjpic3"
+                        android:src="@mipmap/shengxinyouihui"
                         app:border_inside_color="#fff7f2e9"
                         app:border_outside_color="#ffd5d1c8"
                         app:border_thickness="2dp"/>

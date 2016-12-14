@@ -51,10 +51,10 @@ public class CartFragment extends Fragment {
     }
 
     private void initData() {
-        mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_mypic3, R.mipmap.sy_mypic3, R
-                .mipmap.sy_mypic6, R.mipmap.sy_mypic3, R.mipmap.sy_mypic3, R.mipmap
-                .sy_mypic6, R
-                .mipmap.sy_mypic6, R.mipmap.sy_mypic3, R.mipmap.sy_mypic3, R.mipmap
-                .sy_mypic6));
+        mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_naifen, R.mipmap.sy_naifen, R
+                .mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap
+                .sy_naifen, R
+                .mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap
+                .sy_naifen));
     }
 }

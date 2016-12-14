@@ -139,7 +139,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_mypic3, R.mipmap.sy_mypic6, R.mipmap.sy_naifen, R.mipmap.sy_mypic6, R.mipmap.sy_mypic3));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen));
         }
     }
 }

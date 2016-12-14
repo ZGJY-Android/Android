@@ -30,7 +30,7 @@
                     android:layout_height="26dp"
                     android:layout_centerVertical="true"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/sy_xspic3"
+                    android:src="@mipmap/sy_naifen"
                     app:border_inside_color="#fff7f2e9"
                     app:border_outside_color="#ffd5d1c8"
                     app:border_thickness="2dp"/>
@@ -138,25 +138,25 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@mipmap/sy_xspic5"/>
+                            android:src="@mipmap/sy_naifen"/>
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
-                            android:src="@mipmap/sy_xspic5"/>
+                            android:src="@mipmap/sy_naifen"/>
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
-                            android:src="@mipmap/sy_xspic5"/>
+                            android:src="@mipmap/sy_naifen"/>
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
-                            android:src="@mipmap/sy_xspic5"/>
+                            android:src="@mipmap/sy_naifen"/>
                     </LinearLayout>
 
                 </HorizontalScrollView>

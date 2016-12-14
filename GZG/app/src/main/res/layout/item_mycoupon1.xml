@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="26dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/sy_kjpic3"
+            android:src="@mipmap/sy_naifen"
             app:border_inside_color="#fff7f2e9"
             app:border_outside_color="#ffd5d1c8"
             app:border_thickness="2dp"/>

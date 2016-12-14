@@ -38,7 +38,7 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.adis, R.mipmap.coves, R.mipmap.erocs, R.mipmap.nike, R.mipmap.sy_xspic3, R.mipmap.sy_xspic4));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.adis, R.mipmap.coves, R.mipmap.erocs, R.mipmap.nike, R.mipmap.sy_naifen, R.mipmap.sy_naifen));
 
             mRecyclerView = (RecyclerView) itemView.findViewById(R.id.rv_reclassify_brand);
             //设置布局管理器

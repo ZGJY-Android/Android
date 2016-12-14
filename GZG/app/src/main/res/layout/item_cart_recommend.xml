@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="230dp"
-    android:background="@color/white"
-    android:orientation="vertical">
+              android:layout_width="wrap_content"
+              android:layout_height="230dp"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_cart_recommend"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@mipmap/sy_mypic3" />
+        android:background="@mipmap/sy_naifen"/>
 
     <TextView
         android:id="@+id/tv_cart_recommend_name"
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:lines="1"
         android:text="爱他美pre段 0-6个月 800g11111111111"
-        android:textSize="13sp" />
+        android:textSize="13sp"/>
 
     <LinearLayout
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="218"
                 android:textColor="@color/red"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/iv_cart_recommend_original"
@@ -53,14 +53,14 @@
                 android:layout_marginTop="2dp"
                 android:text="280"
                 android:textColor="@color/textGray"
-                android:textSize="7sp" />
+                android:textSize="7sp"/>
         </LinearLayout>
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/sy_car" />
+            android:src="@mipmap/sy_car"/>
     </LinearLayout>
 
 </LinearLayout>

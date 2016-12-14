@@ -90,8 +90,8 @@ public class CountryActivity extends AppCompatActivity {
 
     private void initData() {
         //横向商品数据
-        hData = new ArrayList<>(Arrays.asList(R.mipmap.lg, R.mipmap.xhx, R.mipmap.ysfy, R.mipmap
-                .lg, R.mipmap.xhx, R.mipmap.ysfy));
+        hData = new ArrayList<>(Arrays.asList(R.mipmap.xhx, R.mipmap.xhx, R.mipmap.xhx, R.mipmap
+                .xhx, R.mipmap.xhx, R.mipmap.xhx));
     }
 
     private void initView() {
