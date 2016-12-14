@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.jy.gzg.R;
 import com.jy.gzg.util.AppToast;
-import com.jy.gzg.viewcontrollers.category.widget.DividerGridItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -128,8 +127,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     AppToast.getInstance().showShort("分类商品" + position);
                 }
             });
-            //添加分割线
-            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));
+            //添加之定义分割线
+//            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));
             mRecyclerView.setAdapter(mAdapter);
 
         }
@@ -139,10 +138,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_hlpic1, R.mipmap.sy_hlpic2, R.mipmap.sy_hlpic3, R.mipmap.sy_xspic3, R.mipmap.sy_xspic4,R.mipmap.sy_kj));
+            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_mypic3, R.mipmap.sy_mypic6, R.mipmap.sy_naifen, R.mipmap.sy_mypic6, R.mipmap.sy_mypic3));
         }
-
     }
-
-
 }

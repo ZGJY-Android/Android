@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.activity.ActivityManager;
 import com.jy.gzg.cachemanager.CacheManager;
@@ -46,6 +48,13 @@ public class RootApplication extends Application {
      */
     public static HashMap<String, Object> appMaps;
 
+    public static RequestQueue volleyQueue;
+
+    // 开放Volley的HTTP请求队列接口
+    public static RequestQueue getRequestQueue() {
+        return volleyQueue;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,6 +62,10 @@ public class RootApplication extends Application {
         appMaps = new HashMap<>();
         //设置默认崩溃处理，如需使用，不注释即可
         // Thread.setDefaultUncaughtExceptionHandler(new MyExceptionHandler());
+
+        /* Volley配置 */
+        // 建立Volley的Http请求队列
+        volleyQueue = Volley.newRequestQueue(getApplicationContext());
 
         // 初始化ImageLoader
         @SuppressWarnings("deprecation") DisplayImageOptions options = new DisplayImageOptions

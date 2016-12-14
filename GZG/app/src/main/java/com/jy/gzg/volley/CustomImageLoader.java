@@ -1,4 +1,4 @@
-package com.jy.gzg.util;
+package com.jy.gzg.volley;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -7,7 +7,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
-import com.jy.gzg.volley.BitmapCache;
 
 
 public class CustomImageLoader {

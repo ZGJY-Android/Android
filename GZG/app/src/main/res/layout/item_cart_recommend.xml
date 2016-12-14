@@ -15,12 +15,12 @@
         android:id="@+id/tv_cart_recommend_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="10dp"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
         android:text="爱他美pre段 0-6个月 800g11111111111"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="10dp"
         android:textSize="13sp" />
 
     <LinearLayout
@@ -42,7 +42,7 @@
                 android:id="@+id/iv_cart_recommend_current"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="218111"
+                android:text="218"
                 android:textColor="@color/red"
                 android:textSize="14sp" />
 
@@ -50,6 +50,7 @@
                 android:id="@+id/iv_cart_recommend_original"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="280"
                 android:textColor="@color/textGray"
                 android:textSize="7sp" />

@@ -30,7 +30,8 @@ public class CountryActivity extends AppCompatActivity {
     private static final int COUNTRY_JAPAN = 2;
     private static final int COUNTRY_AUSTRALIA = 3;
     private static final int COUNTRY_EUROPE = 4;
-    private int country;
+    //当前国家的id
+    public static int country;
     private LinearLayout linearLayout;
     private FrameLayout imgBack;
     private TextView textView;
