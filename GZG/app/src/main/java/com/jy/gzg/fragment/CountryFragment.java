@@ -1,5 +1,6 @@
 package com.jy.gzg.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,12 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.VolleyError;
 import com.jy.gzg.R;
+import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.CountryVerticalAdapter;
+import com.jy.gzg.bean.CountryMYBean;
+import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.util.AppLog;
 import com.jy.gzg.util.AppToast;
+import com.jy.gzg.util.GsonUtil;
+import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
+import com.jy.gzg.volley.VolleyListenerInterface;
+import com.jy.gzg.volley.VolleyRequestUtil;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static com.jy.gzg.volley.VolleyRequestUtil.context;
+
 
 /**
  * Created by YX on 2016/11/21 0021.
@@ -23,12 +35,13 @@ public class CountryFragment extends Fragment {
     public static final String ARGS_PAGE = "args_page";
     private int mPage;
     private RecyclerView vRecyclerView;
-    protected List mDatas;
+    private ArrayList<ProductBean> mDatas;
+    private String MYURL = null;
+    private CountryVerticalAdapter countryVerticalAdapter;
 
-    public static CountryFragment newInstance(int page, ArrayList data) {
+    public static CountryFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARGS_PAGE, page);
-        args.putIntegerArrayList("data",data);
         CountryFragment fragment = new CountryFragment();
         fragment.setArguments(args);
         return fragment;
@@ -38,30 +51,51 @@ public class CountryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARGS_PAGE);
-        //获取商品数据
-        mDatas = getArguments().getIntegerArrayList("data");
+    }
+
+    private void initData() {
+        MYURL = HomeConstant.COUNTRY + "&&productCategoryId=" + mPage;
+        VolleyRequestUtil.RequestPost(getActivity(), MYURL, mPage+"", new VolleyListenerInterface(context, VolleyListenerInterface.mListener, VolleyListenerInterface.mErrorListener) {
+            @Override
+            public void onMySuccess(String result) {
+                CountryMYBean countryMYBean = GsonUtil.parseJsonWithGson(result, CountryMYBean.class);
+                mDatas = countryMYBean.getPage().getList();
+                //设置适配器
+                countryVerticalAdapter = new CountryVerticalAdapter(getActivity(),mDatas);
+                countryVerticalAdapter.setmData(mDatas);
+                countryVerticalAdapter.setOnItemClickListener(new CountryVerticalAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity(),
+                                ProductdetailsActivity
+                                        .class);
+                        intent.putExtra("product_id", mDatas.get(position).getId() + "");
+                        startActivity(intent);
+
+                    }
+                });
+                vRecyclerView.setAdapter(countryVerticalAdapter);
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                AppLog.i("CountryFragment", error);
+                AppToast.getInstance().showShort("网络加载错误~");
+            }
+        });
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //设置商品数据
+        initData();
         //初始化view
-        View view = inflater.inflate(R.layout.viewpager_country, container, false);
+        final View view = inflater.inflate(R.layout.viewpager_country, container, false);
         vRecyclerView = (RecyclerView) view.findViewById(R.id.rv_country_vertical);
         //设置布局管理器
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         vRecyclerView.setLayoutManager(gridLayoutManager);
-        //设置适配器
-        CountryVerticalAdapter countryVerticalAdapter = new CountryVerticalAdapter(getActivity(), mDatas);
-//        //设置数据
-//        countryVerticalAdapter.initData(mDatas);
-        countryVerticalAdapter.setOnItemClickListener(new CountryVerticalAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                AppToast.getInstance().showShort("纵向商品" + position);
-            }
-        });
-        vRecyclerView.setAdapter(countryVerticalAdapter);
         return view;
     }
 }

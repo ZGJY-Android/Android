@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
+import com.jy.gzg.bean.ProductBean;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by YX on 2016/11/21 0021.
@@ -18,7 +20,7 @@ import java.util.List;
 public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVerticalAdapter.ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
-    private List<Integer> mData;
+    private ArrayList<ProductBean> mData;
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -30,9 +32,9 @@ public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVertical
         onItemClickListener = listener;
     }
 
-    public CountryVerticalAdapter(Context context, List<Integer> mData) {
+    public CountryVerticalAdapter(Context context, ArrayList<ProductBean> data) {
         mLayoutInflater = LayoutInflater.from(context);
-        this.mData = mData;
+        mData = data;
     }
 
     @Override
@@ -48,7 +50,10 @@ public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVertical
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
-        viewHolder.img.setImageResource(mData.get(i));
+        ProductBean currentWares = mData.get(i);
+        viewHolder.name.setText(currentWares.getName());
+        viewHolder.price.setText("￥" + currentWares.getPrice());
+        ImageLoader.getInstance().displayImage(currentWares.getImage(), viewHolder.img);
         if (onItemClickListener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,8 +64,18 @@ public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVertical
         }
     }
 
+    public void setmData(ArrayList<ProductBean> data) {
+        mData = data;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
+
+        if (mData == null) {
+            mData = new ArrayList<ProductBean>();
+        }
+
         return mData.size();
     }
 

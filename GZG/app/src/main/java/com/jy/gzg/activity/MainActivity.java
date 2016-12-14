@@ -24,6 +24,7 @@ import com.jy.gzg.fragment.CategoryFragment;
 import com.jy.gzg.fragment.HomeFragment;
 import com.jy.gzg.fragment.MineFragment;
 import com.jy.gzg.fragment.Tab;
+import com.jy.gzg.viewcontrollers.home.widget.HomeConstant;
 import com.jy.gzg.widget.FragmentTabHost;
 
 import java.util.ArrayList;
@@ -46,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
         //WindowUtil.setStatusBarTint(this, Color.parseColor("#f00"));
 
         initTab();
+//        test();
     }
 
     private void test() {
-        String url = "http://192.168.0.110:8080/appTopic/Korea?tagIds=8";
+        String url =  HomeConstant.IP + "/appLogin/submit?";;
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -110,20 +112,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String s) {
-                Log.e("----------------------", s.toString());
+                Log.e("----------Y------------", s.toString());
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.e("_____________________", volleyError.toString());
+                Log.e("_________X____________", volleyError.toString());
             }
 
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<>();
-                map.put("productCategoryId","0");
+                Map<String, String> map = new HashMap<>();
+                map.put("username","1234567");
+                map.put("password","1234567");
+
                 return map;
             }
         };

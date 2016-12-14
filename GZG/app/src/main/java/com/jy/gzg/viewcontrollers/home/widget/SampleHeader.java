@@ -318,13 +318,13 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         }
         if (position > preItem) {
             //从左向右滑
-            Log.i("zyw", "从左向右滑");
+
             preItem = position;
             isLeftToRight = true;
         }
         if (position < preItem) {
             //从右向左滑
-            Log.i("zyw", "从右向左滑");
+
             preItem = position;
             isLeftToRight = false;
         }
