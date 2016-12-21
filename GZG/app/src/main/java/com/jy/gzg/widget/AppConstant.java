@@ -21,7 +21,7 @@ public class AppConstant {
             IP + "/appTopic/App?tagIds=";// 通用八个按钮的详情接口(跟参数-->&&tagIds=3)
 
     //    public static final String PRODUCT_DETAILS = IP +
-//            "/appTopic/App?";// 商品详情旧接口(跟参数-->tagIds=6&&id=48)
+    //            "/appTopic/App?";// 商品详情旧接口(跟参数-->tagIds=6&&id=48)
     public static final String PRODUCT_DETAILS = IP +
             "/app/AppFindProduct?id=";// 商品详情新接口(跟参数-->&&id=48)
 
