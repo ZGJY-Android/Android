@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.jy.gzg.R;
 import com.jy.gzg.activity.LoginActivity;
+import com.jy.gzg.util.ZYWUtil;
 import com.jy.gzg.viewcontrollers.mine.activity.AddressmanageActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.CustomerServiceActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.EvaluateManagerActivity;
@@ -22,6 +23,7 @@ import com.jy.gzg.viewcontrollers.mine.activity.MyCollectionActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.MyCouponActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.OrderformActivity;
 import com.jy.gzg.viewcontrollers.mine.activity.SettingActivity;
+import com.jy.gzg.widget.Constant;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -57,6 +59,17 @@ public class MineFragment extends Fragment {
                 false);
         initView(view);
         setViewListen();
+        ZYWUtil.init(mContext);
+        if (ZYWUtil.contains(Constant.SP_FILE, Constant.SP_UNAME)) {
+            String uname = ZYWUtil.readData(Constant.SP_FILE, Constant.SP_UNAME);
+            if (!uname.equals("")) {
+                tv_nickname.setText(uname);
+            } else {
+                tv_nickname.setText("请登录");
+            }
+        } else {
+            tv_nickname.setText("请登录");
+        }
         return view;
     }
 

@@ -4,7 +4,6 @@ package com.jy.gzg.viewcontrollers.category.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +38,11 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARGS_PAGE);
-        Log.i("page---------------", mPage + "");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.viewpager_category, container, false);
         ListView listView = (ListView) view.findViewById(R.id.lv_category);
         listAdapter = new CategoryListAdapter(getActivity(), strs);
@@ -52,13 +51,14 @@ public class PageFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //拿到当前位置
+                // 拿到当前位置
                 mPosition = i;
-                //即时刷新adapter
+                // 即时刷新adapter
                 listAdapter.notifyDataSetChanged();
                 for (int x = 0; x < strs.length; x++) {
                     waresItemFragment = new WaresItemFragment();
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    FragmentTransaction fragmentTransaction = getFragmentManager()
+                            .beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_category, waresItemFragment);
                     Bundle waresBundle = new Bundle();
                     waresBundle.putString(WaresItemFragment.TAG, strs[i]);

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextView tv_return;
+    private TextView tv_return,// 返回
+            tv_register;// 注册
     private EditText ed_account, ed_password;
     private Button btn_login;
     private Intent intent;
@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void initView() {
         tv_return = (TextView) findViewById(R.id.tv_return);
+        tv_register = (TextView) findViewById(R.id.tv_register);
         ed_account = (EditText) findViewById(R.id.ed_account);
         ed_password = (EditText) findViewById(R.id.ed_password);
         btn_login = (Button) findViewById(R.id.btn_login);
@@ -81,6 +82,17 @@ public class LoginActivity extends AppCompatActivity {
                     String password = ed_password.getText().toString();
                     connectionLogin(account, password);
                 }
+            }
+        });
+
+        /**
+         * 注册
+         */
+        tv_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -124,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.i("zyw", "连接服务器失败");
+                AppToast.getInstance().showShort("连接服务器失败");
             }
         }) {
             @Override

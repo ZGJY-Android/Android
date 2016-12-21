@@ -2,7 +2,6 @@ package com.jy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import com.jy.gzg.R;
 import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.ListBaseAdapter;
 import com.jy.gzg.bean.HomeProductBean;
+import com.jy.gzg.ui.CustomGridLayoutManager;
+import com.jy.gzg.ui.CustomLinearLayoutManager;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModelBean;
 
 import java.util.List;
@@ -27,15 +28,14 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
     private HLPTAdapter hlptAdapter;
     private WaresItemAdapter mWaresItemAdapter;
 
-    private List<HomeProductBean> xstmBeanList, hlptBeanList, koreaBeanList, japanBeanList,
-            aussieBeanList, europeBeanList;
+    private List<HomeProductBean> xstmBeanList, hlptBeanList, myzxBeanList, hfmzBeanList,
+            jkbjBeanList, jjryBeanList;
 
     // 建立枚举5个item类型
     public enum ITEM_TYPE {
         TYPE_1,// 限时特卖
         TYPE_2,// 火力拼团
-        TYPE_3,// 母婴专区
-        TYPE_4// 国家馆
+        TYPE_3// 产品分类
     }
 
     public DataAdapter(Context context) {
@@ -51,20 +51,20 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
         this.hlptBeanList = hlptBeanList;
     }
 
-    public void setKoreaBeanList(List<HomeProductBean> koreaBeanList) {
-        this.koreaBeanList = koreaBeanList;
+    public void setMyzcBeanList(List<HomeProductBean> myzxBeanList) {
+        this.myzxBeanList = myzxBeanList;
     }
 
-    public void setJapanBeanList(List<HomeProductBean> japanBeanList) {
-        this.japanBeanList = japanBeanList;
+    public void setHfmzBeanList(List<HomeProductBean> hfmzBeanList) {
+        this.hfmzBeanList = hfmzBeanList;
     }
 
-    public void setAussieBeanList(List<HomeProductBean> aussieBeanList) {
-        this.aussieBeanList = aussieBeanList;
+    public void setJkbjBeanList(List<HomeProductBean> jkbjBeanList) {
+        this.jkbjBeanList = jkbjBeanList;
     }
 
-    public void setEuropeBeanList(List<HomeProductBean> europeBeanList) {
-        this.europeBeanList = europeBeanList;
+    public void setJjryBeanList(List<HomeProductBean> jjryBeanList) {
+        this.jjryBeanList = jjryBeanList;
     }
 
     @Override
@@ -75,10 +75,8 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
             return ITEM_TYPE.TYPE_1.ordinal();
         } else if (position < 2) {
             return ITEM_TYPE.TYPE_2.ordinal();
-        } else if (position < 3) {
-            return ITEM_TYPE.TYPE_3.ordinal();
         } else {
-            return ITEM_TYPE.TYPE_4.ordinal();
+            return ITEM_TYPE.TYPE_3.ordinal();
         }
     }
 
@@ -86,27 +84,24 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 加载Item View的时候根据不同TYPE加载不同的布局
         // Enum类提供了一个ordinal()方法，返回枚举类型的序数，这里ITEM_TYPE.TYPE_1.ordinal()代表0
-        if (viewType == ITEM_TYPE.TYPE_1.ordinal()) {
+        if (viewType == ITEM_TYPE.TYPE_1.ordinal())
             return new ViewHolder1(mLayoutInflater.inflate(R.layout.view_home_xianshitemai,
                     parent, false));
-        } else if (viewType == ITEM_TYPE.TYPE_2.ordinal()) {
+        else if (viewType == ITEM_TYPE.TYPE_2.ordinal())
             return new ViewHolder2(mLayoutInflater.inflate(R.layout.view_home_huolipintuan,
                     parent, false));
-        } else if (viewType == ITEM_TYPE.TYPE_3.ordinal()) {
-            return new ViewHolder3(mLayoutInflater.inflate(R.layout
-                    .view_home_muyingzhuanqu, parent, false));
-        } else {
-            return new ViewHolder4(mLayoutInflater.inflate(R.layout.view_home_guojiaguan,
+        else
+            return new ViewHolder3(mLayoutInflater.inflate(R.layout.view_home_producttype,
                     parent, false));
-        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder1) {
             // 网格布局管理器，且该recycleview纵向有2个item
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
-            gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            CustomGridLayoutManager gridLayoutManager = new CustomGridLayoutManager(mContext, 3);
+            gridLayoutManager.setScrollEnabled(false);
+            gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             ((ViewHolder1) holder).mRecycleView.setLayoutManager(gridLayoutManager);
             xstmAdapter = new XSTMAdapter(xstmBeanList, mContext);
             ((ViewHolder1) holder).mRecycleView.setAdapter(xstmAdapter);
@@ -121,7 +116,8 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
                 }
             });
         } else if (holder instanceof ViewHolder2) {
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            CustomLinearLayoutManager linearLayoutManager = new CustomLinearLayoutManager(mContext);
+            linearLayoutManager.setScrollEnabled(false);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             ((ViewHolder2) holder).mRecycleView.setLayoutManager(linearLayoutManager);
             hlptAdapter = new HLPTAdapter(hlptBeanList, mContext);
@@ -136,73 +132,70 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
                     mContext.startActivity(intent);
                 }
             });
-        } else if (holder instanceof ViewHolder3) {
         } else {
-            LinearLayoutManager manager = new LinearLayoutManager(mContext);
-            manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            ((ViewHolder4) holder).mRecyclerView.setLayoutManager(manager);
-            if (position == 3) {
-                // 韩国馆
-                ((ViewHolder4) holder).iv_country.setImageResource(R.mipmap.nav_hgg);
-                ((ViewHolder4) holder).iv_countryshow.setImageResource(R.mipmap.hgg);
-                mWaresItemAdapter = new WaresItemAdapter(mContext, koreaBeanList);
+            // 网格布局管理器，且该recycleview纵向有2个item
+            CustomGridLayoutManager gridLayoutManager = new CustomGridLayoutManager(mContext, 3);
+            gridLayoutManager.setScrollEnabled(false);
+            gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            ((ViewHolder3) holder).mRecyclerView.setLayoutManager(gridLayoutManager);
+            if (position == 2) {
+                // 母婴专场
+                ((ViewHolder3) holder).iv_producttype.setImageResource(R.mipmap.myzx);
+                mWaresItemAdapter = new WaresItemAdapter(mContext, myzxBeanList);
                 mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(mContext,
                                 ProductdetailsActivity
                                         .class);
-                        intent.putExtra("product_id", koreaBeanList.get(position).getId() + "");
+                        intent.putExtra("product_id", myzxBeanList.get(position).getId() + "");
+                        mContext.startActivity(intent);
+                    }
+                });
+            } else if (position == 3) {
+                // 护肤美妆
+                ((ViewHolder3) holder).iv_producttype.setImageResource(R.mipmap.hfmz);
+                mWaresItemAdapter = new WaresItemAdapter(mContext, hfmzBeanList);
+                mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(mContext,
+                                ProductdetailsActivity
+                                        .class);
+                        intent.putExtra("product_id", hfmzBeanList.get(position).getId() + "");
                         mContext.startActivity(intent);
                     }
                 });
             } else if (position == 4) {
-                // 日本馆
-                ((ViewHolder4) holder).iv_country.setImageResource(R.mipmap.nav_rbg);
-                ((ViewHolder4) holder).iv_countryshow.setImageResource(R.mipmap.rbg);
-                mWaresItemAdapter = new WaresItemAdapter(mContext, japanBeanList);
+                // 健康保健
+                ((ViewHolder3) holder).iv_producttype.setImageResource(R.mipmap.jkbj);
+                mWaresItemAdapter = new WaresItemAdapter(mContext, jkbjBeanList);
                 mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(mContext,
                                 ProductdetailsActivity
                                         .class);
-                        intent.putExtra("product_id", japanBeanList.get(position).getId() + "");
+                        intent.putExtra("product_id", jkbjBeanList.get(position).getId() + "");
                         mContext.startActivity(intent);
                     }
                 });
             } else if (position == 5) {
-                // 澳洲馆
-                ((ViewHolder4) holder).iv_country.setImageResource(R.mipmap.nav_adly);
-                ((ViewHolder4) holder).iv_countryshow.setImageResource(R.mipmap.adlyg);
-                mWaresItemAdapter = new WaresItemAdapter(mContext, aussieBeanList);
+                // 居家日用
+                ((ViewHolder3) holder).iv_producttype.setImageResource(R.mipmap.jjry);
+                mWaresItemAdapter = new WaresItemAdapter(mContext, jjryBeanList);
                 mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(mContext,
                                 ProductdetailsActivity
                                         .class);
-                        intent.putExtra("product_id", aussieBeanList.get(position).getId() + "");
-                        mContext.startActivity(intent);
-                    }
-                });
-            } else if (position == 6) {
-                // 欧洲馆
-                ((ViewHolder4) holder).iv_country.setImageResource(R.mipmap.nav_ozg);
-                ((ViewHolder4) holder).iv_countryshow.setImageResource(R.mipmap.ozg);
-                mWaresItemAdapter = new WaresItemAdapter(mContext, europeBeanList);
-                mWaresItemAdapter.setOnItemClickLitener(new WaresItemAdapter.OnItemClickLitener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(mContext,
-                                ProductdetailsActivity
-                                        .class);
-                        intent.putExtra("product_id", europeBeanList.get(position).getId() + "");
+                        intent.putExtra("product_id", jjryBeanList.get(position).getId() + "");
                         mContext.startActivity(intent);
                     }
                 });
             }
-            ((ViewHolder4) holder).mRecyclerView.setAdapter(mWaresItemAdapter);
+            ((ViewHolder3) holder).mRecyclerView.setAdapter(mWaresItemAdapter);
         }
     }
 
@@ -226,25 +219,16 @@ public class DataAdapter extends ListBaseAdapter<ItemModelBean> {
         }
     }
 
+    // 各种产品分类
     private class ViewHolder3 extends RecyclerView.ViewHolder {
-        public ViewHolder3(View itemView) {
-            super(itemView);
-        }
-    }
-
-    private class ViewHolder4 extends RecyclerView.ViewHolder {
-        private ImageView iv_country,// 国家馆图片
-                iv_countryshow;// 国家馆展示图片
+        private ImageView iv_producttype;// 产品分类展示图片
         private RecyclerView mRecyclerView;
 
-        public ViewHolder4(View itemView) {
+        public ViewHolder3(View itemView) {
             super(itemView);
-            iv_country = (ImageView) itemView.findViewById(R.id
-                    .iv_country);
-            iv_countryshow = (ImageView) itemView.findViewById(R.id
-                    .iv_countryshow);
+            iv_producttype = (ImageView) itemView.findViewById(R.id.iv_producttype);
             mRecyclerView = (RecyclerView) itemView.findViewById(R.id
-                    .mLRecyclerView_guojiaguan);
+                    .mRecyclerView);
         }
     }
 }

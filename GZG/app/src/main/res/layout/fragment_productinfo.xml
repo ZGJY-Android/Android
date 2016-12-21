@@ -123,7 +123,6 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="23dp"
             android:lineSpacingExtra="5dp"
-            android:text="00000000000000000"
             android:textSize="15sp"
             android:textStyle="bold"/>
 
@@ -150,7 +149,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/tv_str2_1"
-                android:text="0"
                 android:textColor="#313131"
                 android:textSize="13sp"/>
         </RelativeLayout>
@@ -239,7 +237,6 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/tv_str4_1"
                 android:gravity="center"
-                android:text="XXXXXXXX"
                 android:textColor="#313131"
                 android:textSize="13sp"/>
         </RelativeLayout>

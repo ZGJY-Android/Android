@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String s) {
                 Log.e("----------Y------------", s.toString());

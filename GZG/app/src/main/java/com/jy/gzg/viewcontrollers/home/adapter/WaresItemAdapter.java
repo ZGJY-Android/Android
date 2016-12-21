@@ -1,6 +1,7 @@
 package com.jy.gzg.viewcontrollers.home.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,17 +48,17 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
         }
 
         ImageView mImg;
-        TextView mTxt;
-        TextView mPrice;
+        TextView mTxt, mPrice, tv_marketprice;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = mLayoutInflater.inflate(R.layout.guojiaguan_wares_item, viewGroup, false);
+        View view = mLayoutInflater.inflate(R.layout.producttype_wares_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.mImg = (ImageView) view.findViewById(R.id.iv_wares);
+        viewHolder.mImg = (ImageView) view.findViewById(R.id.iv_img);
         viewHolder.mTxt = (TextView) view.findViewById(R.id.tv_wares);
-        viewHolder.mPrice = (TextView) view.findViewById(R.id.price);
+        viewHolder.mPrice = (TextView) view.findViewById(R.id.tv_price);
+        viewHolder.tv_marketprice = (TextView) view.findViewById(R.id.tv_marketprice);
         return viewHolder;
     }
 
@@ -66,6 +67,9 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
         imageLoader.displayImage(mDatas.get(i).getImage() + "", viewHolder.mImg);
         viewHolder.mTxt.setText(mDatas.get(i).getName());
         viewHolder.mPrice.setText("￥" + mDatas.get(i).getPrice() + "");
+        viewHolder.tv_marketprice.setText(mDatas.get(i).getMarket_price() + "");
+        viewHolder.tv_marketprice.getPaint().setFlags(Paint
+                .STRIKE_THRU_TEXT_FLAG);// 添加中划线
 
         if (mOnItemClickLitener != null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

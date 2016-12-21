@@ -9,26 +9,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.MyFragmentPagerAdapter;
 import com.jy.gzg.bean.ProductBean;
-import com.jy.gzg.bean.XianshitemaiBean;
+import com.jy.gzg.bean.ProductDetailsBean;
 import com.jy.gzg.fragment.ProductCommentFragment;
 import com.jy.gzg.fragment.ProductDetailsFragment;
 import com.jy.gzg.fragment.ProductInfoFragment;
+import com.jy.gzg.util.AppToast;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.widget.AppConstant;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductdetailsActivity extends AppCompatActivity {
     private String[] titles = new String[]{"商品", "详情", "评价"};
@@ -59,17 +61,15 @@ public class ProductdetailsActivity extends AppCompatActivity {
                 productId;
         // 进行网络请求
         RequestQueue requestQueue = Volley.newRequestQueue(ProductdetailsActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                url,
-                null, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject jsonObject) {
-                XianshitemaiBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
-                                .toString(),
-                        XianshitemaiBean.class);
-                List<ProductBean> xstmBeanList = xianshitemaiBean.getPage().getList();
-                if (xstmBeanList.size() != 0) {
-                    ProductBean xstmBean = xstmBeanList.get(0);
+            public void onResponse(String s) {
+                ProductDetailsBean productDetailsBean = GsonUtil.parseJsonWithGson(s,
+                        ProductDetailsBean.class);
+                List<ProductBean> productBeanList = productDetailsBean.getList();
+                if (productBeanList.size() != 0) {
+                    ProductBean xstmBean = productBeanList.get(0);
                     productInfoFragment.setXstmBean(xstmBean);
                     productDetailsFragment.setXstmBean(xstmBean);
                     productCommentFragment.setXstmBean(xstmBean);
@@ -89,10 +89,17 @@ public class ProductdetailsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
+                AppToast.getInstance().showShort("连接服务器失败");
             }
-        });
-        requestQueue.add(jsonObjectRequest);
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("id", productId);
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     /**

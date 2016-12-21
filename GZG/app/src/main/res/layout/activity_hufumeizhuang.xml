@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/myzc_bck">
+        android:background="@color/hfmz_bck">
 
         <ImageView
             android:id="@+id/iv_return"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="母婴专场"
+            android:text="护肤美妆"
             android:textColor="@color/white"
             android:textSize="19sp"/>
 
@@ -42,6 +42,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/myzc_bck"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

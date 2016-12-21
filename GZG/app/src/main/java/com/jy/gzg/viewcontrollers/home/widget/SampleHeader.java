@@ -22,7 +22,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.activity.CountryActivity;
+import com.jy.gzg.activity.HufumeizhuangActivity;
 import com.jy.gzg.activity.HuolipintuanActivity;
+import com.jy.gzg.activity.JiankangbaojianActivity;
+import com.jy.gzg.activity.JujiariyongActivity;
 import com.jy.gzg.activity.MuyinzhuanchangActivity;
 import com.jy.gzg.activity.XianshitemaiActivity;
 import com.jy.gzg.bean.LunbotuBean;
@@ -51,6 +54,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
     private ArrayList<String> imgUrlList;// 图片资源
     private ImageLoader imageLoader;
 
+    private RelativeLayout relat_header;// 轮播图
     private LinearLayout layoutview1,// 限时特卖
             layoutview2,// 火力拼团
             layoutview3,// 母婴专场
@@ -68,6 +72,10 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         View view = inflate(context, R.layout.sample_header, this);
         initView(view);// 初始化控件
         imageLoader = ImageLoader.getInstance();
+        int height = getResources().getDisplayMetrics().heightPixels;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, (height * 25) / 100);
+        relat_header.setLayoutParams(params);
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST,
                 AppConstant.HEAD_MODEL, null, new Response.Listener<JSONObject>() {
@@ -184,7 +192,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         for (int i = 0; i < mImageViews.length; i++) {
             ImageView imageView = new ImageView(context);
             mImageViews[i] = imageView;
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             ImageLoader.getInstance().displayImage(imgUrlList.get(i), imageView);
         }
         handler = new ImageHandler(context);
@@ -207,6 +215,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
     private void initView(View view) {
         main_viewpager = (ViewPager) view.findViewById(R.id.main_viewpager);
         line_viewGroup = (ViewGroup) view.findViewById(R.id.line_viewGroup);
+        relat_header = (RelativeLayout) view.findViewById(R.id.relat_header);
         layoutview1 = (LinearLayout) view.findViewById(R.id.line_home1);
         layoutview2 = (LinearLayout) view.findViewById(R.id.line_home2);
         layoutview3 = (LinearLayout) view.findViewById(R.id.line_home3);
@@ -248,12 +257,15 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, HufumeizhuangActivity.class);
+                intent.putExtra("headermodel_id", layoutview2.getTag() + "");
+                context.startActivity(intent);
             }
         });
         layoutview3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, XianshitemaiActivity.class);
+                Intent intent = new Intent(context, JiankangbaojianActivity.class);
                 intent.putExtra("headermodel_id", layoutview3.getTag() + "");
                 context.startActivity(intent);
             }
@@ -261,7 +273,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HuolipintuanActivity.class);
+                Intent intent = new Intent(context, JujiariyongActivity.class);
                 intent.putExtra("headermodel_id", layoutview4.getTag() + "");
                 context.startActivity(intent);
             }
@@ -269,8 +281,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CountryActivity.class);
-                intent.putExtra("country", 1);
+                Intent intent = new Intent(context, XianshitemaiActivity.class);
                 intent.putExtra("headermodel_id", layoutview5.getTag() + "");
                 context.startActivity(intent);
             }
@@ -278,8 +289,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
         layoutview6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CountryActivity.class);
-                intent.putExtra("country", 2);
+                Intent intent = new Intent(context, HuolipintuanActivity.class);
                 intent.putExtra("headermodel_id", layoutview6.getTag() + "");
                 context.startActivity(intent);
             }
@@ -288,7 +298,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
-                intent.putExtra("country", 3);
+                intent.putExtra("country", 1);
                 intent.putExtra("headermodel_id", layoutview7.getTag() + "");
                 context.startActivity(intent);
             }
@@ -297,7 +307,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CountryActivity.class);
-                intent.putExtra("country", 4);
+                intent.putExtra("country", 2);
                 intent.putExtra("headermodel_id", layoutview8.getTag() + "");
                 context.startActivity(intent);
             }

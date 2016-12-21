@@ -6,10 +6,10 @@ package com.jy.gzg.bean;
 public class HomeProductBean {
     private int id;
     private Object image;
-    private int market_price;
+    private float market_price;
     private Object memo;
     private String name;
-    private int price;
+    private float price;
 
     public int getId() {
         return id;
@@ -27,11 +27,11 @@ public class HomeProductBean {
         this.image = image;
     }
 
-    public int getMarket_price() {
+    public float getMarket_price() {
         return market_price;
     }
 
-    public void setMarket_price(int market_price) {
+    public void setMarket_price(float market_price) {
         this.market_price = market_price;
     }
 
@@ -51,11 +51,11 @@ public class HomeProductBean {
         this.name = name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }

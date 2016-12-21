@@ -31,6 +31,19 @@
 
     <!-- 火力拼团 -->
     <color name="biaoqian">#e61818</color>
+    <color name="hlpt_bck">#93d1e3</color>
+
+    <!-- 母婴专场 -->
+    <color name="myzc_bck">#fcdfe1</color>
+
+    <!-- 护肤美妆 -->
+    <color name="hfmz_bck">#a41c8c31</color>
+
+    <!-- 健康保健 -->
+    <color name="jkbj_bck">#a41e5397</color>
+
+    <!-- 居家日用 -->
+    <color name="jjry_bck">#a4be9528</color>
 
     <!-- 国家馆 -->
     <color name="hanguoBg">#f56473</color>
@@ -46,6 +59,4 @@
     <!-- 这是分类页面的一些公用颜色 -->
     <color name="categoryBg">#F2F2F2</color>
 
-    <!-- 火力拼团 -->
-    <color name="hlpt_bck">#93d1e3</color>
 </resources>

@@ -75,13 +75,13 @@ public class CountryActivity extends AppCompatActivity {
             case COUNTRY_AUSTRALIA:
                 linearLayout.setBackgroundResource(R.color.aozhouBg);
                 textView.setText("澳洲");
-                imgBg.setBackgroundResource(R.mipmap.adlyg);
+                imgBg.setBackgroundResource(R.mipmap.hgg);
                 hRecyclerView.setBackgroundResource(R.drawable.shape_jianbian_aozhou);
                 break;
             case COUNTRY_EUROPE:
                 linearLayout.setBackgroundResource(R.color.ouzhouBg);
                 textView.setText("欧洲");
-                imgBg.setBackgroundResource(R.mipmap.ozg);
+                imgBg.setBackgroundResource(R.mipmap.rbg);
                 hRecyclerView.setBackgroundResource(R.drawable.shape_jianbian__ouzhou);
                 break;
         }

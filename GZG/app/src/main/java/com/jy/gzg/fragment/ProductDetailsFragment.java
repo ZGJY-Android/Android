@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.ProductDetailsAdapter;
 import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.widget.AppConstant;
 
 import java.util.ArrayList;
 
@@ -63,9 +64,14 @@ public class ProductDetailsFragment extends Fragment {
                 if (images[i].contains("br")) {
                     continue;
                 }
-                int beginIndex = images[i].indexOf("h");
-                int endIndex = images[i].lastIndexOf("g");
-                imgList.add(images[i].substring(beginIndex, endIndex + 1));
+                int beginIndex = images[i].indexOf("\"");// 第一个"
+                int endIndex = images[i].indexOf("\"", beginIndex + 1);// 第二个"
+                String str = images[i].substring(beginIndex + 1, endIndex);
+                if (str.substring(0, 1).equals("h")) {
+                    imgList.add(str);
+                } else {
+                    imgList.add(AppConstant.IP + str);
+                }
             }
             mRecyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerView);
             productDetailsAdapter = new ProductDetailsAdapter(imgList, mContext);

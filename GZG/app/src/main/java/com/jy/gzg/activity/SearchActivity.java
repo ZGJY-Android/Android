@@ -65,8 +65,8 @@ public class SearchActivity extends AppCompatActivity {
         iv_search = (ImageView) findViewById(R.id.iv_search);
         tv_return = (TextView) findViewById(R.id.tv_return);
 
-        MarginLayoutParams lp = new MarginLayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams
+                .WRAP_CONTENT);
         lp.leftMargin = 15;
         lp.rightMargin = 15;
         lp.topMargin = 15;
