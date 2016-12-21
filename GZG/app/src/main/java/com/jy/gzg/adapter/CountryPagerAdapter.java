@@ -15,15 +15,18 @@ public class CountryPagerAdapter extends FragmentPagerAdapter {
     private String[] titles = new String[]{"母婴用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品", "洗护用品",
             "洗护用品", "洗护用品"};
     private Context context;
+    //区分首页八个按钮的ID
+    private String tagId;
 
-    public CountryPagerAdapter(FragmentManager fm, Context context) {
+    public CountryPagerAdapter(FragmentManager fm, Context context,String tagId) {
         super(fm);
         this.context = context;
+        this.tagId = tagId;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return CountryFragment.newInstance(position);
+        return CountryFragment.newInstance(position,tagId);
     }
 
     @Override

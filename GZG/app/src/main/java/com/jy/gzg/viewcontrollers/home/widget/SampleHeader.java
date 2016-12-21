@@ -30,6 +30,7 @@ import com.jy.gzg.activity.MuyinzhuanchangActivity;
 import com.jy.gzg.activity.XianshitemaiActivity;
 import com.jy.gzg.bean.LunbotuBean;
 import com.jy.gzg.ui.FixedSpeedScroller;
+import com.jy.gzg.util.AppLog;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.viewcontrollers.home.bean.HeaderModelBean;
 import com.jy.gzg.viewcontrollers.home.bean.ListBean;
@@ -275,6 +276,7 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, JujiariyongActivity.class);
                 intent.putExtra("headermodel_id", layoutview4.getTag() + "");
+                AppLog.i("XXXXXXXXXXX",layoutview4.getTag());
                 context.startActivity(intent);
             }
         });
@@ -312,7 +314,6 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
                 context.startActivity(intent);
             }
         });
-
 
     }
 
