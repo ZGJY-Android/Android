@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
-import com.jy.gzg.util.AppToast;
+import com.jy.gzg.viewcontrollers.category.bean.ReclassifyBean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -22,19 +20,19 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater mLayoutInflater;
     private Context mContext;
 
-    private ArrayList<String> mDatas = new ArrayList<>();
+    private List<ReclassifyBean.ListBean> mDatas;
 
     private View mHeaderView;
 
-//    private OnItemClickListener mListener;
-//
-//    public void setOnItemClickListener(OnItemClickListener li) {
-//        mListener = li;
-//    }
-//
-//    public interface OnItemClickListener {
-//        void onItemClick(int position, String data);
-//    }
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener li) {
+        mListener = li;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, String data);
+    }
 
     public MyAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
@@ -50,8 +48,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mHeaderView;
     }
 
-    public void addDatas(ArrayList<String> datas) {
-        mDatas.addAll(datas);
+    public void addDatas(List<ReclassifyBean.ListBean> waresBean) {
+        mDatas = waresBean;
         notifyDataSetChanged();
     }
 
@@ -65,7 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mHeaderView != null && viewType == TYPE_HEADER) return new Holder(mHeaderView);
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.reclassify,
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.ceclassify_wares_item,
                 parent, false);
         return new Holder(layout);
     }
@@ -75,16 +73,17 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (getItemViewType(position) == TYPE_HEADER) return;
 
         final int pos = getRealPosition(viewHolder);
-        final String data = mDatas.get(pos);
+        final String data = mDatas.get(pos).getName();
         if (viewHolder instanceof Holder) {
             ((Holder) viewHolder).text.setText(data);
-//            if (mListener == null) return;
-//            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mListener.onItemClick(pos, data);
-//                }
-//            });
+
+            if (mListener == null) return;
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemClick(pos, data);
+                }
+            });
         }
     }
 
@@ -102,44 +101,26 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         TextView text;
 
-        private RecyclerView mRecyclerView;
-        private List<Integer> mDatas;
-        private ReclassifyAdapter mAdapter;
-
 
         public Holder(View itemView) {
             super(itemView);
             if (itemView == mHeaderView) return;
-            //二级分类的标题
-            text = (TextView) itemView.findViewById(R.id.tv_reclassify);
+            text = (TextView) itemView.findViewById(R.id.tv_reclassify_wares);
+        }
+    }
 
-            //二级分类的商品
-            initData();
-            initReclassifyViews(itemView);
-
-            //设置布局管理器
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
-            mRecyclerView.setLayoutManager(gridLayoutManager);
-
-            mAdapter = new ReclassifyAdapter(mContext, mDatas);
-            mAdapter.setOnItemClickListener(new ReclassifyAdapter.OnItemClickListener() {
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
+            gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
-                public void onItemClick(View view, int position) {
-                    AppToast.getInstance().showShort("分类商品" + position);
+                public int getSpanSize(int position) {
+                    return getItemViewType(position) == TYPE_HEADER ? gridManager.getSpanCount() : 1;
                 }
             });
-            //添加之定义分割线
-//            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));
-            mRecyclerView.setAdapter(mAdapter);
-
-        }
-
-        private void initReclassifyViews(View itemView) {
-            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.recycler_reclassify);
-        }
-
-        private void initData() {
-            mDatas = new ArrayList<>(Arrays.asList(R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen, R.mipmap.sy_naifen));
         }
     }
 }

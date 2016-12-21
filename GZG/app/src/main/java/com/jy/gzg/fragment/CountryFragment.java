@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.jy.gzg.R;
-import com.jy.gzg.activity.CountryActivity;
 import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.adapter.CountryVerticalAdapter;
 import com.jy.gzg.bean.CountryMYBean;
@@ -34,15 +33,19 @@ import static com.jy.gzg.volley.VolleyRequestUtil.context;
  */
 public class CountryFragment extends Fragment {
     public static final String ARGS_PAGE = "args_page";
+    public static final String ARGS_TAGID = "args_tagid";
     private int mPage;
     private RecyclerView vRecyclerView;
     private ArrayList<ProductBean> mDatas;
     private String MYURL = null;
     private CountryVerticalAdapter countryVerticalAdapter;
+    //区分首页八个按钮的ID
+    private String tagId;
 
-    public static CountryFragment newInstance(int page) {
+    public static CountryFragment newInstance(int page, String tagId) {
         Bundle args = new Bundle();
         args.putInt(ARGS_PAGE, page);
+        args.putString(ARGS_TAGID, tagId);
         CountryFragment fragment = new CountryFragment();
         fragment.setArguments(args);
         return fragment;
@@ -52,12 +55,15 @@ public class CountryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARGS_PAGE);
+        tagId = getArguments().getString(ARGS_TAGID);
+        AppLog.i("zzzzzzzzzzzzz",tagId);
     }
 
     private void initData() {
-        MYURL = AppConstant.COUNTRY_DETAILS + "tagIds=" + CountryActivity.tagId +
+        MYURL = AppConstant.COUNTRY_DETAILS + "tagIds=" + tagId +
                 "&&productCategoryId="
                 + mPage;
+        AppLog.i("YYYYYYYYYY",MYURL);
         VolleyRequestUtil.RequestPost(getActivity(), MYURL, mPage + "", new
                 VolleyListenerInterface(context, VolleyListenerInterface.mListener,
                         VolleyListenerInterface.mErrorListener) {
@@ -68,7 +74,7 @@ public class CountryFragment extends Fragment {
                                         .class);
                         mDatas = countryMYBean.getPage().getList();
                         //设置适配器
-                        countryVerticalAdapter = new CountryVerticalAdapter(getActivity(), mDatas);
+                        countryVerticalAdapter = new CountryVerticalAdapter(getActivity());
                         countryVerticalAdapter.setmData(mDatas);
                         countryVerticalAdapter.setOnItemClickListener(new CountryVerticalAdapter
                                 .OnItemClickListener() {

@@ -20,6 +20,15 @@ public class AppConstant {
     public static final String PRODUCT_DETAILS = IP +
             "/appTopic/App?tagIds=6&&productCategoryId=999999&&id=";// 商品详情(跟参数-->&&id=48)
 
+    public static final String CATEGORY_LIST = IP +
+            "/app/AppProductCategory2";// 二级分类列表
+    public static final String CATEGORY_WARES = IP +
+            "/app/AppProductCategory3?";// 三级分类列表
+    public static final String CATEGORY_BRAND = IP +
+            "/app/AppfindBrand";// 品牌列表
+    public static final String CATEGORY_BRAND_WARES = IP +
+            "/app/AppProductCategory3?";// 品牌商品
+
     public static final String USER_LOGIN = IP +
             "/appLogin/submit?";// 用户登录(跟参数-->username=1234567&&password=1234567)
 

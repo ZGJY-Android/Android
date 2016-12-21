@@ -8,29 +8,36 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
+import com.jy.gzg.viewcontrollers.category.bean.CategoryListBean;
 import com.jy.gzg.viewcontrollers.category.fragment.PageFragment;
+
+import java.util.List;
 
 /**
  * Created by YX on 2016/10/31 0031.
  */
 public class CategoryListAdapter extends BaseAdapter {
     private Context context;
-    private String[] strings;
+    private List<CategoryListBean.ListBean> listBeen = null;
     public static int mPosition;
 
-    public CategoryListAdapter(Context context, String[] strings) {
+    public CategoryListAdapter(Context context) {
         this.context = context;
-        this.strings = strings;
+    }
+
+    public void setListData (List<CategoryListBean.ListBean> listBeen){
+        this.listBeen = listBeen;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return strings.length;
+        return listBeen.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return strings[i];
+        return listBeen.get(i);
     }
 
     @Override
@@ -52,7 +59,7 @@ public class CategoryListAdapter extends BaseAdapter {
         }
 
         mPosition = i;
-        viewHolder.textView.setText(strings[i]);
+        viewHolder.textView.setText(listBeen.get(i).getName());
         if (i == PageFragment.mPosition){
             view.setBackgroundResource(R.color.categoryBg);
         }else {

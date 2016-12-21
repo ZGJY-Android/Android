@@ -32,9 +32,9 @@ public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVertical
         onItemClickListener = listener;
     }
 
-    public CountryVerticalAdapter(Context context, ArrayList<ProductBean> data) {
+    public CountryVerticalAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
-        mData = data;
+
     }
 
     @Override
@@ -75,7 +75,6 @@ public class CountryVerticalAdapter extends RecyclerView.Adapter<CountryVertical
         if (mData == null) {
             mData = new ArrayList<ProductBean>();
         }
-
         return mData.size();
     }
 

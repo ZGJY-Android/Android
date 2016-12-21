@@ -39,7 +39,7 @@ public class CountryActivity extends AppCompatActivity {
     private RecyclerView hRecyclerView;
     private List<Integer> hData;
     private TabLayout tabLayout;
-    public static int tagId;
+    private String tagId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +48,15 @@ public class CountryActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.activity_country);
 
-        initData();
-        initView();
 
+        initData();
         Intent intent = getIntent();
         country = intent.getIntExtra("country", -1);
-        tagId = intent.getIntExtra("headermodel_id", -1);
+        tagId = intent.getStringExtra("headermodel_id");
         AppLog.e("--------country--------", country);
+        AppLog.e("--------headermodel_id--------", tagId);
+        initView();
+
 
         switch (country) {
             case COUNTRY_KOREA:
@@ -85,7 +87,6 @@ public class CountryActivity extends AppCompatActivity {
                 hRecyclerView.setBackgroundResource(R.drawable.shape_jianbian__ouzhou);
                 break;
         }
-
     }
 
     private void initData() {
@@ -128,7 +129,8 @@ public class CountryActivity extends AppCompatActivity {
         //Fragment+ViewPager+FragmentViewPager组合的使用
         ViewPager viewPager = (ViewPager) findViewById(R.id.vp_wares_guojia);
         CountryPagerAdapter countryPagerAdapter = new CountryPagerAdapter
-                (getSupportFragmentManager(), this);
+                (getSupportFragmentManager(), this,tagId);
+        AppLog.i("AAAAAAAAAAAAAAAAA",tagId);
         viewPager.setAdapter(countryPagerAdapter);
         tabLayout = (TabLayout) findViewById(R.id.tablayout_country);
         tabLayout.setupWithViewPager(viewPager);
