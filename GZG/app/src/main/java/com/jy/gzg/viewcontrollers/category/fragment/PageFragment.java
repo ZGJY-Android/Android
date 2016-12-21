@@ -47,9 +47,6 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARGS_PAGE);
-        Log.i("page---------------", mPage + "");
-
-
     }
 
     private void initData() {

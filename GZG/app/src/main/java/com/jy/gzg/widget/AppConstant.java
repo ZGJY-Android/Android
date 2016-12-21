@@ -7,6 +7,7 @@ public class AppConstant {
     //public static final String IP = "http://www.maizanmao.com";// 正式IP
     public static final String IP = "http://192.168.0.110:8080";// 本地服务器数据
 
+    // ----------------------------------主页-------------------------------------
     public static final String LUNBOTU_IMGS = IP + "/app/FindList";// 轮播图
     public static final String HEAD_MODEL = IP + "/app/Index ";// 首页八个小块
     public static final String HOME_XSTM = IP + "/app/LimitsIndex";// 主页限时特卖的相关数据
@@ -15,7 +16,6 @@ public class AppConstant {
     public static final String HOME_HFMZ = IP + "/app/ToiletriesIndex";// 主页护肤美妆的相关数据
     public static final String HOME_JKBJ = IP + "/app/HealthyHome";// 主页健康保健的相关数据
     public static final String HOME_JJRY = IP + "/app/HomeDay";// 主页居家日用的相关数据
-
     public static final String COUNTRY_DETAILS = IP + "/appTopic/App?";//国家馆通用接口
     public static final String HEADERMODEL_DETAILS =
             IP + "/appTopic/App?tagIds=";// 通用八个按钮的详情接口(跟参数-->&&tagIds=3)
@@ -25,6 +25,7 @@ public class AppConstant {
     public static final String PRODUCT_DETAILS = IP +
             "/app/AppFindProduct?id=";// 商品详情新接口(跟参数-->&&id=48)
 
+    // ----------------------------------品牌分类-------------------------------------
     public static final String CATEGORY_LIST = IP +
             "/app/AppProductCategory2";// 二级分类列表
     public static final String CATEGORY_WARES = IP +
@@ -34,6 +35,7 @@ public class AppConstant {
     public static final String CATEGORY_BRAND_WARES = IP +
             "/app/AppProductCategory3?";// 品牌商品
 
+    // ----------------------------------登录注册-------------------------------------
     public static final String USER_LOGIN = IP +
             "/appLogin/submit?";// 用户登录(跟参数-->username=1234567&&password=1234567)
     public static final String ISEXISTED_ACCOUNT = IP +
