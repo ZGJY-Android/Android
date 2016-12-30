@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2016/11/18 0018.
  */
-public class HuolipintuanBean {
+public class HomeModelBean {
+    // 用于首页八个小模块的json解析时
     private PageBean page;
 
     public PageBean getPage() {

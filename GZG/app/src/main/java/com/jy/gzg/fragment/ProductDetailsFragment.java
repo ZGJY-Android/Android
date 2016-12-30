@@ -61,7 +61,7 @@ public class ProductDetailsFragment extends Fragment {
             imgList = new ArrayList();
             String[] images = introduction.trim().split("><");
             for (int i = 0; i < images.length; i++) {
-                if (images[i].contains("br")) {
+                if (!images[i].substring(0, 1).equals("i")&&!images[i].substring(0, 1).equals("<")) {
                     continue;
                 }
                 int beginIndex = images[i].indexOf("\"");// 第一个"

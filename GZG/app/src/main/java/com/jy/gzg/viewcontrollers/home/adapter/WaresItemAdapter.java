@@ -19,6 +19,10 @@ import java.util.List;
  * Created by YX on 2016/10/17 0017.
  */
 public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.ViewHolder> {
+    private LayoutInflater mLayoutInflater;
+    private List<HomeProductBean> mDatas;
+    private ImageLoader imageLoader;
+
     /**
      * ItemClick的回调接口
      */
@@ -31,10 +35,6 @@ public class WaresItemAdapter extends RecyclerView.Adapter<WaresItemAdapter.View
     public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
-
-    private LayoutInflater mLayoutInflater;
-    private List<HomeProductBean> mDatas;
-    private ImageLoader imageLoader;
 
     public WaresItemAdapter(Context context, List<HomeProductBean> datats) {
         mLayoutInflater = LayoutInflater.from(context);

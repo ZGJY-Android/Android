@@ -30,7 +30,7 @@ public class AddressmanageActivity extends AppCompatActivity {
     private LRecyclerView mLRecyclerView;
     private AddressmanageAdapter addressmanageAdapter;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
-    ArrayList<ItemModelBean> dataList;
+    private ArrayList<ItemModelBean> dataList;
 
     private ImageView iv_return;
     private TextView tv_info;// 没有收藏时的提示信息

@@ -276,7 +276,6 @@ public class SampleHeader extends RelativeLayout implements ViewPager.OnPageChan
             public void onClick(View v) {
                 Intent intent = new Intent(context, JujiariyongActivity.class);
                 intent.putExtra("headermodel_id", layoutview4.getTag() + "");
-                AppLog.i("XXXXXXXXXXX",layoutview4.getTag());
                 context.startActivity(intent);
             }
         });

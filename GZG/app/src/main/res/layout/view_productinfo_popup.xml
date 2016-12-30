@@ -4,7 +4,7 @@
                 android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/relat_count"
+        android:id="@+id/relat_pop"
         android:layout_width="match_parent"
         android:layout_height="282dp"
         android:layout_alignParentBottom="true"
@@ -12,16 +12,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_str"
+            android:id="@+id/tv_strtop"
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
+            android:layout_height="55dp"
             android:layout_alignParentTop="true"/>
 
         <View
             android:id="@+id/view_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/tv_str"
+            android:layout_below="@id/tv_strtop"
             android:background="@color/huise"/>
 
         <RelativeLayout
@@ -97,7 +97,6 @@
                 android:layout_centerVertical="true"
                 android:text="数量:"/>
 
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
@@ -143,7 +142,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -161,37 +163,62 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <TextView
+                <Button
+                    android:id="@+id/btn_yes"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/red"
                     android:gravity="center"
-                    android:text="加入进货单"
+                    android:text="确 定"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/view_line"
-            android:layout_marginBottom="8dp"
-            android:paddingLeft="135dp"
-            android:text="￥660.00"
-            android:textColor="@color/red"/>
-
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_productimg"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:layout_above="@id/relat_count"
-        android:layout_marginBottom="-40dp"
-        android:layout_marginLeft="31dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/sy_naifen"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/relat_pop"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="-50dp"
+        android:layout_marginLeft="32dp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/iv_productimg"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/sy_naifen"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="XXXX"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥660.00"
+                android:textColor="@color/red"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>

@@ -19,8 +19,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.XianshitemaiAdapter;
+import com.jy.gzg.bean.HomeModelBean;
 import com.jy.gzg.bean.ProductBean;
-import com.jy.gzg.bean.XianshitemaiBean;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.widget.AppConstant;
 
@@ -54,9 +54,9 @@ public class XianshitemaiActivity extends AppCompatActivity {
                 .Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                XianshitemaiBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
+                HomeModelBean xianshitemaiBean = GsonUtil.parseJsonWithGson(jsonObject
                                 .toString(),
-                        XianshitemaiBean.class);
+                        HomeModelBean.class);
                 ArrayList<ProductBean> xstmBeanList = xianshitemaiBean.getPage().getList();
                 xianshitemaiAdapter = new XianshitemaiAdapter(xstmBeanList, XianshitemaiActivity
                         .this);

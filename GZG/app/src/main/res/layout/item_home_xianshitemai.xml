@@ -5,6 +5,7 @@
                 android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/relat_top"
         android:layout_width="match_parent"
         android:layout_height="117dp"
         android:layout_margin="5dp">
@@ -22,28 +23,43 @@
             android:background="@color/bantouming">
 
             <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/white"
-                android:textSize="12sp"/>
-
-            <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_toRightOf="@id/tv_price"
                 android:ellipsize="end"
-                android:singleLine="true"
+                android:lines="1"
                 android:textColor="@color/white"
-                android:textSize="8sp"/>
+                android:textSize="12sp"/>
         </RelativeLayout>
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/relat_top"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tv_marketprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textSize="11sp"/>
+    </LinearLayout>
 </RelativeLayout>

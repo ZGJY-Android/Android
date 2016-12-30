@@ -113,9 +113,9 @@ public class LoginActivity extends AppCompatActivity {
                         AppToast.getInstance().showShort("登录成功");
                         // 登录成功
                         String id = jsonObject.getString("id");// 用户id
-                        Constant.UID = Integer.parseInt(id);
                         Constant.UNAME = uname;
                         // 存入首选项
+                        ZYWUtil.writeData(Constant.SP_FILE, Constant.SP_UID, id + "");
                         ZYWUtil.writeData(Constant.SP_FILE, Constant.SP_UNAME, uname);
                         ZYWUtil.writeData(Constant.SP_FILE, Constant.SP_UPASS, upass);
 

@@ -189,7 +189,6 @@ public class ProductCommentFragment extends Fragment {
             @Override
             public void run() {
                 super.run();
-
                 // 模拟一下网络请求失败的情况
                 //if (NetworkUtils.isNetAvailable(context)) {
                 mHandler.sendEmptyMessage(-1);

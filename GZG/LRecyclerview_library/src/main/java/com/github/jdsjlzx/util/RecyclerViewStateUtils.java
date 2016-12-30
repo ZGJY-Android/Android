@@ -10,9 +10,9 @@ import com.github.jdsjlzx.view.LoadingFooter;
 
 /**
  * Created by cundong on 2015/11/9.
- *
+ * <p>
  * 分页展示数据时，RecyclerView的FooterView State 操作工具类
- *
+ * <p>
  * RecyclerView一共有几种State：Normal/Loading/Error/TheEnd
  */
 public class RecyclerViewStateUtils {
@@ -26,8 +26,9 @@ public class RecyclerViewStateUtils {
      * @param state         FooterView State
      * @param errorListener FooterView处于Error状态时的点击事件
      */
-    public static void setFooterViewState(Activity instance, RecyclerView recyclerView, int pageSize, LoadingFooter.State state, View.OnClickListener errorListener) {
-        if(instance==null || instance.isFinishing()) {
+    public static void setFooterViewState(Activity instance, RecyclerView recyclerView, int
+            pageSize, LoadingFooter.State state, View.OnClickListener errorListener) {
+        if (instance == null || instance.isFinishing()) {
             return;
         }
 
@@ -52,8 +53,8 @@ public class RecyclerViewStateUtils {
 
             if (state == LoadingFooter.State.NetWorkError) {
                 footerView.setOnClickListener(errorListener);
-            }else if (state == LoadingFooter.State.TheEnd){
-                ((LRecyclerView)recyclerView).setNoMore(true);
+            } else if (state == LoadingFooter.State.TheEnd) {
+                ((LRecyclerView) recyclerView).setNoMore(true);
             }
 
             recyclerView.scrollToPosition(lRecyclerViewAdapter.getItemCount() - 1);
@@ -63,8 +64,8 @@ public class RecyclerViewStateUtils {
 
             if (state == LoadingFooter.State.NetWorkError) {
                 footerView.setOnClickListener(errorListener);
-            }else if (state == LoadingFooter.State.TheEnd){
-                ((LRecyclerView)recyclerView).setNoMore(true);
+            } else if (state == LoadingFooter.State.TheEnd) {
+                ((LRecyclerView) recyclerView).setNoMore(true);
             }
 
             footerView.setVisibility(View.VISIBLE);
@@ -82,9 +83,10 @@ public class RecyclerViewStateUtils {
      * @param state         FooterView State
      * @param errorListener FooterView处于Error状态时的点击事件
      */
-    public static void setFooterViewState2(Activity instance, RecyclerView recyclerView, int pageSize, LoadingFooter.State state, View.OnClickListener errorListener) {
+    public static void setFooterViewState2(Activity instance, RecyclerView recyclerView, int
+            pageSize, LoadingFooter.State state, View.OnClickListener errorListener) {
 
-        if(instance==null || instance.isFinishing()) {
+        if (instance == null || instance.isFinishing()) {
             return;
         }
 
@@ -130,7 +132,8 @@ public class RecyclerViewStateUtils {
         RecyclerView.Adapter outerAdapter = recyclerView.getAdapter();
         if (outerAdapter != null && outerAdapter instanceof LRecyclerViewAdapter) {
             if (((LRecyclerViewAdapter) outerAdapter).getFooterViewsCount() > 0) {
-                LoadingFooter footerView = (LoadingFooter) ((LRecyclerViewAdapter) outerAdapter).getFooterView();
+                LoadingFooter footerView = (LoadingFooter) ((LRecyclerViewAdapter) outerAdapter)
+                        .getFooterView();
                 return footerView.getState();
             }
         }
@@ -148,7 +151,8 @@ public class RecyclerViewStateUtils {
         RecyclerView.Adapter outerAdapter = recyclerView.getAdapter();
         if (outerAdapter != null && outerAdapter instanceof LRecyclerViewAdapter) {
             if (((LRecyclerViewAdapter) outerAdapter).getFooterViewsCount() > 0) {
-                LoadingFooter footerView = (LoadingFooter) ((LRecyclerViewAdapter) outerAdapter).getFooterView();
+                LoadingFooter footerView = (LoadingFooter) ((LRecyclerViewAdapter) outerAdapter)
+                        .getFooterView();
                 footerView.setState(state);
             }
         }

@@ -34,7 +34,7 @@ public class JianKangBaoJianAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 加载数据item的布局，生成ViewHolder返回
         View v;
-        v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_jiankangbaojian,
+        v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_modeldetail,
                 parent, false);
         v.setOnClickListener(this);
         return new DemoViewHolder(v);

@@ -41,7 +41,7 @@ public class MyCollectionActivity extends AppCompatActivity {
         //init data
         collections = new ArrayList<>();
         MyCollectionBean collectionBean;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             collectionBean = new MyCollectionBean();
             collections.add(collectionBean);
         }

@@ -18,7 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.HuFuMeiZhuangAdapter;
-import com.jy.gzg.bean.HuolipintuanBean;
+import com.jy.gzg.bean.HomeModelBean;
 import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.widget.AppConstant;
@@ -49,9 +49,9 @@ public class HufumeizhuangActivity extends AppCompatActivity {
                 url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                HuolipintuanBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
+                HomeModelBean huolipintuanBean = GsonUtil.parseJsonWithGson(jsonObject
                                 .toString(),
-                        HuolipintuanBean.class);
+                        HomeModelBean.class);
                 ArrayList<ProductBean> xstmBeanList = huolipintuanBean.getPage().getList();
                 huFuMeiZhuangAdapter = new HuFuMeiZhuangAdapter(xstmBeanList,
                         HufumeizhuangActivity

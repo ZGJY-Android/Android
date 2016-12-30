@@ -52,9 +52,20 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
-    <!-- menu弹出时的动画效果 -->
+    <!-- menu弹出时的动画效果1 -->
     <style name="popwin_anim_style">
         <item name="android:windowEnterAnimation">@anim/popup_menu_in</item>
         <item name="android:windowExitAnimation">@anim/popup_menu_out</item>
+    </style>
+
+    <!-- menu弹出时的动画效果2 -->
+    <style name="BottomDialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnim</item>
+    </style>
+
+    <style name="BottomDialogAnim" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/anim_enter_goodsdialog</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit_goodsdialog</item>
     </style>
 </resources>

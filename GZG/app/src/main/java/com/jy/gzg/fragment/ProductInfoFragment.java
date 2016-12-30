@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jy.gzg.R;
+import com.jy.gzg.activity.ProductdetailsActivity;
 import com.jy.gzg.bean.ProductBean;
 import com.jy.gzg.ui.CustomViewPager;
-import com.jy.gzg.widget.ProductInfoPopupWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
@@ -29,28 +28,24 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
     private ProductBean xstmBean;
     private CustomViewPager vp_viewPager;
     private ViewGroup line_viewGroup;
-    private LinearLayout line_qilicount;// 用其点击事件触发弹框效果
 
     private TextView tv_fullname,// 名称
             tv_price,// 价格
             tv_marketprice,// 市场价
             tv_qsum,// 起批量
             tv_point,// 积分
-            tv_count,// 数量
             tv_id,// 编号
             tv_reduce,// 减
             tv_add;// 加
+    public static TextView tv_count;// 数量
 
-    String[] imgUrls;
+    private String[] imgUrls;
     private ImageView[] tips;//装小圆点的ImageView数组
     private ImageView[] mImageViews;//装ImageView数组
 
     public void setXstmBean(ProductBean xstmBean) {
         this.xstmBean = xstmBean;
     }
-
-    // 自定义的弹出框类
-    ProductInfoPopupWindow productInfoPopupWindow;
 
     @Override
     public void onAttach(Context context) {
@@ -69,6 +64,7 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
         View view = inflater.inflate(R.layout.fragment_productinfo, container, false);
         initViews(view);
         setViewsListen();
+        tv_count.setText(ProductdetailsActivity.productCount + "");
         if (xstmBean == null) {
             mImageViews = new ImageView[1];
             ImageView imageView = new ImageView(mContext);
@@ -97,7 +93,7 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
             tv_id.setText(xstmBean.getSn());
         }
 
-        //将小圆点加入到ViewGroup中
+        // 将小圆点加入到ViewGroup中
         tips = new ImageView[imgUrls.length];
         ImageView imageView = null;
         for (int i = 0; i < tips.length; i++) {
@@ -182,7 +178,6 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
     public void initViews(View view) {
         vp_viewPager = (CustomViewPager) view.findViewById(R.id.vp_viewPager);
         line_viewGroup = (ViewGroup) view.findViewById(R.id.line_viewGroup);
-        line_qilicount = (LinearLayout) view.findViewById(R.id.line_qilicount);
 
         tv_fullname = (TextView) view.findViewById(R.id.tv_fullname);
         tv_price = (TextView) view.findViewById(R.id.tv_price);
@@ -199,28 +194,23 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
      * 对某些控件实行监听事件
      */
     public void setViewsListen() {
-        line_qilicount.setOnClickListener(new View.OnClickListener() {
+        // 添加数量
+        tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //实例化ProductInfoPopupWindow
-                productInfoPopupWindow = new ProductInfoPopupWindow(mContext, new View
-                        .OnClickListener() {
+                ProductdetailsActivity.productCount++;
+                tv_count.setText(ProductdetailsActivity.productCount + "");
+            }
+        });
 
-                    public void onClick(View v) {
-                        productInfoPopupWindow.dismiss();
-                        switch (v.getId()) {
-                            case R.id.iv_productimg:
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                });
-                //显示窗口
-                productInfoPopupWindow.showAtLocation(getActivity().findViewById(R.id
-                        .mScollView), Gravity
-                        .BOTTOM, 0, 0); //设置layout在PopupWindow中显示的位置
+        // 减少数量
+        tv_reduce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ProductdetailsActivity.productCount > 1) {
+                    ProductdetailsActivity.productCount--;
+                }
+                tv_count.setText(ProductdetailsActivity.productCount + "");
             }
         });
     }
@@ -236,7 +226,5 @@ public class ProductInfoFragment extends Fragment implements ViewPager.OnPageCha
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
-
 }

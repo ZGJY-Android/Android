@@ -6,7 +6,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- 测试  看效果的颜色-->
-    <color name="test">#5500FFFF</color>
+    <color name="test">#da23e1e1</color>
 
     <!-- 项目公用 -->
     <color name="white">#FFFFFF</color>
@@ -34,7 +34,7 @@
     <color name="hlpt_bck">#93d1e3</color>
 
     <!-- 母婴专场 -->
-    <color name="myzc_bck">#fcdfe1</color>
+    <color name="myzc_bck">#f7d8db</color>
 
     <!-- 护肤美妆 -->
     <color name="hfmz_bck">#a41c8c31</color>

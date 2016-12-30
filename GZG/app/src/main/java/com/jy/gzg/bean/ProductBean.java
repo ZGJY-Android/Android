@@ -4,7 +4,7 @@ package com.jy.gzg.bean;
  * Created by Administrator on 2016/11/21 0021.
  */
 public class ProductBean {
-
+    // 商品实体类
     private int allocated_stock;// 已分配库存
     private String attribute_value0;
     private String attribute_value1;

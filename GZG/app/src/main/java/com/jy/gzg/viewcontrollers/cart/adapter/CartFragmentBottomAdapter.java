@@ -1,4 +1,4 @@
-package com.jy.gzg.viewcontrollers.home.adapter;
+package com.jy.gzg.viewcontrollers.cart.adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -16,33 +16,31 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/10/19 0019.
+ * Created by Administrator on 2016/11/28 0028.
  */
-public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder> implements View
-        .OnClickListener {
-    private List<HomeProductBean> xstmBeanList;
-    private Context context;
+public class CartFragmentBottomAdapter extends RecyclerView.Adapter<CartFragmentBottomAdapter
+        .DefaultViewHolder> {
+    private Context mContext;
+    private List<HomeProductBean> mDatas;
     private ImageLoader imageLoader;
-    private OnRecyclerViewItemClickListener mOnItemClickListener;
 
-    public XSTMAdapter(List<HomeProductBean> xstmBeanList, Context context) {
-        this.xstmBeanList = xstmBeanList;
-        this.context = context;
+    public CartFragmentBottomAdapter(Context mContext, List<HomeProductBean> mDatas) {
+        this.mContext = mContext;
+        this.mDatas = mDatas;
         imageLoader = ImageLoader.getInstance();
     }
 
+
     @Override
-    public DemoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // 加载数据item的布局，生成ViewHolder返回
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_xianshitemai,
-                parent, false);
-        v.setOnClickListener(this);
-        return new DemoViewHolder(v);
+    public DefaultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout
+                .item_cart_recommend, parent, false);
+        return new CartFragmentBottomAdapter.DefaultViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final DemoViewHolder demoViewHolder, final int position) {
-        HomeProductBean listBean = xstmBeanList.get(position);
+    public void onBindViewHolder(DefaultViewHolder demoViewHolder, int position) {
+        HomeProductBean listBean = mDatas.get(position);
         //将数据保存在itemView的Tag中，以便点击时进行获取
         demoViewHolder.itemView.setTag(listBean);
         if (listBean.getImage() != null && !listBean.getImage().equals("")) {
@@ -59,26 +57,17 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
     @Override
     public int getItemCount() {
         // 返回数据有多少条
-        if (null == xstmBeanList) {
+        if (null == mDatas) {
             return 0;
         }
-        return xstmBeanList.size();
+        return mDatas.size();
     }
 
-    @Override
-    public void onClick(View v) {
-        if (mOnItemClickListener != null) {
-            //注意这里使用getTag方法获取数据
-            mOnItemClickListener.onItemClick(v, (HomeProductBean) v.getTag());
-        }
-    }
-
-    // 可复用的ViewHolder
-    public static class DemoViewHolder extends RecyclerView.ViewHolder {
+    static class DefaultViewHolder extends RecyclerView.ViewHolder {
         private ImageView iv_img;
         private TextView tv_name, tv_price, tv_marketprice;
 
-        public DemoViewHolder(View itemView) {
+        public DefaultViewHolder(View itemView) {
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
@@ -87,11 +76,4 @@ public class XSTMAdapter extends RecyclerView.Adapter<XSTMAdapter.DemoViewHolder
         }
     }
 
-    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
-        this.mOnItemClickListener = listener;
-    }
-
-    public static interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view, HomeProductBean data);
-    }
 }

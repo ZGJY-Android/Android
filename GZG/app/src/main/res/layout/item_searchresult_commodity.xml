@@ -17,11 +17,11 @@
             android:src="@mipmap/hot"/>
 
         <ImageView
-            android:layout_width="78dp"
-            android:layout_height="78dp"
+            android:id="@+id/iv_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerInParent="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/sy_naifen"/>
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -31,15 +31,24 @@
             android:src="@mipmap/guoqi"/>
     </RelativeLayout>
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#d8d8d8"/>
+
     <RelativeLayout
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp">
+        android:layout_alignEnd="@+id/view"
+        android:layout_alignRight="@+id/view"
+        android:layout_centerVertical="true">
 
         <TextView
-            android:id="@+id/tv_str1"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -48,10 +57,10 @@
             android:textSize="15sp"/>
 
         <TextView
-            android:id="@+id/tv_str2"
+            android:id="@+id/tv_memo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_str1"
+            android:layout_below="@id/tv_name"
             android:layout_marginTop="6dp"
             android:text="富含最佳女性抗衰老成分OPC 女性必吃天然西芹籽精华"
             android:textColor="#b7b7b7"
@@ -61,7 +70,7 @@
             android:id="@+id/line_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_str2"
+            android:layout_below="@id/tv_memo"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
@@ -73,6 +82,7 @@
                 android:textSize="10sp"/>
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="70.00"
@@ -136,20 +146,28 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/line_price"
-            android:text="国内参考价：￥326.00"
-            android:textColor="#d7d7d7"
-            android:textSize="10sp"/>
-    </RelativeLayout>
+            android:orientation="horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#d8d8d8"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line_price"
+                android:text="国内参考价："
+                android:textColor="@color/huise3"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/tv_marketprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line_price"
+                android:text="￥326.00"
+                android:textColor="@color/huise3"
+                android:textSize="10sp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

@@ -11,6 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -19,17 +25,24 @@ import com.github.jdsjlzx.util.RecyclerViewStateUtils;
 import com.github.jdsjlzx.view.LoadingFooter;
 import com.jy.gzg.R;
 import com.jy.gzg.adapter.SearchResultAdapter;
-import com.jy.gzg.bean.SearchResultBean;
+import com.jy.gzg.bean.ProductBean;
+import com.jy.gzg.bean.ProductBean2;
+import com.jy.gzg.bean.ProductListBean;
+import com.jy.gzg.util.AppToast;
+import com.jy.gzg.util.GsonUtil;
+import com.jy.gzg.widget.AppConstant;
 import com.jy.gzg.widget.Constant;
+
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class SearchResultActivity extends AppCompatActivity {
     // 服务器端一共多少条数据
-    private static final int TOTAL_COUNTER = 20;
+    private int TOTAL_COUNTER = 0;
     // 每一页展示多少条数据
-    private static final int REQUEST_COUNT = 10;
+    private static int REQUEST_COUNT = 8;// 默认一页展示8条商品
     // 已经获取到多少条数据了
     private static int mCurrentCounter = 0;
     private SearchResultAdapter mSearchResultAdapter = null;
@@ -39,13 +52,17 @@ public class SearchResultActivity extends AppCompatActivity {
     // 申明控件对象
     private LRecyclerView mLRecyclerView = null;
     private ImageView iv_return;
+    private Intent intent;
+    private ArrayList<ProductBean2> dataList;// 从服务器请求拿下来的数据
+    private ArrayList<ProductBean2> newList;// 当前显示的数据
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
         initView();
-        ArrayList<SearchResultBean> dataList = new ArrayList<>();
+        intent = getIntent();
+        dataList = new ArrayList<>();
         mHandler = new PreviewHandler(SearchResultActivity.this);
         mSearchResultAdapter = new SearchResultAdapter(SearchResultActivity.this);
         mSearchResultAdapter.addAll(dataList);
@@ -63,7 +80,7 @@ public class SearchResultActivity extends AppCompatActivity {
         mLRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-    private void addItems(ArrayList<SearchResultBean> list) {
+    private void addItems(ArrayList<ProductBean2> list) {
         mSearchResultAdapter.addAll(list);
         mCurrentCounter += list.size();
 
@@ -84,19 +101,21 @@ public class SearchResultActivity extends AppCompatActivity {
             }
             switch (msg.what) {
                 case -1:
+                    newList = new ArrayList<>();
                     if (isRefresh) {
                         mSearchResultAdapter.clear();
                         mCurrentCounter = 0;
+                        newList.clear();
                     }
                     int currentSize = mSearchResultAdapter.getItemCount();
-                    //模拟组装几个数据
-                    ArrayList<SearchResultBean> newList = new ArrayList<>();
+                    // 模拟组装几个数据
+                    ProductBean2 item;
                     for (int i = 0; i < REQUEST_COUNT; i++) {
                         if (newList.size() + currentSize >= TOTAL_COUNTER) {
                             break;
                         }
-                        SearchResultBean item = new SearchResultBean();
-                        item.id = currentSize + i;
+                        item = dataList.get(i);
+                        item.setId(currentSize + i);
                         newList.add(item);
                     }
                     addItems(newList);
@@ -151,17 +170,51 @@ public class SearchResultActivity extends AppCompatActivity {
     private void requestData() {
         Log.d(Constant.TAG, "requestData");
         new Thread() {
-
             @Override
             public void run() {
                 super.run();
-
-                // 模拟一下网络请求失败的情况
-                //if (NetworkUtils.isNetAvailable(context)) {
-                mHandler.sendEmptyMessage(-1);
-//                } else {
-//                    mHandler.sendEmptyMessage(-3);
-//                }
+                dataList.clear();
+                final String ware_Id = intent.getStringExtra("ware_Id");
+                if (ware_Id == null || ware_Id.equals("")) {
+                    mHandler.sendEmptyMessage(-3);
+                }
+                String url = AppConstant.CATEGORY_BRAND_DETAILS + "&&productCategoryId=" + ware_Id;
+                RequestQueue requestQueue = Volley.newRequestQueue(SearchResultActivity.this);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                        url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        Log.i("zyw", jsonObject.toString());
+                        ProductListBean productListBean = GsonUtil.parseJsonWithGson(jsonObject
+                                        .toString(),
+                                ProductListBean.class);
+                        ArrayList<ProductBean> list = productListBean.getList();
+                        ProductBean productBean;
+                        ProductBean2 productBean2;
+                        for (int i = 0; i < list.size(); i++) {
+                            productBean = list.get(i);
+                            productBean2 = new ProductBean2(productBean.getId(), productBean
+                                    .getImage(), productBean.getName(), productBean.getMemo(),
+                                    productBean.getPrice(), productBean.getMarket_price());
+                            dataList.add(productBean2);
+                        }
+                        TOTAL_COUNTER = dataList.size();
+                        // 如果数据一页就能展示出来，则需改变一页的展示数
+                        if (REQUEST_COUNT >= TOTAL_COUNTER) {
+                            REQUEST_COUNT = TOTAL_COUNTER;
+                        } else {
+                            REQUEST_COUNT = 8;
+                        }
+                        mHandler.sendEmptyMessage(-1);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        AppToast.getInstance().showShort("网络请求失败");
+                        mHandler.sendEmptyMessage(-3);
+                    }
+                });
+                requestQueue.add(jsonObjectRequest);
             }
         }.start();
     }
@@ -240,8 +293,10 @@ public class SearchResultActivity extends AppCompatActivity {
         mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                ProductBean2 productBean2 = dataList.get(position);
                 Intent intent = new Intent(SearchResultActivity.this, ProductdetailsActivity
                         .class);
+                intent.putExtra("product_id", productBean2.getProduct_id() + "");
                 startActivity(intent);
             }
 

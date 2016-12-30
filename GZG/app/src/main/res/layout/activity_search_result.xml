@@ -41,6 +41,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="7dp"
                 android:background="@null"
+                android:focusable="false"
                 android:hint="奶粉"
                 android:singleLine="true"
                 android:textColor="#a1a0a0"

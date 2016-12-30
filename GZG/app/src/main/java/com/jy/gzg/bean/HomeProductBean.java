@@ -11,6 +11,19 @@ public class HomeProductBean {
     private String name;
     private float price;
 
+    public HomeProductBean() {
+    }
+
+    public HomeProductBean(int id, Object image, float price, Object memo, String name,
+                           float market_price) {
+        this.id = id;
+        this.image = image;
+        this.memo = memo;
+        this.name = name;
+        this.price = price;
+        this.market_price = market_price;
+    }
+
     public int getId() {
         return id;
     }

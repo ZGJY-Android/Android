@@ -21,11 +21,19 @@ public class CategoryFragment extends Fragment {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     public Context context;
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
-        View rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_category,
+        if (rootView != null) {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+            if (parent != null) {
+                parent.removeView(rootView);
+            }
+            return rootView;
+        }
+        rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_category,
                 container, false);
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.vp_category);

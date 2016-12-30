@@ -33,12 +33,12 @@ import com.jy.gzg.activity.MainActivity;
 import com.jy.gzg.activity.SearchActivity;
 import com.jy.gzg.bean.HomeBean;
 import com.jy.gzg.bean.HomeProductBean;
-import com.jy.gzg.widget.Constant;
 import com.jy.gzg.util.GsonUtil;
 import com.jy.gzg.viewcontrollers.home.adapter.DataAdapter;
 import com.jy.gzg.viewcontrollers.home.bean.ItemModelBean;
-import com.jy.gzg.widget.AppConstant;
 import com.jy.gzg.viewcontrollers.home.widget.SampleHeader;
+import com.jy.gzg.widget.AppConstant;
+import com.jy.gzg.widget.Constant;
 
 import org.json.JSONObject;
 
